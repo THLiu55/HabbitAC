@@ -8,6 +8,7 @@
     android:orientation="vertical"
     >
 
+<!--    文本部分（welcome to HabitAC + 图标）-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="100dp"
@@ -39,11 +40,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+<!--    全部输入部分-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+<!--        账号输入-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -70,6 +73,7 @@
                     />
             </LinearLayout>
         </LinearLayout>
+<!--        密码输入-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -96,6 +100,7 @@
                     />
             </LinearLayout>
         </LinearLayout>
+<!--        密码二次输入-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -114,7 +119,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/input">
                 <EditText
-                    android:id="@+id/password_signup_Re_enter"
+                    android:id="@+id/password_Re_enter_signup"
                     android:layout_width="200dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
@@ -122,6 +127,7 @@
                     />
             </LinearLayout>
         </LinearLayout>
+<!--        邮箱输入 + 验证码发送按钮-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -141,6 +147,7 @@
                     android:hint="Email"
                     />
                 <Button
+                    android:id="@+id/send_code_bnt_signup"
                     android:layout_width="70dp"
                     android:layout_marginLeft="50dp"
                     android:layout_height="match_parent"
@@ -151,6 +158,7 @@
                     >
             </LinearLayout>
         </LinearLayout>
+<!--        验证码输入-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -177,6 +185,7 @@
                     />
             </LinearLayout>
         </LinearLayout>
+<!--        确认注册按钮-->
         <Button
             android:layout_marginTop="25dp"
             android:id="@+id/confirm_button_signup"
@@ -188,10 +197,9 @@
 
     </LinearLayout>
 
-
-
-
+<!--    放弃注册，返回登入页面按钮-->
     <Button
+        android:id="@+id/returnLogin_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Borderless"
