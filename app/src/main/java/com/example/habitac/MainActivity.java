@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.cardemulation.HostNfcFService;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SignUp.actionStart(MainActivity.this, null, null);
+            }
+        });
+        // 设置 'log in' 按钮响应事件
+        button_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Home.actionStart(MainActivity.this, null, null);
             }
         });
     }
