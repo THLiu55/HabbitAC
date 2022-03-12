@@ -2,6 +2,8 @@ package com.example.habitac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class SignUp extends AppCompatActivity {
@@ -11,4 +13,13 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
     }
+
+    public static void actionStart(Context context, String data, String data2) {
+        Intent intent = new Intent(context, SignUp.class);
+        intent.putExtra("param1", data);
+        intent.putExtra("param2", data);
+        context.startActivity(intent);
+    }
+
+
 }
