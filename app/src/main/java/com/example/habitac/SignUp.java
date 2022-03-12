@@ -1,5 +1,6 @@
 package com.example.habitac;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -17,6 +18,11 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        // 隐藏 actionbar
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
         init();
         // 设置 'return to login page' 按钮相应事件
         button_returnLogin.setOnClickListener(new View.OnClickListener() {
