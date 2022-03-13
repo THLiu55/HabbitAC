@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.nfc.cardemulation.HostNfcFService;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     // 输入文本
     EditText editText_accountId, editText_password;
     // 按钮
@@ -34,14 +33,14 @@ public class MainActivity extends AppCompatActivity {
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUp.actionStart(MainActivity.this, null, null);
+                SignUp.actionStart(Login.this, null, null);
             }
         });
         // 设置 'log in' 按钮响应事件
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Home.actionStart(MainActivity.this, null, null);
+                Home.actionStart(Login.this, null, null);
             }
         });
     }
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     // 进入本页面请调用：
     // 调用格式：目标页.actionStart(起点，携带数据1， 携带数据2);
     public static void actionStart(Context context, String data, String data2) {
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, Login.class);
         intent.putExtra("param1", data);
         intent.putExtra("param2", data);
         context.startActivity(intent);

@@ -154,8 +154,7 @@
                     android:background="@drawable/sent_icon"
                     android:text="send"
                     android:textAllCaps="false">
-                </Button
-                    >
+                </Button>
             </LinearLayout>
         </LinearLayout>
 <!--        验证码输入-->

@@ -28,7 +28,7 @@ public class SignUp extends AppCompatActivity {
         button_returnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.actionStart(SignUp.this, null, null);
+                Login.actionStart(SignUp.this, null, null);
             }
         });
     }
