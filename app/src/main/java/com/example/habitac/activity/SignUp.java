@@ -54,9 +54,21 @@ public class SignUp extends AppCompatActivity {
         button_send_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 检测是否已经发送邮件
+                boolean sent = false;
+                // 发送邮件
                 if (basicCheck() && databaseCheck()) {
-                    Toast.makeText(SignUp.this, "Successful", Toast.LENGTH_SHORT).show();
+                    sent = true;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            button_send_code.setClickable(false);
+                            button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
+
+                        }
+                    });
                 }
+
             }
         });
 
