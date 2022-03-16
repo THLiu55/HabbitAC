@@ -10,9 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.habitac.R;
+import com.example.habitac.database.User;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class Login extends AppCompatActivity {
     // 输入文本
@@ -25,12 +30,23 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         Bmob.initialize(this, "ebbe137833bf421a6e3584f81e56b462");
         // 隐藏 actionbar
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
+
+
+//        // *******************
+//        User me = new User("test", "123456", "1500425069@qq.com");
+//        me.save(new SaveListener<String>() {
+//            @Override
+//            public void done(String s, BmobException e) {
+//                Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        // *******************
 
         init();
         // 设置 'register' 按钮相应事件

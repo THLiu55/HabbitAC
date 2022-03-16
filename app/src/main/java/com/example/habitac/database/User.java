@@ -4,10 +4,15 @@ import cn.bmob.v3.BmobObject;
 
 public class User extends BmobObject {
 
-    private String account;
+    private String user_name;
     private String password;
     private String email;
-    private String name;
+
+    public User(String un, String pa, String em) {
+        user_name = un;
+        password = pa;
+        email = em;
+    }
 
     public void setPassword(String password){
         this.password = password;
@@ -25,20 +30,12 @@ public class User extends BmobObject {
         return email;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public String getName() {
-        return name;
+    public String getUser_name() {
+        return user_name;
     }
 
 }
