@@ -1,4 +1,4 @@
-package com.example.habitac;
+package com.example.habitac.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.habitac.R;
 import cn.bmob.v3.Bmob;
 
 public class Login extends AppCompatActivity {

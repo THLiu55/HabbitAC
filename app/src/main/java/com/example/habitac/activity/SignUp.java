@@ -1,4 +1,4 @@
-package com.example.habitac;
+package com.example.habitac.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.habitac.R;
 
 public class SignUp extends AppCompatActivity {
     EditText editText_account, editText_pass, editText_pass2, editText_email, editText_code;
     Button button_send_code, button_confirm, button_returnLogin;
+    String account, pass1, pass2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,16 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Login.actionStart(SignUp.this, null, null);
+            }
+        });
+
+        button_send_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                account = editText_account.getText().toString();
+                pass1 = editText_pass.getText().toString();
+                pass2 = editText_pass2.getText().toString();
+                Toast.makeText(SignUp.this, pass1, Toast.LENGTH_SHORT).show();
             }
         });
     }

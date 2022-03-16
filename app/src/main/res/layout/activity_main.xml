@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".activity.Login">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -93,6 +93,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft ="24dp"
                 android:background="@null"
+                android:inputType="textPassword"
                 />
 
         </LinearLayout>

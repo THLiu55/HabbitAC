@@ -1,10 +1,12 @@
-package com.example.habitac;
+package com.example.habitac.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.habitac.R;
 
 public class Home extends AppCompatActivity {
 
