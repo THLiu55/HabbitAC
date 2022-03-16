@@ -46,6 +46,13 @@ public class Login extends AppCompatActivity {
                 Home.actionStart(Login.this, null, null);
             }
         });
+        button_password_findBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ForgetPwd.actionStart(Login.this, null, null);
+            }
+        });
+
     }
 
     // 初始化所有 UI 组件（与前端页面相连）
