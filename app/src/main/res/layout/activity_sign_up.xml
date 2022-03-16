@@ -97,6 +97,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
                     android:background="@null"
+                    android:inputType="textPassword"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -124,6 +125,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
                     android:background="@null"
+                    android:inputType="textPassword"
                     />
             </LinearLayout>
         </LinearLayout>
