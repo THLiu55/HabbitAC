@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import cn.bmob.v3.Bmob;
+
 public class Login extends AppCompatActivity {
     // 输入文本
     EditText editText_accountId, editText_password;
@@ -23,6 +25,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bmob.initialize(this, "ebbe137833bf421a6e3584f81e56b462");
         // 隐藏 actionbar
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
