@@ -31,7 +31,7 @@ public class MailSender extends Authenticator {
     private void initialize(){
         Properties props = new Properties();
         props.put("mail.transport.protocol", "smtp");// Connection agreement
-        props.put("mail.smtp.host", "smtp.mail.hutian.su");// host name
+        props.put("mail.smtp.host", "mail.hutian.su");// host name
         props.put("mail.smtp.port", 587);// port name
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.ssl.enable", "flase");

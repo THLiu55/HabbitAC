@@ -28,6 +28,7 @@ import javax.mail.internet.AddressException;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
 public class SignUp extends AppCompatActivity {
     // 邮箱 valid 检验 （正则表达式pattern）
@@ -72,11 +73,9 @@ public class SignUp extends AppCompatActivity {
                         public void run() {
                             try {
                                 button_send_code.setClickable(false);
-//                                button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
                                 code = codeInit();
-                                MailSender sender = new MailSender("habit@hutian.su", "lthSB666");
-                                sender.sendMail("Welcome to HabitAC!","Your Verification Code is " + code,"habit@hutian.su", email);
-                                Toast.makeText(SignUp.this, "send", Toast.LENGTH_SHORT).show();
+                                MailSender sender = new MailSender("habitac@hutian.su", "lthSB666");
+                                sender.sendMail("welcome to HabitAC","your verification code is " + code,"habitAC@hutian.su", email);
                             } catch (GeneralSecurityException | MessagingException e) {
                                 e.printStackTrace();
                             }
@@ -94,8 +93,16 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (basicCheck() && databaseCheck()) {
+                    verify_code = editText_code.getText().toString();
                     if (verify_code.equals(code)) {
-
+                        User newUser = new User(user_name, password, email);
+                        newUser.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                Toast.makeText(SignUp.this, "Successful!", Toast.LENGTH_SHORT).show();
+                                Login.actionStart(SignUp.this, user_name, password2);
+                            }
+                        });
                     } else {
                         editText_code.setError("wrong code");
                     }
@@ -108,7 +115,7 @@ public class SignUp extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < 6; i++) {
-            sb.append(random.nextInt());
+            sb.append(random.nextInt(9));
         }
         return sb.toString();
     }
