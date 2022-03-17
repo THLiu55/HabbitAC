@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +14,16 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.database.User;
+import com.example.habitac.utils.MailSender;
 
+import java.security.GeneralSecurityException;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
@@ -31,6 +38,7 @@ public class SignUp extends AppCompatActivity {
     private Button button_send_code, button_confirm, button_returnLogin;
     // 后端对输入数据的存储
     private String user_name, password, password2, email, verify_code;
+    private String code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,23 +70,46 @@ public class SignUp extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            button_send_code.setClickable(false);
-                            button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
-
+                            try {
+                                button_send_code.setClickable(false);
+                                button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
+                                code = codeInit();
+                                MailSender sender = new MailSender("habit@hutian.su", "lthSB666");
+                                sender.sendMail("Welcome to HabitAC!","Your Verification Code is " + code,"1669454731@qq.com", email);
+                            } catch (GeneralSecurityException | MessagingException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    });
+                    }).start();
                 }
-
+                // todo: 倒计时开发（需要改布局）
             }
         });
+
+
 
         // 设置 'confirm' 按钮相应事件
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (basicCheck() && databaseCheck()) {
+                    if (verify_code.equals(code)) {
 
+                    } else {
+                        editText_code.setError("wrong code");
+                    }
+                }
             }
         });
+    }
+
+    private String codeInit() {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            sb.append(random.nextInt());
+        }
+        return sb.toString();
     }
 
     // 初始化所有 UI 组件（与前端页面相连）
@@ -180,7 +211,7 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
-
+        // 检测邮箱是否已存在
         bmobQuery.addWhereEqualTo("email", email);
         bmobQuery.findObjects(new FindListener<User>() {
             @Override
