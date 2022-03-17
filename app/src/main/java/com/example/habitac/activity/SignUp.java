@@ -72,10 +72,11 @@ public class SignUp extends AppCompatActivity {
                         public void run() {
                             try {
                                 button_send_code.setClickable(false);
-                                button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
+//                                button_send_code.setBackgroundColor(android.graphics.Color.parseColor("#CCCECE"));
                                 code = codeInit();
                                 MailSender sender = new MailSender("habit@hutian.su", "lthSB666");
-                                sender.sendMail("Welcome to HabitAC!","Your Verification Code is " + code,"1669454731@qq.com", email);
+                                sender.sendMail("Welcome to HabitAC!","Your Verification Code is " + code,"habit@hutian.su", email);
+                                Toast.makeText(SignUp.this, "send", Toast.LENGTH_SHORT).show();
                             } catch (GeneralSecurityException | MessagingException e) {
                                 e.printStackTrace();
                             }
@@ -205,7 +206,7 @@ public class SignUp extends AppCompatActivity {
         bmobQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if (e == null) {
+                if (e != null) {
                     allCorrect[0] = false;
                     editText_account.setError("user name exist");
                 }
@@ -216,7 +217,7 @@ public class SignUp extends AppCompatActivity {
         bmobQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if (e == null) {
+                if (e != null) {
                     allCorrect[0] = false;
                     editText_email.setError("email is used");
                 }
