@@ -57,7 +57,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:text="User Name:"
                 android:textColor="@color/black"/>
             <LinearLayout
@@ -85,7 +85,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:text="Password:"
                 android:textColor="@color/black"/>
             <LinearLayout
@@ -114,7 +114,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:text="Re-Enter:"
                 android:textColor="@color/black"/>
             <LinearLayout
@@ -153,11 +153,12 @@
                     />
                 <Button
                     android:id="@+id/send_code_bnt_signup"
-                    android:layout_width="70dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_width="61dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/sent_icon"
-                    android:text="send"
+                    android:text="SEND"
+                    android:textSize="10sp"
                     android:textAllCaps="false">
                 </Button>
             </LinearLayout>
@@ -173,8 +174,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
-                android:text="Code:"
+                android:textSize="17sp"
+                android:text="Verifi Code: "
                 android:textColor="@color/black"/>
             <LinearLayout
                 android:layout_width="250dp"
@@ -186,6 +187,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
                     android:background="@null"
+                    android:hint="888888"
                     />
             </LinearLayout>
         </LinearLayout>

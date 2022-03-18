@@ -43,7 +43,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/input">
                 <EditText
-                    android:id="@+id/email_signup"
+                    android:id="@+id/email_forgetpwd"
                     android:layout_width="200dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
@@ -51,12 +51,13 @@
                     android:hint="Your Email"
                     />
                 <Button
-                    android:id="@+id/send_code_bnt_signup"
-                    android:layout_width="70dp"
-                    android:layout_marginLeft="50dp"
+                    android:id="@+id/send_code_forget"
+                    android:layout_width="61dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/sent_icon"
-                    android:text="send"
+                    android:text="SEND"
+                    android:textSize="10sp"
                     android:textAllCaps="false">
                 </Button>
             </LinearLayout>
@@ -92,7 +93,7 @@
         <!--        Next-->
         <Button
             android:layout_marginTop="25dp"
-            android:id="@+id/confirm_button_signup"
+            android:id="@+id/confirm_button_forgot"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Next"
