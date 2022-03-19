@@ -10,7 +10,9 @@
         <entry key="app/src/main/res/layout/activity_forget_pwd.xml" value="0.4175827026367188" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16534271240234377" />
+        <entry key="app/src/main/res/layout/activity_reset_pwd.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22747955322265626" />
+        <entry key="app/src/main/res/layout/fragment_reset_pwd.xml" value="0.29475250244140627" />
       </map>
     </option>
   </component>

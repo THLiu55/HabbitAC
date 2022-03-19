@@ -20,7 +20,7 @@ public class ForgetPwd extends AppCompatActivity {
     // 文本输入
     EditText email;
 
-    Button button_email_send;
+    Button button_email_send, button_forget_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +33,20 @@ public class ForgetPwd extends AppCompatActivity {
 
         init();
 
-        button_email_send.setOnClickListener(new View.OnClickListener() {
+        button_forget_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ForgetPwd.this, email.getText(), Toast.LENGTH_SHORT).show();
+                ResetPwd.actionStart(ForgetPwd.this, null, null);
             }
         });
+
+
     }
 
     private void init(){
         email = findViewById(R.id.email_forgetpwd);
         button_email_send = findViewById(R.id.send_code_forget);
+        button_forget_next = findViewById(R.id.confirm_button_forgot);
     }
 
     public static void actionStart(Context context, String data, String data2) {
