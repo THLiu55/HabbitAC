@@ -15,8 +15,12 @@ import android.widget.Toast;
 import com.example.habitac.R;
 import com.example.habitac.database.User;
 
+import java.util.List;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class Login extends AppCompatActivity {
@@ -26,6 +30,8 @@ public class Login extends AppCompatActivity {
     Button button_register, button_login, button_password_findBack;
     // 记住密码
     CheckBox rememberPass;
+    // 密码 & 用户名
+    String userName, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +42,6 @@ public class Login extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
-
-
-//        // *******************
-//        User me = new User("test", "123456", "1500425069@qq.com");
-//        me.save(new SaveListener<String>() {
-//            @Override
-//            public void done(String s, BmobException e) {
-//                Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        // *******************
-
         init();
         // 设置 'register' 按钮相应事件
         button_register.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +52,32 @@ public class Login extends AppCompatActivity {
         });
         // 设置 'log in' 按钮响应事件
         button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
-                Home.actionStart(Login.this, null, null);
+                password = editText_password.getText().toString();
+                userName = editText_accountId.getText().toString();
+                BmobQuery<User> bmobQuery = new BmobQuery<>();
+                bmobQuery.addWhereEqualTo("user_name", userName);
+                bmobQuery.findObjects(new FindListener<User>() {
+                    @Override
+                    public void done(List<User> list, BmobException e) {
+                        if (e == null) {
+                            if (list.size() == 0) {
+                                editText_accountId.setError("user name ont exist");
+                            } else {
+                                User user = list.get(0);
+                                String userPass = user.getPassword();
+                                if (!userPass.equals(password)) {
+                                    editText_password.setError("wrong password");
+                                } else {
+                                    Toast.makeText(Login.this, "welcome", Toast.LENGTH_SHORT).show();
+                                    Home.actionStart(Login.this, null, null);
+                                }
+                            }
+                        } else {
+                            Toast.makeText(Login.this, "network error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
         button_password_findBack.setOnClickListener(new View.OnClickListener() {
