@@ -3,10 +3,12 @@ package com.example.habitac.activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,12 +36,14 @@ public class SignUp extends AppCompatActivity {
     // 邮箱 valid 检验 （正则表达式pattern）
     public static final String REGEX_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 
-     // 前端组件的实例化
+    // 前端组件的实例化
     private EditText editText_account, editText_pass, editText_pass2, editText_email, editText_code;
     private Button button_send_code, button_confirm, button_returnLogin;
     // 后端对输入数据的存储
     private String user_name, password, password2, email, verify_code;
     private String code;
+
+    private boolean validUserName, validEmail, networkErr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +70,16 @@ public class SignUp extends AppCompatActivity {
                 // 检测是否已经发送邮件
                 boolean sent = false;
                 // 发送邮件
-                if (basicCheck() && databaseCheck()) {
+                checkEmail();
+                checkUsername();
+                if (basicCheck() && validUserName && validEmail && !networkErr) {
                     sent = true;
+                    button_send_code.setClickable(false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                button_send_code.setClickable(false);
-                                code = codeInit();
+                                code = MailSender.codeInit();
                                 MailSender sender = new MailSender("habitac@hutian.su", "lthSB666");
                                 sender.sendMail("welcome to HabitAC","your verification code is " + code,"habitAC@hutian.su", email);
                             } catch (GeneralSecurityException | MessagingException e) {
@@ -81,8 +87,24 @@ public class SignUp extends AppCompatActivity {
                             }
                         }
                     }).start();
+                } else if (networkErr) {
+                    Toast.makeText(SignUp.this, "network error", Toast.LENGTH_SHORT).show();
                 }
-                // todo: 倒计时开发（需要改布局）
+                if(sent){
+                    new CountDownTimer(30000, 1000) {
+                        @SuppressLint("SetTextI18n")
+                        public void onTick(long millisUntilFinished) {
+                            button_send_code.setText("" + millisUntilFinished / 1000);
+                            button_send_code.setTextSize(15);
+                        }
+                        @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
+                        public void onFinish() {
+                            button_send_code.setTextSize(10);
+                            button_send_code.setText("SEND");
+                            button_send_code.setClickable(true);
+                        }
+                    }.start();
+                }
             }
         });
 
@@ -92,7 +114,9 @@ public class SignUp extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (basicCheck() && databaseCheck()) {
+                checkEmail();
+                checkUsername();
+                if (basicCheck() && validUserName && validEmail && !networkErr) {
                     verify_code = editText_code.getText().toString();
                     if (verify_code.equals(code)) {
                         User newUser = new User(user_name, password, email);
@@ -106,18 +130,11 @@ public class SignUp extends AppCompatActivity {
                     } else {
                         editText_code.setError("wrong code");
                     }
+                } else if (networkErr) {
+                    Toast.makeText(SignUp.this, "network error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private String codeInit() {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 6; i++) {
-            sb.append(random.nextInt(9));
-        }
-        return sb.toString();
     }
 
     // 初始化所有 UI 组件（与前端页面相连）
@@ -199,38 +216,51 @@ public class SignUp extends AppCompatActivity {
         return allCorrect;
     }
 
-    // 检查新用户信息是否与数据库中已有用户信息冲突
-    private boolean databaseCheck() {
-        final boolean[] allCorrect = {true};   // 检测是否有输入错误 （有->false; 无->true）
 
-        // 收集当前输入数据：
+    //  检查用户名是否已经存在
+    private void checkUsername() {
+        validUserName = false;
+        networkErr = false;
         user_name = editText_account.getText().toString();
-        email = editText_email.getText().toString();
-
         // 检查用户名是否重复
         BmobQuery<User> bmobQuery = new BmobQuery<>();
         bmobQuery.addWhereEqualTo("user_name", user_name);
         bmobQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if (e != null) {
-                    allCorrect[0] = false;
-                    editText_account.setError("user name exist");
+                if (e == null) {
+                    if (list.size() != 0) {
+                        editText_account.setError("user name exist");
+                    } else {
+                        validUserName = true;
+                    }
+                } else {
+                    networkErr = true;
                 }
             }
         });
-        // 检测邮箱是否已存在
+    }
+
+    // 检查邮箱是否已经存在
+    private void checkEmail() {
+        validEmail = false;
+        networkErr = false;
+        email = editText_email.getText().toString();
+        BmobQuery<User> bmobQuery = new BmobQuery<>();
         bmobQuery.addWhereEqualTo("email", email);
         bmobQuery.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if (e != null) {
-                    allCorrect[0] = false;
-                    editText_email.setError("email is used");
+                if (e == null) {
+                    if (list.size() != 0) {
+                        editText_email.setError("email is used");
+                    } else {
+                        validEmail = true;
+                    }
+                } else {
+                    networkErr = true;
                 }
             }
         });
-        return allCorrect[0];
     }
-
 }

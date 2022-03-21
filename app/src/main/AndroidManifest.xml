@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HabitAC">
         <activity
+            android:name=".activity.myItem"
+            android:exported="false" />
+        <activity
             android:name=".activity.ResetPwd"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.example.habitac.BmobContentProvider"></provider>
+            android:authorities="com.example.habitac.BmobContentProvider" />
 
         <activity
             android:name=".activity.Home"

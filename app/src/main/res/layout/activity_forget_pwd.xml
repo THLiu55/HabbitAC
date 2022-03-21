@@ -81,7 +81,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/input">
                 <EditText
-                    android:id="@+id/code_signup"
+                    android:id="@+id/code_forget_pass"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="24dp"

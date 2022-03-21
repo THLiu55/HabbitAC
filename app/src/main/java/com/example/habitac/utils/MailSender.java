@@ -2,6 +2,7 @@ package com.example.habitac.utils;
 
 import java.security.GeneralSecurityException;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.activation.DataHandler;
 import javax.mail.Authenticator;
@@ -53,5 +54,14 @@ public class MailSender extends Authenticator {
         message.setDataHandler(handler);
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient.replace(" ","")));
         Transport.send(message);
+    }
+
+    public static String codeInit() {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            sb.append(random.nextInt(9));
+        }
+        return sb.toString();
     }
 }

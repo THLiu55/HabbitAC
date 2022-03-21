@@ -8,6 +8,8 @@ public class User extends BmobObject {
     private String password;
     private String email;
 
+    public User() {}
+
     public User(String un, String pa, String em) {
         user_name = un;
         password = pa;
