@@ -31,6 +31,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import io.reactivex.internal.operators.observable.ObservableWindowBoundary;
 
 public class SignUp extends AppCompatActivity {
     // 邮箱 valid 检验 （正则表达式pattern）
@@ -42,8 +43,6 @@ public class SignUp extends AppCompatActivity {
     // 后端对输入数据的存储
     private String user_name, password, password2, email, verify_code;
     private String code;
-
-    private boolean validUserName, validEmail, networkErr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +69,7 @@ public class SignUp extends AppCompatActivity {
                 // 检测是否已经发送邮件
                 boolean sent = false;
                 // 发送邮件
-                checkEmail();
-                checkUsername();
-                if (basicCheck() && validUserName && validEmail && !networkErr) {
+                if (basicCheck()) {
                     sent = true;
                     button_send_code.setClickable(false);
                     new Thread(new Runnable() {
@@ -87,8 +84,6 @@ public class SignUp extends AppCompatActivity {
                             }
                         }
                     }).start();
-                } else if (networkErr) {
-                    Toast.makeText(SignUp.this, "network error", Toast.LENGTH_SHORT).show();
                 }
                 if(sent){
                     new CountDownTimer(30000, 1000) {
@@ -114,25 +109,36 @@ public class SignUp extends AppCompatActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkEmail();
-                checkUsername();
-                if (basicCheck() && validUserName && validEmail && !networkErr) {
-                    verify_code = editText_code.getText().toString();
-                    if (verify_code.equals(code)) {
-                        User newUser = new User(user_name, password, email);
-                        newUser.save(new SaveListener<String>() {
-                            @Override
-                            public void done(String s, BmobException e) {
-                                Toast.makeText(SignUp.this, "Successful!", Toast.LENGTH_SHORT).show();
-                                Login.actionStart(SignUp.this, user_name, password2);
+
+                BmobQuery<User> bmobQuery = new BmobQuery<>();
+                bmobQuery.addWhereEqualTo("user_name", user_name);
+                bmobQuery.findObjects(new FindListener<User>() {
+                    @Override
+                    public void done(List<User> list, BmobException e) {
+                        if (e == null) {
+                            if (list.size() != 0) {
+                                editText_account.setError("user name exist");
+                            } else {
+                                verify_code = editText_code.getText().toString();
+                                if (verify_code.equals(code)) {
+                                    User newUser = new User(user_name, password, email);
+                                    newUser.save(new SaveListener<String>() {
+                                        @Override
+                                        public void done(String s, BmobException e) {
+                                            Toast.makeText(SignUp.this, "Successful!", Toast.LENGTH_SHORT).show();
+                                            Login.actionStart(SignUp.this, user_name, password2);
+                                        }
+                                    });
+                                } else {
+                                    editText_code.setError("wrong code");
+                                }
                             }
-                        });
-                    } else {
-                        editText_code.setError("wrong code");
+                        } else {
+                            Toast.makeText(SignUp.this, "network error", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } else if (networkErr) {
-                    Toast.makeText(SignUp.this, "network error", Toast.LENGTH_SHORT).show();
-                }
+                });
+
             }
         });
     }
@@ -214,53 +220,5 @@ public class SignUp extends AppCompatActivity {
             allCorrect = false;
         }
         return allCorrect;
-    }
-
-
-    //  检查用户名是否已经存在
-    private void checkUsername() {
-        validUserName = false;
-        networkErr = false;
-        user_name = editText_account.getText().toString();
-        // 检查用户名是否重复
-        BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.addWhereEqualTo("user_name", user_name);
-        bmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                if (e == null) {
-                    if (list.size() != 0) {
-                        editText_account.setError("user name exist");
-                    } else {
-                        validUserName = true;
-                    }
-                } else {
-                    networkErr = true;
-                }
-            }
-        });
-    }
-
-    // 检查邮箱是否已经存在
-    private void checkEmail() {
-        validEmail = false;
-        networkErr = false;
-        email = editText_email.getText().toString();
-        BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.addWhereEqualTo("email", email);
-        bmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                if (e == null) {
-                    if (list.size() != 0) {
-                        editText_email.setError("email is used");
-                    } else {
-                        validEmail = true;
-                    }
-                } else {
-                    networkErr = true;
-                }
-            }
-        });
     }
 }

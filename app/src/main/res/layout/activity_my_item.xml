@@ -16,8 +16,8 @@
 
             <ImageView
                 android:id="@+id/MyImageView"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="80sp"
+                android:layout_height="80sp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="4dp"
                 android:text="Title"
                 android:textSize="40sp"
                 android:textStyle="bold"
