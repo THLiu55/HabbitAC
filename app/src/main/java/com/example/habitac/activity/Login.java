@@ -23,7 +23,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
-public class Login extends AppCompatActivity {
+public class Login extends BasicActivity {
     // 输入文本
     EditText editText_accountId, editText_password;
     // 按钮

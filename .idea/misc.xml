@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_home.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_my_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_sign_up.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/exp_bar.xml" value="0.121" />
         <entry key="app/src/main/res/drawable/hp_bar.xml" value="0.128" />

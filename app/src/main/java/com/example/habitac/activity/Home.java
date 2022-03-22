@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.habitac.R;
 import com.example.habitac.utils.ItemAdapter;
 
-public class Home extends AppCompatActivity {
+public class Home extends BasicActivity {
     RecyclerView recyclerView; // 滚动组件的 instance
     String[] s1, s2;  // 文本数据的 instance
     int[] images = {R.drawable.item_pic, R.drawable.item_pic, R.drawable.item_pic,

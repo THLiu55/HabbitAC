@@ -24,7 +24,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
-public class ForgetPwd extends AppCompatActivity {
+public class ForgetPwd extends BasicActivity{
 
     // 文本输入
     EditText email, code;

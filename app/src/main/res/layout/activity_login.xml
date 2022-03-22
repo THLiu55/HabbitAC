@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Habit"
+
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="45sp"
@@ -113,7 +114,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="remember the password"
+            android:text="Remember the Password"
             />
     </LinearLayout>
 
@@ -131,6 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAllCaps="false"
+        android:elevation="1px"
         android:text="Log in"
         android:layout_marginTop="30dp"
         android:layout_weight="1"
@@ -152,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="forget password?"
+        android:text="Forget Password?"
         android:layout_weight="1"
         android:textAllCaps="false"
         android:textColor="#3366FF"/>

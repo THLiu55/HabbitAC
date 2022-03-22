@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.habitac.R;
 
-public class myItem extends AppCompatActivity {
+public class myItem extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

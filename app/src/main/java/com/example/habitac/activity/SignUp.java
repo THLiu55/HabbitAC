@@ -33,7 +33,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import io.reactivex.internal.operators.observable.ObservableWindowBoundary;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends BasicActivity {
     // 邮箱 valid 检验 （正则表达式pattern）
     public static final String REGEX_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 

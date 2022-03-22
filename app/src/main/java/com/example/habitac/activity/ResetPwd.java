@@ -17,7 +17,7 @@ import com.example.habitac.database.User;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 
-public class ResetPwd extends AppCompatActivity {
+public class ResetPwd extends BasicActivity {
 
     Button confirm;
     EditText newPass1, newPass2;
