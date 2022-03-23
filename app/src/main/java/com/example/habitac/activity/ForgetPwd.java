@@ -3,9 +3,11 @@ package com.example.habitac.activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,10 +55,14 @@ public class ForgetPwd extends BasicActivity{
                 bmobQuery.findObjects(new FindListener<User>() {
                     @Override
                     public void done(List<User> list, BmobException e) {
+                        // 检测是否已经发送邮件
+                        boolean sent = false;
+                        // 发送邮件
                         if (e == null) {
                             if (list.size() == 0) {
                                 email.setError("this email not registered");
                             } else {
+                                sent = true;
                                 userId = list.get(0).getObjectId();
                                 new Thread(new Runnable() {
                                     @Override
@@ -73,6 +79,21 @@ public class ForgetPwd extends BasicActivity{
                             }
                         } else {
                             Toast.makeText(ForgetPwd.this, "network error", Toast.LENGTH_SHORT).show();
+                        }
+                        if(sent){
+                            new CountDownTimer(30000, 1000) {
+                                @SuppressLint("SetTextI18n")
+                                public void onTick(long millisUntilFinished) {
+                                    button_email_send.setText("" + millisUntilFinished / 1000);
+                                    button_email_send.setTextSize(15);
+                                }
+                                @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
+                                public void onFinish() {
+                                    button_email_send.setTextSize(10);
+                                    button_email_send.setText("SEND");
+                                    button_email_send.setClickable(true);
+                                }
+                            }.start();
                         }
                     }
                 });

@@ -32,7 +32,6 @@ public class ResetPwd extends BasicActivity {
         actionBar.hide();
         Intent intent = getIntent();
         userId = intent.getStringExtra("param1");
-        Toast.makeText(ResetPwd.this, userId, Toast.LENGTH_SHORT).show();
         init();
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +44,7 @@ public class ResetPwd extends BasicActivity {
                         public void done(BmobException e) {
                             if(e==null){
                                 Toast.makeText(ResetPwd.this, "success", Toast.LENGTH_SHORT).show();
-                                Login.actionStart(ResetPwd.this, null, null);
+                                Login.actionStart(ResetPwd.this, user.getUser_name(), user.getPassword());
                             }else{
                                 Toast.makeText(ResetPwd.this, "network error", Toast.LENGTH_SHORT).show();
                             }

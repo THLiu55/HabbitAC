@@ -109,7 +109,9 @@ public class SignUp extends BasicActivity {
         button_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (!basicCheck()) {
+                    return;
+                }
                 BmobQuery<User> bmobQuery = new BmobQuery<>();
                 bmobQuery.addWhereEqualTo("user_name", user_name);
                 bmobQuery.findObjects(new FindListener<User>() {
