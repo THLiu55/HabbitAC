@@ -1,7 +1,6 @@
 package com.example.habitac.activity;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class Login extends BasicActivity {
     // 输入文本
@@ -70,7 +68,7 @@ public class Login extends BasicActivity {
                                     editText_password.setError("wrong password");
                                 } else {
                                     Toast.makeText(Login.this, "welcome", Toast.LENGTH_SHORT).show();
-                                    Home.actionStart(Login.this, null, null);
+                                    Main.actionStart(Login.this, null, null);
                                 }
                             }
                         } else {

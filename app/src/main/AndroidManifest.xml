@@ -31,7 +31,7 @@
             android:authorities="com.example.habitac.BmobContentProvider" />
 
         <activity
-            android:name=".activity.Home"
+            android:name=".activity.Main"
             android:exported="false" />
         <activity
             android:name=".activity.SignUp"
