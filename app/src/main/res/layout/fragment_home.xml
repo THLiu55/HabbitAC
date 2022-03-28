@@ -43,6 +43,8 @@
             app:layout_constraintStart_toEndOf="@+id/text_username"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
         <TextView
             android:id="@+id/text_HP"
             android:layout_width="wrap_content"
@@ -82,6 +84,14 @@
             android:background="@drawable/exp_bar"
             app:layout_constraintStart_toEndOf="@+id/text_EXP"
             app:layout_constraintTop_toBottomOf="@+id/text_HP" />
+
+        <Button
+            android:id="@+id/getAvatar"
+            android:layout_width="55dp"
+            android:layout_height="42dp"
+            android:text="Go"
+            app:layout_constraintStart_toEndOf="@+id/text_level"
+            app:layout_constraintTop_toTopOf="@+id/text_level" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
