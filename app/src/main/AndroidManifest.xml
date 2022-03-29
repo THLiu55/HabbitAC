@@ -18,6 +18,9 @@
         android:theme="@style/Theme.HabitAC"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.TaskDetails"
+            android:exported="false" />
+        <activity
             android:name=".activity.myItem"
             android:exported="false" />
         <activity

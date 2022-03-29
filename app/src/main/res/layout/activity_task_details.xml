@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TaskDetails"
+    android:padding="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+
+        <LinearLayout
+            android:id="@+id/task_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/getName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Name it"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/habitTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="#26A69A"
+                android:hint="Habit Title"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/habitFrequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Frequency"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <RelativeLayout
+                android:id="@+id/frequencyBigButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buttonToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+
+                    android:background="@drawable/frequency_btm1"
+                    android:text="Today"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/buttonAlways"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/buttonToday"
+                    android:layout_marginLeft="120dp"
+                    android:background="@drawable/frequency_btm1"
+                    android:text="Always"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/frequencySmallButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <Button
+                    android:id="@+id/freButton1"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="S"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton2"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton1"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="M"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton3"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton2"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="T"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton4"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton3"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="W"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton5"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton4"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="T"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton6"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton5"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="F"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/freButton7"
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/freButton6"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:text="S"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/timeReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Time to Remind Me"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+            <RelativeLayout
+                android:id="@+id/classificationButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <Button
+                    android:id="@+id/clfButton1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+
+                    android:background="@drawable/frequency_btm2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/clfButton1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:text="JOB"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+
+                <Button
+                    android:id="@+id/clfButton2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/clfButton1"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/clfButton2"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginTop="40dp"
+                    android:text="STUDY"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+
+                <Button
+                    android:id="@+id/clfButton3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/clfButton2"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/clfButton3"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_marginTop="40dp"
+                    android:text="EXERCISE"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/clfButton4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/clfButton3"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/clfButton4"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginTop="40dp"
+                    android:text="KEEPING"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/clfButton5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignLeft="@id/clfButton4"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/frequency_btm2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/clfButton5"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginTop="40dp"
+                    android:text="OTHERS"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/getContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Give Yourself"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_habitDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="#26A69A"
+                android:hint="Give it a short description"
+                android:inputType="textShortMessage"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
