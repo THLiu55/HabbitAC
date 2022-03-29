@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".activity.Main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginStart="24dp"
-            android:text="Lv. 11"
+            android:text="Lv."
             android:textSize="19dp"
             android:gravity="center_vertical"
             android:textStyle="bold"
@@ -46,44 +47,52 @@
 
 
         <TextView
-            android:id="@+id/text_HP"
+            android:id="@+id/text_EXP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Hp   "
+            android:text="Exp"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/text_level"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             />
 
-        <View
+
+        <ProgressBar
+            android:id="@+id/progressbar_exp"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="200dp"
             android:layout_height="15dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/hp_bar"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:progressDrawable="@drawable/exp_bar"
             app:layout_constraintStart_toEndOf="@+id/text_EXP"
             app:layout_constraintTop_toBottomOf="@id/text_level" />
 
         <TextView
-            android:id="@+id/text_EXP"
+            android:id="@+id/text_COIN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Exp  "
+            android:text="Coin"
             android:textSize="18dp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/text_HP"
+            app:layout_constraintTop_toBottomOf="@+id/text_EXP"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             />
 
-        <View
+
+        <ProgressBar
+            android:id="@+id/progressbar_coin"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="200dp"
             android:layout_height="15dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/exp_bar"
-            app:layout_constraintStart_toEndOf="@+id/text_EXP"
-            app:layout_constraintTop_toBottomOf="@+id/text_HP" />
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:progressDrawable="@drawable/coin_bar"
+            app:layout_constraintStart_toStartOf="@+id/progressbar_exp"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_exp" />
 
         <Button
             android:id="@+id/getAvatar"
@@ -92,6 +101,7 @@
             android:text="Go"
             app:layout_constraintStart_toEndOf="@+id/text_level"
             app:layout_constraintTop_toTopOf="@+id/text_level" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,6 +123,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
+
+                <Button
+                    android:id="@+id/button_test1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:text="+" />
 
                 <TextView
                     android:id="@+id/text_you_have"
@@ -149,6 +166,16 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/text_you_have"
                     tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/button_test2"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="10dp"
+                    android:text="-" />
+
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

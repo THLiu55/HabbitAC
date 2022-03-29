@@ -7,6 +7,9 @@ public class User extends BmobObject {
     private String user_name;
     private String password;
     private String email;
+    private int currentLevel;
+    private int currentProgress;
+    private int currentCoin;
 
     public User() {}
 
@@ -39,5 +42,18 @@ public class User extends BmobObject {
     public String getUser_name() {
         return user_name;
     }
+
+    public int getCurrentProgress() {
+        return currentProgress;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public int getCurrentCoin() {
+        return currentCoin;
+    }
+
 
 }
