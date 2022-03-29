@@ -23,6 +23,11 @@
         android:name="com.example.habitac.fragment.RankFragment"
         android:label="Rank"
         tools:layout="@layout/fragment_rank" />
+    <fragment
+        android:id="@+id/navigation_me"
+        android:name="com.example.habitac.fragment.Me"
+        android:label="fragment_me"
+        tools:layout="@layout/fragment_me" />
 
 
 </navigation>

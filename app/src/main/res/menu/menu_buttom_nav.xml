@@ -16,4 +16,9 @@
         android:icon="@mipmap/ic_launcher"
         android:title="Rank" />
 
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Me" />
+
 </menu>
