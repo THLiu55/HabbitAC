@@ -93,7 +93,7 @@
                 <Button
                     android:id="@+id/freButton2"
                     android:layout_width="45dp"
-                    android:layout_height="40dp"
+                    android:layout_height="33dp"
                     android:layout_alignLeft="@id/freButton1"
                     android:layout_marginLeft="50dp"
                     android:background="@drawable/frequency_btm2"
