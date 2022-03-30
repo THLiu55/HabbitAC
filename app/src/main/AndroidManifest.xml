@@ -36,6 +36,7 @@
 
         <activity
             android:name=".activity.Main"
+            android:launchMode="singleTop"
             android:exported="false" />
         <activity
             android:name=".activity.SignUp"

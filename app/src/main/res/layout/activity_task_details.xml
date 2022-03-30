@@ -51,29 +51,7 @@
             <RelativeLayout
                 android:id="@+id/frequencyBigButton"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/buttonToday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-
-                    android:background="@drawable/frequency_btm1"
-                    android:text="Today"
-                    android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/buttonAlways"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/buttonToday"
-                    android:layout_marginLeft="120dp"
-                    android:background="@drawable/frequency_btm1"
-                    android:text="Always"
-                    android:textColor="@android:color/white" />
-
-            </RelativeLayout>
+                android:layout_height="match_parent" />
 
             <RelativeLayout
                 android:id="@+id/frequencySmallButton"
@@ -93,7 +71,7 @@
                 <Button
                     android:id="@+id/freButton2"
                     android:layout_width="45dp"
-                    android:layout_height="33dp"
+                    android:layout_height="40dp"
                     android:layout_alignLeft="@id/freButton1"
                     android:layout_marginLeft="50dp"
                     android:background="@drawable/frequency_btm2"
@@ -159,6 +137,7 @@
                 android:text="Time to Remind Me"
                 android:textColor="#000000"
                 android:textSize="25sp" />
+
             <RelativeLayout
                 android:id="@+id/classificationButton"
                 android:layout_width="match_parent"

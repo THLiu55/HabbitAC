@@ -33,7 +33,7 @@ public class AvatarGetter {
             connection.setReadTimeout(5000);
             connection.setConnectTimeout(5000);
             int code = connection.getResponseCode();
-            Log.d(code+" Get",getClass().getSimpleName());
+            Log.d(code+" Get", getClass().getSimpleName());
             if (code == 200) {
                 InputStream inputStream = connection.getInputStream();
                 bit = BitmapFactory.decodeStream(inputStream);

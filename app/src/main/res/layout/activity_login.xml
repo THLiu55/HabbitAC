@@ -21,12 +21,12 @@
 
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="45sp"
+            android:textSize="55sp"
             android:textStyle="bold"/>
         <ImageView
-            android:layout_width="60dp"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/habiticon"
+            android:src="@drawable/robot"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:text="AC"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="45sp"
+            android:textSize="55sp"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -109,6 +109,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center">
         <CheckBox
+            android:id="@+id/checked_remember_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
