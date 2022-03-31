@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="calendar_weekday_size">20sp</dimen>
+    <dimen name="Left">5dp</dimen>
+    <dimen name="Right">5dp</dimen>
+    <dimen name="Top">5dp</dimen>
+    <dimen name="Bottom">5dp</dimen>
+
+
+
+</resources>
