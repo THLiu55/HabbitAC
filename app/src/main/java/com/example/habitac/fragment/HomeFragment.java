@@ -1,10 +1,14 @@
 package com.example.habitac.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,27 +18,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.habitac.R;
-import com.example.habitac.activity.Main;
+import com.example.habitac.activity.TaskDetails;
 import com.example.habitac.utils.AvatarGetter;
 import com.example.habitac.utils.ItemAdapter;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class HomeFragment extends Fragment {
+
+public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder.ItemClickListener {
 
     RecyclerView recyclerView; // 滚动组件的 instance
     String[] s1, s2;  // 文本数据的 instance
     Context context;
-    int[] images = {R.drawable.item_pic, R.drawable.item_pic, R.drawable.item_pic,
-            R.drawable.item_pic, R.drawable.item_pic, R.drawable.item_pic,
-            R.drawable.item_pic, R.drawable.item_pic, R.drawable.item_pic};  // 照片数据的 instance
+    List<Integer> image;  // 照片数据的 instance
 
 
     //经验条+金币条
@@ -47,11 +48,16 @@ public class HomeFragment extends Fragment {
 
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ImageView avatar = root.findViewById(R.id.imageView);
+        image = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            image.add(R.drawable.robot);
+        }
         Button refreshAvatar = root.findViewById(R.id.getAvatar);
         refreshAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +86,7 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recycle_view);
         context = getActivity();
         // 构建 adapter
-        ItemAdapter myAdapter = new ItemAdapter(context, s1, s2, images);
+        ItemAdapter myAdapter = new ItemAdapter(context, s1, s2, image, this::click);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
@@ -201,4 +207,9 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void click(View view) {
+        NavController controller = Navigation.findNavController(view);
+        controller.navigate(R.id.action_navigation_home_to_testTaskDetails2);
+    }
 }

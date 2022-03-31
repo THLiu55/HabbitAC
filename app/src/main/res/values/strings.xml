@@ -3,14 +3,13 @@
 
     <string-array name="habit_name">
         <item>habit</item>
-        <item>habit2</item>
-        <item>habit3</item>
-        <item>habit4</item>
-        <item>habit5</item>
-        <item>habit6</item>
-        <item>habit7</item>
-        <item>habit8</item>
-        <item>habit9</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+
     </string-array>
 
     <string-array name="description">
@@ -21,8 +20,7 @@
         <item>This is a random description </item>
         <item>This is a random description </item>
         <item>This is a random description </item>
-        <item>This is a random description </item>
-        <item>This is a random description </item>
+
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
