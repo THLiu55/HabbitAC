@@ -34,9 +34,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.activity_my_item, parent, false);
         final ItemViewHolder holder = new ItemViewHolder(view, itemClickListener);
-
-
-
         return (ItemViewHolder) holder;
     }
 
@@ -64,7 +61,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             myText2 = itemView.findViewById(R.id.textView_notify_clock);
             imageView = itemView.findViewById(R.id.imageView2);
             this.itemClickListener = itemClickListener;
-            itemView.setOnClickListener(this);
+            imageView.setOnClickListener(this);
         }
 
         @Override

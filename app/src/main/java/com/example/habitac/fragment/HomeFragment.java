@@ -2,7 +2,6 @@ package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -58,6 +57,7 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
         for (int i = 0; i < 7; i++) {
             image.add(R.drawable.robot);
         }
+        image.add(R.drawable.white);
         Button refreshAvatar = root.findViewById(R.id.getAvatar);
         refreshAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +209,8 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
 
     @Override
     public void click(View view) {
+        Log.d("TAG", view.toString());
         NavController controller = Navigation.findNavController(view);
-        controller.navigate(R.id.action_navigation_home_to_testTaskDetails2);
+        controller.navigate(R.id.action_navigation_home_to_taskDetails);
     }
 }

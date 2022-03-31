@@ -12,10 +12,10 @@
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_navigation_home_to_testTaskDetails2"
-            app:destination="@id/testTaskDetails2"
-            app:enterAnim="@anim/slide_from_left"
-            app:exitAnim="@anim/slide_from_right" />
+            android:id="@+id/action_navigation_home_to_taskDetails"
+            app:destination="@id/taskDetails"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
@@ -34,17 +34,11 @@
         android:name="com.example.habitac.fragment.Me"
         android:label="fragment_me"
         tools:layout="@layout/fragment_me" />
-    <fragment
-        android:id="@+id/testTaskDetails2"
-        android:name="com.example.habitac.fragment.TestTaskDetails"
-        android:label="fragment_test_task_details"
-        tools:layout="@layout/fragment_test_task_details" >
-        <action
-            android:id="@+id/action_testTaskDetails2_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_from_left" />
-    </fragment>
+    <activity
+        android:id="@+id/taskDetails"
+        android:name="com.example.habitac.activity.TaskDetails"
+        android:label="activity_task_details"
+        tools:layout="@layout/activity_task_details" />
 
 
 </navigation>
