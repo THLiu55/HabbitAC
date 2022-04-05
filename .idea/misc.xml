@@ -15,15 +15,20 @@
         <entry key="app/src/main/res/drawable/frequency_btm2.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/hp_bar.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_alarm_24.xml" value="0.175" />
+        <entry key="app/src/main/res/drawable/ic_baseline_assignment_ind_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_format_list_numbered_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/task_yello_bar.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
         <entry key="app/src/main/res/font/font.xml" value="0.35794871794871796" />
         <entry key="app/src/main/res/layout/activity_forget_pwd.xml" value="0.25822906494140624" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2949539184570313" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.36284790039062503" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2769271850585937" />
+        <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.4358779907226563" />
         <entry key="app/src/main/res/layout/activity_reset_pwd.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22747955322265626" />
         <entry key="app/src/main/res/layout/activity_task_details.xml" value="0.27909105780984267" />
@@ -31,12 +36,13 @@
         <entry key="app/src/main/res/layout/calendar.xml" value="0.12639311043566362" />
         <entry key="app/src/main/res/layout/calendar_structure.xml" value="0.10119171142578126" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.26584930419921876" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.233941650390625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19380950927734375" />
         <entry key="app/src/main/res/layout/fragment_me.xml" value="0.28691406249999996" />
         <entry key="app/src/main/res/layout/fragment_rank.xml" value="0.28442028985507245" />
         <entry key="app/src/main/res/layout/fragment_reset_pwd.xml" value="0.29475250244140627" />
         <entry key="app/src/main/res/layout/fragment_test_task_details.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/menu_buttom_nav.xml" value="0.30072784423828125" />
+        <entry key="app/src/main/res/layout/task_card.xml" value="0.6141235813366961" />
+        <entry key="app/src/main/res/menu/menu_buttom_nav.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.175" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.175" />
       </map>

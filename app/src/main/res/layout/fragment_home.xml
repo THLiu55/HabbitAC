@@ -22,7 +22,7 @@
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/robot"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
@@ -85,8 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Coin"
-            android:textSize="18dp"
             android:textColor="@color/black"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/text_EXP"
             app:layout_constraintTop_toBottomOf="@+id/text_EXP" />
@@ -127,7 +127,7 @@
             android:text="You have "
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.296"
@@ -139,9 +139,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9"
-            android:textColor="@color/black"
+            android:textColor="@color/purple_700"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/text_you_have"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -156,7 +156,7 @@
             android:text=" tasks to go!"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/text_you_have"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -194,14 +194,42 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="10"
+        android:layout_marginBottom="8dp"
 
+        android:layout_weight="10"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-14dp" />
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_task_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_200"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="0.956"
+        app:rippleColor="@color/white"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 </androidx.constraintlayout.widget.ConstraintLayout>

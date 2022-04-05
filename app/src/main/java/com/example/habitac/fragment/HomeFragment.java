@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,22 +21,32 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.habitac.R;
-import com.example.habitac.activity.TaskDetails;
+import com.example.habitac.database.Task;
+import com.example.habitac.database.TaskDao;
+import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.utils.AvatarGetter;
-import com.example.habitac.utils.ItemAdapter;
+import com.example.habitac.utils.TaskAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
 
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
-public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder.ItemClickListener {
+public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView; // 滚动组件的 instance
+    FloatingActionButton addTask;
     String[] s1, s2;  // 文本数据的 instance
-    Context context;
+    static Context context;
     List<Integer> image;  // 照片数据的 instance
+    LiveData<List<Task>> tasksLive;
+    TaskDatabase database;
+    TaskDao dao;
 
 
     //经验条+金币条
@@ -83,12 +95,29 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
 
         s1 = getResources().getStringArray(R.array.habit_name);
         s2 = getResources().getStringArray(R.array.description);
+
+
         recyclerView = root.findViewById(R.id.recycle_view);
         context = getActivity();
-        // 构建 adapter
-        ItemAdapter myAdapter = new ItemAdapter(context, s1, s2, image, this::click);
-        recyclerView.setAdapter(myAdapter);
+
+        // adapter
+        TaskAdapter taskAdapter = new TaskAdapter();
+        recyclerView.setAdapter(taskAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+         // 初始化 database
+        database = TaskDatabase.getDatabase(getContext());
+        dao = database.getDao();
+        tasksLive = dao.getAllLive();
+        tasksLive.observe(requireActivity(), new Observer<List<Task>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<Task> tasks) {
+                taskAdapter.setTasks(tasks);
+                taskAdapter.notifyDataSetChanged();
+            }
+        });
+        // 构建 adapter
 
         super.onCreate(savedInstanceState);
 
@@ -99,6 +128,7 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
         buttonMinus = root.findViewById((R.id.button_test2));
         bar_exp = root.findViewById(R.id.progressbar_exp);
         bar_coin = root.findViewById((R.id.progressbar_coin));
+        addTask = root.findViewById(R.id.add_task_button);
 
 
         getActivity().runOnUiThread(new Runnable() {
@@ -148,6 +178,15 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
                 }
             }
         });
+
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController controller = Navigation.findNavController(view);
+                controller.navigate(R.id.action_navigation_home_to_taskDetails);
+            }
+        });
+
 
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -206,11 +245,17 @@ public class HomeFragment extends Fragment implements ItemAdapter.ItemViewHolder
         return root;
     }
 
-
-    @Override
-    public void click(View view) {
-        Log.d("TAG", view.toString());
-        NavController controller = Navigation.findNavController(view);
-        controller.navigate(R.id.action_navigation_home_to_taskDetails);
+    public static void deleteTask(int id) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                TaskDatabase database = TaskDatabase.getDatabase(context);
+                TaskDao dao = database.getDao();
+                Task task = new Task();
+                task.setId(id);
+                dao.delete(task);
+            }
+        });
     }
 }
