@@ -52,7 +52,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/task_checked"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:background="@drawable/task_yello_bar"
+                    android:background="@drawable/delete_task_bar"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <CheckBox

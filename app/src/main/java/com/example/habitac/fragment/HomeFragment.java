@@ -21,17 +21,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.habitac.R;
-import com.example.habitac.database.Task;
-import com.example.habitac.database.TaskDao;
-import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.database.TaskDone;
+import com.example.habitac.database.TaskTodo;
+import com.example.habitac.database.TasksDao;
+import com.example.habitac.database.TasksDatabase;
 import com.example.habitac.utils.AvatarGetter;
-import com.example.habitac.utils.TaskAdapter;
+import com.example.habitac.utils.DoneTaskAdapter;
+import com.example.habitac.utils.TodoTaskAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
 
-import java.security.Provider;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,14 +39,15 @@ import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView recyclerView; // 滚动组件的 instance
-    FloatingActionButton addTask;
-    String[] s1, s2;  // 文本数据的 instance
-    static Context context;
-    List<Integer> image;  // 照片数据的 instance
-    LiveData<List<Task>> tasksLive;
-    TaskDatabase database;
-    TaskDao dao;
+    private RecyclerView recyclerView_todo; // 滚动组件的 instance
+    private RecyclerView recyclerView_done;
+    private FloatingActionButton addTask;
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
+    private LiveData<List<TaskTodo>> todoTasksLive;
+    private LiveData<List<TaskDone>> doneTasksLive;
+    private TodoTaskAdapter todoTaskAdapter;
+    private DoneTaskAdapter doneTaskAdapter;
 
 
     //经验条+金币条
@@ -66,12 +67,8 @@ public class HomeFragment extends Fragment {
         String userName;
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        initView(root);
         ImageView avatar = root.findViewById(R.id.imageView);
-        image = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            image.add(R.drawable.robot);
-        }
-        image.add(R.drawable.white);
         Button refreshAvatar = root.findViewById(R.id.getAvatar);
 
 
@@ -103,30 +100,26 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        s1 = getResources().getStringArray(R.array.habit_name);
-        s2 = getResources().getStringArray(R.array.description);
-
-
-        recyclerView = root.findViewById(R.id.recycle_view);
-        context = getActivity();
-
-        // adapter
-        TaskAdapter taskAdapter = new TaskAdapter();
-        recyclerView.setAdapter(taskAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
          // 初始化 database
-        database = TaskDatabase.getDatabase(getContext());
-        dao = database.getDao();
-        tasksLive = dao.getAllLive();
-        tasksLive.observe(requireActivity(), new Observer<List<Task>>() {
+        todoTasksLive.observe(requireActivity(), new Observer<List<TaskTodo>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(List<Task> tasks) {
-                taskAdapter.setTasks(tasks);
-                taskAdapter.notifyDataSetChanged();
+            public void onChanged(List<TaskTodo> taskTodos) {
+                todoTaskAdapter.setTasks_todo(taskTodos);
+                todoTaskAdapter.notifyDataSetChanged();
             }
         });
+
+        doneTasksLive.observe(requireActivity(), new Observer<List<TaskDone>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<TaskDone> taskDones) {
+                doneTaskAdapter.setTasks_done(taskDones);
+                doneTaskAdapter.notifyDataSetChanged();
+            }
+        });
+
         // 构建 adapter
 
         super.onCreate(savedInstanceState);
@@ -138,7 +131,6 @@ public class HomeFragment extends Fragment {
         buttonMinus = root.findViewById((R.id.button_test2));
         bar_exp = root.findViewById(R.id.progressbar_exp);
         bar_coin = root.findViewById((R.id.progressbar_coin));
-        addTask = root.findViewById(R.id.add_task_button);
 
 
         getActivity().runOnUiThread(new Runnable() {
@@ -255,16 +247,65 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    private void initView(View root) {
+        todoTaskAdapter = new TodoTaskAdapter();
+        doneTaskAdapter = new DoneTaskAdapter();
+        recyclerView_todo = root.findViewById(R.id.recyclerView_todo);
+        recyclerView_todo.setAdapter(todoTaskAdapter);
+        recyclerView_todo.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView_done = root.findViewById(R.id.recyclerView_done);
+        recyclerView_done.setAdapter(doneTaskAdapter);
+        recyclerView_done.setLayoutManager(new LinearLayoutManager(context));
+        addTask = root.findViewById(R.id.add_task_button);
+        context = getActivity();
+        TasksDatabase database = TasksDatabase.getDatabase(getContext());
+        TasksDao dao = database.getDao();
+        todoTasksLive = dao.getALlTodo();
+        doneTasksLive = dao.getAllDone();
+    }
+
     public static void deleteTask(int id) {
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
             public void run() {
-                TaskDatabase database = TaskDatabase.getDatabase(context);
-                TaskDao dao = database.getDao();
-                Task task = new Task();
-                task.setId(id);
-                dao.delete(task);
+                TasksDatabase database = TasksDatabase.getDatabase(context);
+                TasksDao dao = database.getDao();
+                TaskDone taskDone = new TaskDone();
+                taskDone.setId(id);
+                dao.deleteDone(taskDone);
+            }
+        });
+    }
+
+    public static void todo_to_complete(int id) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                TasksDatabase database = TasksDatabase.getDatabase(context);
+                TasksDao dao = database.getDao();
+                TaskTodo taskTodo = dao.getToDo(id);
+                TaskDone taskDone = new TaskDone();
+                taskDone.setTaskName(taskTodo.getTaskName());
+                taskDone.setId(taskTodo.getId());
+                dao.deleteTodo(taskTodo);
+                dao.insertDone(taskDone);
+            }
+        });
+    }
+
+    public static void complete_to_todo(TaskDone taskDone) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                TasksDatabase database = TasksDatabase.getDatabase(context);
+                TasksDao dao = database.getDao();
+                TaskTodo taskTodo = new TaskTodo();
+                taskTodo.setTaskName(taskDone.getTaskName());
+                dao.insertTodo(taskTodo);
+                dao.deleteDone(taskDone);
             }
         });
     }

@@ -1,20 +1,16 @@
 package com.example.habitac.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
-import androidx.room.Insert;
 
 import com.example.habitac.R;
-import com.example.habitac.database.Task;
-import com.example.habitac.database.TaskDao;
-import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.database.TaskTodo;
+import com.example.habitac.database.TasksDao;
+import com.example.habitac.database.TasksDatabase;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -40,11 +36,11 @@ public class TaskDetails extends AppCompatActivity {
                 service.execute(new Runnable() {
                     @Override
                     public void run() {
-                        TaskDatabase taskDatabase = TaskDatabase.getDatabase(getApplicationContext());
-                        TaskDao dao = taskDatabase.getDao();
-                        Task task = new Task();
-                        task.setTaskName(name);
-                        dao.insert(task);
+                        TasksDatabase taskDatabase = TasksDatabase.getDatabase(getApplicationContext());
+                        TasksDao dao = taskDatabase.getDao();
+                        TaskTodo taskTodo = new TaskTodo();
+                        taskTodo.setTaskName(name);
+                        dao.insertTodo(taskTodo);
                     }
                 });
                 Main.actionStart(TaskDetails.this, null, null);
