@@ -63,6 +63,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        String userName;
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ImageView avatar = root.findViewById(R.id.imageView);
         image = new ArrayList<>();
@@ -71,8 +73,15 @@ public class HomeFragment extends Fragment {
         }
         image.add(R.drawable.white);
         Button refreshAvatar = root.findViewById(R.id.getAvatar);
+
+
         refreshAvatar.setOnClickListener(new View.OnClickListener() {
+
+            // DELETE THIS
+            int avatarCounter = 1;
+
             @Override
+
             public void onClick(View view) {
                 Log.d("BUTTON", "Detected");
                 AvatarGetter ag = new AvatarGetter();
@@ -80,7 +89,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         Log.d("Thread", "Created");
-                        Bitmap ava = ag.getAvatar("test");
+                        avatarCounter ++;
+                        Bitmap ava = ag.getAvatar(avatarCounter + "");
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

@@ -29,10 +29,10 @@ public class Main extends BasicActivity {
 
     // 进入本页面请调用：
     // 调用格式：目标页.actionStart(起点，携带数据1， 携带数据2);
-    public static void actionStart(Context context, String data, String data2) {
+    public static void actionStart(Context context, String userName, String data2) {
         Intent intent = new Intent(context, Main.class);
-        intent.putExtra("param1", data);
-        intent.putExtra("param2", data);
+        intent.putExtra("param1", userName);
+        intent.putExtra("param2", data2);
         context.startActivity(intent);
     }
 }

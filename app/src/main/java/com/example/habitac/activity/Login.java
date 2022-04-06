@@ -84,8 +84,8 @@ public class Login extends BasicActivity {
                                         editor.putString("password", userPass);
                                         editor.apply();
                                     }
-                                    Toast.makeText(Login.this, "welcome", Toast.LENGTH_SHORT).show();
-                                    Main.actionStart(Login.this, null, null);
+                                    Toast.makeText(Login.this, "Welcome Back, " + userName, Toast.LENGTH_SHORT).show();
+                                    Main.actionStart(Login.this, userName, null);
                                 }
                             }
                         } else {
