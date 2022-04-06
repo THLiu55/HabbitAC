@@ -65,7 +65,7 @@ public class Me extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_me, container, false);
 
-        TextView usernameView = root.findViewById(R.id.usrname);
+        TextView usernameView = root.findViewById(R.id.usrName);
 
         // usernameView.setText(userName);
 
