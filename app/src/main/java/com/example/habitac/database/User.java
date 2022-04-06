@@ -47,8 +47,30 @@ public class User extends BmobObject {
         return currentProgress;
     }
 
+    public int setProgress(int exp) {
+        this.currentProgress += exp;
+        if (currentProgress > maxExpAtLevel(currentLevel)) {
+            currentProgress -= maxExpAtLevel(currentLevel);
+            currentLevel ++;
+        }
+
+        return currentProgress;
+    }
+
+    private int maxExpAtLevel(int level) {
+        // 升级条件
+        int maxExp;
+        maxExp = level * 4;
+
+        return maxExp;
+    }
+
     public int getCurrentLevel() {
         return currentLevel;
+    }
+
+    public void changeCoin(int add) {
+        this.currentCoin += add;
     }
 
     public int getCurrentCoin() {
