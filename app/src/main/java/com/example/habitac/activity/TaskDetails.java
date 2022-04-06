@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
@@ -23,6 +24,8 @@ public class TaskDetails extends AppCompatActivity {
     EditText editText_taskName;
     Button confirm_edit;
     boolean isEdit;
+
+    TimePicker timePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,20 @@ public class TaskDetails extends AppCompatActivity {
             }
         });
 
+
+
+        timePicker = findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(false);
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int hours, int minutes) {
+
+            }
+        });
+
     }
 
 
-
 }
+
+
