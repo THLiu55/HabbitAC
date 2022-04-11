@@ -1,10 +1,18 @@
 package com.example.habitac.utils;
 
 import android.annotation.SuppressLint;
+<<<<<<< HEAD
+=======
+import android.content.Context;
+>>>>>>> bcfb4cd (task item add animation~)
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+=======
+import android.view.animation.AnimationUtils;
+>>>>>>> bcfb4cd (task item add animation~)
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +29,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
+<<<<<<< HEAD
+=======
+    Context mContext;
+>>>>>>> bcfb4cd (task item add animation~)
     List<TaskTodo> tasks_todo = new ArrayList<>();
     public void setTasks_todo(List<TaskTodo> tasks_todo) {
         this.tasks_todo = tasks_todo;
@@ -30,6 +42,10 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+<<<<<<< HEAD
+=======
+        mContext = parent.getContext();
+>>>>>>> bcfb4cd (task item add animation~)
         View view = layoutInflater.inflate(R.layout.task_card, parent, false);
         return new TaskViewHolder(view);
     }
@@ -37,6 +53,10 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.taskName.setText(tasks_todo.get(position).getTaskName());
+<<<<<<< HEAD
+=======
+        holder.itemView.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.item_come_up));
+>>>>>>> bcfb4cd (task item add animation~)
         holder.checked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

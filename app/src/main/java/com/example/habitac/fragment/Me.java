@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.habitac.R;
+<<<<<<< HEAD
+=======
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+>>>>>>> bcfb4cd (task item add animation~)
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,7 +72,10 @@ public class Me extends Fragment {
         TextView usernameView = root.findViewById(R.id.usrName);
 
         // usernameView.setText(userName);
+<<<<<<< HEAD
 
+=======
+>>>>>>> bcfb4cd (task item add animation~)
         return root;
 
     }

@@ -13,11 +13,19 @@ class TaskViewHolder extends RecyclerView.ViewHolder{
     CheckBox checked;
     TextView taskName;
     View editArea;
+<<<<<<< HEAD
+=======
+    View itemView;
+>>>>>>> bcfb4cd (task item add animation~)
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
         checked = itemView.findViewById(R.id.task_checked);
         taskName = itemView.findViewById(R.id.taskName);
         editArea = itemView.findViewById(R.id.edit_area);
+<<<<<<< HEAD
+=======
+        this.itemView = itemView.findViewById(R.id.card_view);
+>>>>>>> bcfb4cd (task item add animation~)
     }
 }
