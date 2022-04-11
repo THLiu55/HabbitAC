@@ -28,9 +28,6 @@ public interface TasksDao {
     @Query("SELECT * FROM TaskDone ORDER BY ID")
     LiveData<List<TaskDone>> getAllDone();
 
-    @Query("SELECT * FROM TaskTodo WHERE ID = :task_id")
-    TaskDone getDone(int task_id);
-
     @Query("SELECT * FROM TASKTODO WHERE ID = :task_id")
     TaskTodo getToDo(int task_id);
 }

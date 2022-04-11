@@ -1,7 +1,10 @@
 package com.example.habitac.activity;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -14,17 +17,27 @@ import com.example.habitac.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main extends BasicActivity {
+    // bottom navigation
+    BottomNavigationView bottomNavigationView;
+    AppBarConfiguration appBarConfiguration;
+    NavController bottomNavController;
+    // drawer navigation
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    DrawerLayout drawerLayout;
+    NavController drawerNavController;
+    NavHostFragment drawerNavHostFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.bottom_nav_view);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_calendar, R.id.navigation_rank, R.id.navigation_me).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        bottomNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, bottomNavController, appBarConfiguration);
+        NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
     }
 
     // 进入本页面请调用：

@@ -13,11 +13,13 @@ class TaskViewHolder extends RecyclerView.ViewHolder{
     CheckBox checked;
     TextView taskName;
     View editArea;
+    View itemView;
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
         checked = itemView.findViewById(R.id.task_checked);
         taskName = itemView.findViewById(R.id.taskName);
         editArea = itemView.findViewById(R.id.edit_area);
+        this.itemView = itemView.findViewById(R.id.card_view);
     }
 }

@@ -31,6 +31,7 @@ import com.example.habitac.utils.TodoTaskAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -48,14 +49,15 @@ public class HomeFragment extends Fragment {
     private LiveData<List<TaskDone>> doneTasksLive;
     private TodoTaskAdapter todoTaskAdapter;
     private DoneTaskAdapter doneTaskAdapter;
+    private TextView textView_todo, textView_complete;
 
 
-    //经验条+金币条
+//    经验条+金币条
     public int currentProgress = 0;
     public int currentCoin = 0;
     private int currentLevel = 1;
     private ProgressBar bar_exp, bar_coin;
-    private Button buttonAdd, buttonMinus;
+//    private Button buttonAdd, buttonMinus;
 
 
 
@@ -64,7 +66,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String userName;
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
@@ -108,6 +109,11 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<TaskTodo> taskTodos) {
                 todoTaskAdapter.setTasks_todo(taskTodos);
                 todoTaskAdapter.notifyDataSetChanged();
+                if (taskTodos.size() == 0) {
+                    textView_todo.setVisibility(View.GONE);
+                } else {
+                    textView_todo.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -117,6 +123,11 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<TaskDone> taskDones) {
                 doneTaskAdapter.setTasks_done(taskDones);
                 doneTaskAdapter.notifyDataSetChanged();
+                if (taskDones.size() == 0) {
+                    textView_complete.setVisibility(View.INVISIBLE);
+                } else {
+                    textView_complete.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -127,119 +138,120 @@ public class HomeFragment extends Fragment {
 
 
 
-        buttonAdd = root.findViewById((R.id.button_test1));
-        buttonMinus = root.findViewById((R.id.button_test2));
-        bar_exp = root.findViewById(R.id.progressbar_exp);
-        bar_coin = root.findViewById((R.id.progressbar_coin));
+//        buttonAdd = root.findViewById((R.id.button_test1));
+//        buttonMinus = root.findViewById((R.id.button_test2));
+//        bar_exp = root.findViewById(R.id.progressbar_exp);
+//        bar_coin = root.findViewById((R.id.progressbar_coin));
 
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                bar_coin.setMax(500);
-            }
-        });
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                bar_coin.setMax(500);
+//            }
+//        });
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar_exp.setMax(getMaxExperience(currentLevel));
-                    }
-                });
+//        buttonAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        bar_exp.setMax(getMaxExperience(currentLevel));
+//                    }
+//                });
+//
+//                currentProgress += 25;
+//
+//                if (bar_exp.getProgress() < getMaxExperience(currentLevel)) {
+//                    currentCoin += 10;
+//                } else {
+//                    currentProgress = 0;
+//                    currentLevel += 1;
+//                    currentCoin += 100;
+//
+//                }
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        bar_exp.setProgress(currentProgress);
+//                        bar_coin.setProgress(currentCoin);
+//
+//                    }
+//                });
+//            }
+//
+//            private int getMaxExperience(int currentLevel) {
+//                if (currentLevel <= 4 && currentLevel >= 1) {
+//                    return currentLevel * 50;
+//                } else if (currentLevel <= 10 && currentLevel >= 5) {
+//                    return 300;
+//                } else {
+//                    return 500;
+//                }
+//            }
+//        });
 
-                currentProgress += 25;
 
-                if (bar_exp.getProgress() < getMaxExperience(currentLevel)) {
-                    currentCoin += 10;
-                } else {
-                    currentProgress = 0;
-                    currentLevel += 1;
-                    currentCoin += 100;
+//        buttonMinus.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        bar_exp.setMax(getMaxExperience(currentLevel));
+//
+//                    }
+//                });
+//                if (bar_exp.getProgress() > 0) {
+//                    currentProgress -= 25;
+//                    if (currentCoin >= 20) {
+//                        currentCoin -= 20;
+//                    } else {
+//                        currentCoin = 0;
+//                    }
+//                } else if (bar_exp.getProgress() == 0 && currentLevel > 1) {
+//                    currentLevel -= 1;
+//                    currentProgress = getMaxExperience(currentLevel);
+//
+//                    if (currentCoin >= 20) {
+//                        currentCoin -= 20;
+//                    } else {
+//                        currentCoin = 0;
+//                    }
+//                } else {
+//                    if (currentCoin > 0) {
+//                        currentCoin = 0;
+//                    }
+//                }
+//
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        bar_exp.setProgress(currentProgress);
+//                        bar_coin.setProgress(currentCoin);
+//
+//                    }
+//                });
+//
+//            }
+//
+//            private int getMaxExperience(int currentLevel) {
+//                if (currentLevel <= 4 && currentLevel >= 1) {
+//                    return currentLevel * 50;
+//                } else if (currentLevel <= 10 && currentLevel >= 5) {
+//                    return 300;
+//                } else {
+//                    return 500;
+//                }
+//            }
+//        });
 
-                }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar_exp.setProgress(currentProgress);
-                        bar_coin.setProgress(currentCoin);
-
-                    }
-                });
-            }
-
-            private int getMaxExperience(int currentLevel) {
-                if (currentLevel <= 4 && currentLevel >= 1) {
-                    return currentLevel * 50;
-                } else if (currentLevel <= 10 && currentLevel >= 5) {
-                    return 300;
-                } else {
-                    return 500;
-                }
-            }
-        });
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavController controller = Navigation.findNavController(view);
                 controller.navigate(R.id.action_navigation_home_to_taskDetails);
-            }
-        });
-
-
-        buttonMinus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar_exp.setMax(getMaxExperience(currentLevel));
-
-                    }
-                });
-                if (bar_exp.getProgress() > 0) {
-                    currentProgress -= 25;
-                    if (currentCoin >= 20) {
-                        currentCoin -= 20;
-                    } else {
-                        currentCoin = 0;
-                    }
-                } else if (bar_exp.getProgress() == 0 && currentLevel > 1) {
-                    currentLevel -= 1;
-                    currentProgress = getMaxExperience(currentLevel);
-
-                    if (currentCoin >= 20) {
-                        currentCoin -= 20;
-                    } else {
-                        currentCoin = 0;
-                    }
-                } else {
-                    if (currentCoin > 0) {
-                        currentCoin = 0;
-                    }
-                }
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bar_exp.setProgress(currentProgress);
-                        bar_coin.setProgress(currentCoin);
-
-                    }
-                });
-
-            }
-
-            private int getMaxExperience(int currentLevel) {
-                if (currentLevel <= 4 && currentLevel >= 1) {
-                    return currentLevel * 50;
-                } else if (currentLevel <= 10 && currentLevel >= 5) {
-                    return 300;
-                } else {
-                    return 500;
-                }
             }
         });
 
@@ -262,6 +274,8 @@ public class HomeFragment extends Fragment {
         TasksDao dao = database.getDao();
         todoTasksLive = dao.getALlTodo();
         doneTasksLive = dao.getAllDone();
+        textView_complete = root.findViewById(R.id.home_page_text_compelete);
+        textView_todo = root.findViewById(R.id.home_page_text_todo);
     }
 
     public static void deleteTask(int id) {

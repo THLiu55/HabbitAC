@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.habitac.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,7 +69,6 @@ public class Me extends Fragment {
         TextView usernameView = root.findViewById(R.id.usrName);
 
         // usernameView.setText(userName);
-
         return root;
 
     }
