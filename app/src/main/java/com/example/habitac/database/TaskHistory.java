@@ -3,9 +3,11 @@ package com.example.habitac.database;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 @Entity(primaryKeys = {"date","id"})
 public class TaskHistory {
-    private String date;
+    @NotNull private String date;
     private int id;
     private String name;
     private int isDone;

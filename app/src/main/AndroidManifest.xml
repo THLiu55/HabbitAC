@@ -18,6 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HabitAC"
         android:usesCleartextTraffic="true">
+
+
+        <activity
+            android:name=".activity.DrawerBase"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false"/>
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
+
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
+
+
         <activity
             android:name=".activity.TaskDetails"
             android:exported="false" />

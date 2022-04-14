@@ -41,6 +41,7 @@ public class Main extends BasicActivity {
         bottomNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, bottomNavController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
+//        Intent()
     }
 
     // 进入本页面请调用：
