@@ -51,6 +51,8 @@
         <activity
             android:name=".activity.Main"
             android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
             android:exported="false" />
         <activity
             android:name=".activity.SignUp"
