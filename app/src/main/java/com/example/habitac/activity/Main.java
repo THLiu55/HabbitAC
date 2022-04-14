@@ -14,6 +14,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import com.example.habitac.R;
+import com.example.habitac.database.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main extends BasicActivity {
@@ -27,6 +28,8 @@ public class Main extends BasicActivity {
     NavController drawerNavController;
     NavHostFragment drawerNavHostFragment;
 
+
+    protected static User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class Main extends BasicActivity {
         Intent intent = new Intent(context, Main.class);
         intent.putExtra("param1", userName);
         intent.putExtra("param2", data2);
+        loggedUser = User.findUser(userName);
         context.startActivity(intent);
     }
 }

@@ -1,12 +1,20 @@
 package com.example.habitac.database;
 
+import android.util.Log;
+
+import java.util.List;
+
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 public class User extends BmobObject {
 
     private String user_name;
     private String password;
     private String email;
+    private String currentAvatarSeed;
     private int currentLevel;
     private int currentProgress;
     private int currentCoin;
@@ -43,11 +51,37 @@ public class User extends BmobObject {
         return user_name;
     }
 
+    private static User foundUser;
+
+    public static User findUser(String userName) {
+        BmobQuery<User> bmobQuery = new BmobQuery<>();
+        bmobQuery.addWhereEqualTo("user_name", userName);
+        bmobQuery.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null) {
+                    if (list.size() == 0) {
+                        Log.d("Bmob","Not found");
+                    } else {
+                        foundUser = list.get(0);
+                    }
+                }
+            }
+        });
+        return foundUser;
+    }
+
+
+    public void setCurrentAvatarSeed(String seed) {
+        this.currentAvatarSeed = seed;
+    }
+
     public int getCurrentProgress() {
         return currentProgress;
     }
 
-    public int setProgress(int exp) {
+    public int addProgress(int exp) {
+        // return current progress
         this.currentProgress += exp;
         if (currentProgress > maxExpAtLevel(currentLevel)) {
             currentProgress -= maxExpAtLevel(currentLevel);
