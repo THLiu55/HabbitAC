@@ -7,13 +7,9 @@ import com.example.habitac.R;
 import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
-import com.example.habitac.database.TaskTodo;
-import com.example.habitac.database.TasksDao;
-import com.example.habitac.database.TasksDatabase;
-
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,40 +19,34 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TimePicker;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TaskDetails extends AppCompatActivity {
-    private final int[] keep_list = {30, 60, 90, 180};
-
-    private String[] keepingDays = { "30 days", "60 days", "90 days", "180 days"};
-    private String[] repeatDay = {"every day", "except weekend", "custom"};
-    private String[] classification = {"study", "exercise", "routine", "else"};
+    private final String[] keepingDays = { "30 days", "60 days", "90 days", "180 days"};
+    private final String[] repeatDay = {"every day", "except weekend", "custom"};
+    private final String[] classification = {"study", "exercise", "routine", "else"};
 
     private int keep_days, repeat_val, class_index;
     private EditText editText_taskName;
     private TimePicker timePicker;
-    private Button confirm_btn, cancel_btn;
     private View selectDayLayout;
     private boolean customizedRepeat;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch alarmSwitch;
-    private boolean enableAlarm;
-    private int hour, min;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_task_details);
         editText_taskName = findViewById(R.id.habitTitle_edit);
-        confirm_btn = findViewById(R.id.confirm_button_task);
-        cancel_btn = findViewById(R.id.cancel_button_task);
+        Button confirm_btn = findViewById(R.id.confirm_button_task);
+        Button cancel_btn = findViewById(R.id.cancel_button_task);
         Spinner spin_keep = findViewById(R.id.keep_spinner);
         Spinner spin_repeat = findViewById(R.id.repeat_spinner);
         Spinner spin_class = findViewById(R.id.classify_spinner);
-        confirm_btn = findViewById(R.id.confirm_button_task);
-        cancel_btn = findViewById(R.id.cancel_button_task);
         selectDayLayout = findViewById(R.id.select_day_to_repeat);
         customizedRepeat = false;
         alarmSwitch = findViewById(R.id.switch_alarm);
@@ -144,77 +134,53 @@ public class TaskDetails extends AppCompatActivity {
 
 
 
-        confirm_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = editText_taskName.getText().toString();
-                ExecutorService service = Executors.newSingleThreadExecutor();
-                service.execute(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
-                    @Override
-                    public void run() {
-                        TaskDatabase taskDatabase = TaskDatabase.getDatabase(getApplicationContext());
-                        TaskDao taskDao = taskDatabase.getDao();
-                        Task task = new Task();
-                        task.setName(editText_taskName.getText().toString());
-                        task.setPlanDays(keep_days);
-                        task.setIsDone(0);
-                        task.setRemainDays(keep_days);
-                        task.setClassification(class_index);
-                        if (customizedRepeat) {
-                            repeat_val = 0;
-                            CheckBox sun = findViewById(R.id.checkBox_day_7);
-                            CheckBox sat = findViewById(R.id.checkBox_day_6);
-                            CheckBox fr = findViewById(R.id.checkBox_day_5);
-                            CheckBox th = findViewById(R.id.checkBox_day_4);
-                            CheckBox we = findViewById(R.id.checkBox_day_3);
-                            CheckBox tu = findViewById(R.id.checkBox_day_2);
-                            CheckBox mo = findViewById(R.id.checkBox_day_1);
-                            if (sun.isChecked()) { repeat_val += 1; }
-                            if (sat.isChecked())  { repeat_val += 2; }
-                            if (fr.isChecked())  { repeat_val += 4; }
-                            if (th.isChecked())  { repeat_val += 8; }
-                            if (we.isChecked())  { repeat_val += 16; }
-                            if (tu.isChecked())  { repeat_val += 32; }
-                            if (mo.isChecked())  { repeat_val += 64; }
-                        }
-                        task.setFrequency(repeat_val);
-                        if (alarmSwitch.isChecked()) {
-                            task.setRemindHour(timePicker.getHour());
-                            task.setRemindMin(timePicker.getMinute());
-                        } else {
-                            task.setRemindHour(-1);
-                            task.setRemindMin(-1);
-                        }
-                        taskDao.insertTask(task);
-                    }
-                });
-                Main.actionStart(TaskDetails.this, null, null);
-            }
+        confirm_btn.setOnClickListener(view -> {
+            ExecutorService service = Executors.newSingleThreadExecutor();
+            service.execute(() -> {
+                TaskDatabase taskDatabase = TaskDatabase.getDatabase(getApplicationContext());
+                TaskDao taskDao = taskDatabase.getDao();
+                Task task = new Task();
+                task.setName(editText_taskName.getText().toString());
+                task.setPlanDays(keep_days);
+                task.setIsDone(0);
+                task.setRemainDays(keep_days);
+                task.setClassification(class_index);
+                if (customizedRepeat) {
+                    repeat_val = 0;
+                    CheckBox sun = findViewById(R.id.checkBox_day_7);
+                    CheckBox sat = findViewById(R.id.checkBox_day_6);
+                    CheckBox fr = findViewById(R.id.checkBox_day_5);
+                    CheckBox th = findViewById(R.id.checkBox_day_4);
+                    CheckBox we = findViewById(R.id.checkBox_day_3);
+                    CheckBox tu = findViewById(R.id.checkBox_day_2);
+                    CheckBox mo = findViewById(R.id.checkBox_day_1);
+                    if (sun.isChecked()) { repeat_val += 1; }
+                    if (sat.isChecked())  { repeat_val += 2; }
+                    if (fr.isChecked())  { repeat_val += 4; }
+                    if (th.isChecked())  { repeat_val += 8; }
+                    if (we.isChecked())  { repeat_val += 16; }
+                    if (tu.isChecked())  { repeat_val += 32; }
+                    if (mo.isChecked())  { repeat_val += 64; }
+                }
+                task.setFrequency(repeat_val);
+                if (alarmSwitch.isChecked()) {
+                    task.setRemindHour(timePicker.getHour());
+                    task.setRemindMin(timePicker.getMinute());
+                } else {
+                    task.setRemindHour(-1);
+                    task.setRemindMin(-1);
+                }
+                taskDao.insertTask(task);
+            });
+            Main.actionStart(TaskDetails.this, null, null);
         });
-
-
-
 
         timePicker = findViewById(R.id.timePicker);
         timePicker.setIs24HourView(false);
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onTimeChanged(TimePicker timePicker, int hours, int minutes) {}
-        });
+        timePicker.setOnTimeChangedListener((timePicker, hours, minutes) -> {});
 
-
-
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Main.actionStart(TaskDetails.this, null, null);
-            }
-        });
+        cancel_btn.setOnClickListener(view -> Main.actionStart(TaskDetails.this, null, null));
     }
-
-
 
 }
 

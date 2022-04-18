@@ -1,4 +1,4 @@
-package com.example.habitac.utils;
+package com.example.habitac.adapter;
 
 import android.view.View;
 import android.widget.CheckBox;

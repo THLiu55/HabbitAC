@@ -21,13 +21,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.habitac.R;
-import com.example.habitac.database.TaskDone;
-import com.example.habitac.database.TaskTodo;
-import com.example.habitac.database.TasksDao;
-import com.example.habitac.database.TasksDatabase;
+import com.example.habitac.adapter.DoneTaskAdapter;
+import com.example.habitac.adapter.TodoTaskAdapter;
+import com.example.habitac.database.Task;
+import com.example.habitac.database.TaskDao;
+import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.utils.AvatarGetter;
-import com.example.habitac.utils.DoneTaskAdapter;
-import com.example.habitac.utils.TodoTaskAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
@@ -45,8 +44,8 @@ public class HomeFragment extends Fragment {
     private FloatingActionButton addTask;
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private LiveData<List<TaskTodo>> todoTasksLive;
-    private LiveData<List<TaskDone>> doneTasksLive;
+    private LiveData<List<Task>> todoTasksLive;
+    private LiveData<List<Task>> doneTasksLive;
     private TodoTaskAdapter todoTaskAdapter;
     private DoneTaskAdapter doneTaskAdapter;
     private TextView textView_todo, textView_complete;
@@ -69,6 +68,8 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
+
+
         ImageView avatar = root.findViewById(R.id.imageView);
         Button refreshAvatar = root.findViewById(R.id.getAvatar);
 
@@ -103,30 +104,48 @@ public class HomeFragment extends Fragment {
 
 
          // 初始化 database
-        todoTasksLive.observe(requireActivity(), new Observer<List<TaskTodo>>() {
+        todoTasksLive.observe(requireActivity(), new Observer<List<Task>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(List<TaskTodo> taskTodos) {
-                todoTaskAdapter.setTasks_todo(taskTodos);
+            public void onChanged(List<Task> tasks) {
+                todoTaskAdapter.setTask_todo(tasks);
                 todoTaskAdapter.notifyDataSetChanged();
-                if (taskTodos.size() == 0) {
+
+                int todo_cnt = 0;
+                for (Task task : tasks) {
+                    if (task.getIsDone() == 0) {
+                        todo_cnt++;
+                        textView_todo.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                if (todo_cnt == 0) {
+                    Log.d("123", "no todo");
                     textView_todo.setVisibility(View.GONE);
-                } else {
-                    textView_todo.setVisibility(View.VISIBLE);
                 }
             }
         });
 
-        doneTasksLive.observe(requireActivity(), new Observer<List<TaskDone>>() {
+        doneTasksLive.observe(requireActivity(), new Observer<List<Task>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(List<TaskDone> taskDones) {
-                doneTaskAdapter.setTasks_done(taskDones);
+            public void onChanged(List<Task> tasks) {
+                doneTaskAdapter.setTask_done(tasks);
                 doneTaskAdapter.notifyDataSetChanged();
-                if (taskDones.size() == 0) {
-                    textView_complete.setVisibility(View.INVISIBLE);
+
+                int done_cnt = 0;
+                for (Task task : tasks) {
+                    if (task.getIsDone() == 1) {
+                        done_cnt++;
+                        textView_complete.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                if (done_cnt == 0) {
+                    Log.d("123", "no done");
+                    textView_complete.setVisibility(View.GONE);
                 } else {
-                    textView_complete.setVisibility(View.VISIBLE);
+                    Log.d("123", "have done");
                 }
             }
         });
@@ -134,118 +153,6 @@ public class HomeFragment extends Fragment {
         // 构建 adapter
 
         super.onCreate(savedInstanceState);
-
-
-
-
-//        buttonAdd = root.findViewById((R.id.button_test1));
-//        buttonMinus = root.findViewById((R.id.button_test2));
-//        bar_exp = root.findViewById(R.id.progressbar_exp);
-//        bar_coin = root.findViewById((R.id.progressbar_coin));
-
-
-//        getActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                bar_coin.setMax(500);
-//            }
-//        });
-
-//        buttonAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        bar_exp.setMax(getMaxExperience(currentLevel));
-//                    }
-//                });
-//
-//                currentProgress += 25;
-//
-//                if (bar_exp.getProgress() < getMaxExperience(currentLevel)) {
-//                    currentCoin += 10;
-//                } else {
-//                    currentProgress = 0;
-//                    currentLevel += 1;
-//                    currentCoin += 100;
-//
-//                }
-//                getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        bar_exp.setProgress(currentProgress);
-//                        bar_coin.setProgress(currentCoin);
-//
-//                    }
-//                });
-//            }
-//
-//            private int getMaxExperience(int currentLevel) {
-//                if (currentLevel <= 4 && currentLevel >= 1) {
-//                    return currentLevel * 50;
-//                } else if (currentLevel <= 10 && currentLevel >= 5) {
-//                    return 300;
-//                } else {
-//                    return 500;
-//                }
-//            }
-//        });
-
-
-//        buttonMinus.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        bar_exp.setMax(getMaxExperience(currentLevel));
-//
-//                    }
-//                });
-//                if (bar_exp.getProgress() > 0) {
-//                    currentProgress -= 25;
-//                    if (currentCoin >= 20) {
-//                        currentCoin -= 20;
-//                    } else {
-//                        currentCoin = 0;
-//                    }
-//                } else if (bar_exp.getProgress() == 0 && currentLevel > 1) {
-//                    currentLevel -= 1;
-//                    currentProgress = getMaxExperience(currentLevel);
-//
-//                    if (currentCoin >= 20) {
-//                        currentCoin -= 20;
-//                    } else {
-//                        currentCoin = 0;
-//                    }
-//                } else {
-//                    if (currentCoin > 0) {
-//                        currentCoin = 0;
-//                    }
-//                }
-//
-//                getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        bar_exp.setProgress(currentProgress);
-//                        bar_coin.setProgress(currentCoin);
-//
-//                    }
-//                });
-//
-//            }
-//
-//            private int getMaxExperience(int currentLevel) {
-//                if (currentLevel <= 4 && currentLevel >= 1) {
-//                    return currentLevel * 50;
-//                } else if (currentLevel <= 10 && currentLevel >= 5) {
-//                    return 300;
-//                } else {
-//                    return 500;
-//                }
-//            }
-//        });
-
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,56 +177,43 @@ public class HomeFragment extends Fragment {
         recyclerView_done.setLayoutManager(new LinearLayoutManager(context));
         addTask = root.findViewById(R.id.add_task_button);
         context = getActivity();
-        TasksDatabase database = TasksDatabase.getDatabase(getContext());
-        TasksDao dao = database.getDao();
-        todoTasksLive = dao.getALlTodo();
-        doneTasksLive = dao.getAllDone();
+        TaskDatabase database = TaskDatabase.getDatabase(getContext());
+        TaskDao dao = database.getDao();
+        todoTasksLive = dao.getALlTodoTask(1);
+        doneTasksLive = dao.getALlDoneTask(1);
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
     }
 
-    public static void deleteTask(int id) {
+    public static void todo2complete(Task tarTask) {
+        Task editTask = new Task(tarTask);
+        editTask.setRemainDays(tarTask.getRemainDays() - 1);
+        editTask.setIsDone(1);
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
             public void run() {
-                TasksDatabase database = TasksDatabase.getDatabase(context);
-                TasksDao dao = database.getDao();
-                TaskDone taskDone = new TaskDone();
-                taskDone.setId(id);
-                dao.deleteDone(taskDone);
+                TaskDatabase taskDatabase = TaskDatabase.getDatabase(context);
+                TaskDao dao = taskDatabase.getDao();
+                dao.deleteTask(tarTask);
+                dao.insertTask(editTask);
             }
         });
+
     }
 
-    public static void todo_to_complete(int id) {
+    public static void complete2todo(Task tarTask) {
+        Task editTask = new Task(tarTask);
+        editTask.setIsDone(0);
+        editTask.setRemainDays(tarTask.getRemainDays() + 1);
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
             public void run() {
-                TasksDatabase database = TasksDatabase.getDatabase(context);
-                TasksDao dao = database.getDao();
-                TaskTodo taskTodo = dao.getToDo(id);
-                TaskDone taskDone = new TaskDone();
-                taskDone.setTaskName(taskTodo.getTaskName());
-                taskDone.setId(taskTodo.getId());
-                dao.deleteTodo(taskTodo);
-                dao.insertDone(taskDone);
-            }
-        });
-    }
-
-    public static void complete_to_todo(TaskDone taskDone) {
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(new Runnable() {
-            @Override
-            public void run() {
-                TasksDatabase database = TasksDatabase.getDatabase(context);
-                TasksDao dao = database.getDao();
-                TaskTodo taskTodo = new TaskTodo();
-                taskTodo.setTaskName(taskDone.getTaskName());
-                dao.insertTodo(taskTodo);
-                dao.deleteDone(taskDone);
+                TaskDatabase taskDatabase = TaskDatabase.getDatabase(context);
+                TaskDao dao = taskDatabase.getDao();
+                dao.deleteTask(tarTask);
+                dao.insertTask(editTask);
             }
         });
     }

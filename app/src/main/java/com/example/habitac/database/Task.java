@@ -5,6 +5,21 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Task {
+    public Task() {
+
+    }
+
+    public Task(Task t) {
+        this.frequency = t.getFrequency();
+        this.classification = t.getClassification();
+        this.isDone = t.getIsDone();
+        this.remainDays = t.getRemainDays();
+        this.name = t.getName();
+        this.planDays = t.getPlanDays();
+        this.remindHour = t.getRemindHour();
+        this.remindMin = t.getRemindMin();
+    }
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
