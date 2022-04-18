@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="General">
+    <item android:title="GENERAL">
         <menu>
             <item
                 android:id="@+id/nav_profile"

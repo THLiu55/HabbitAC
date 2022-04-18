@@ -12,6 +12,7 @@
         android:id="@+id/nav_header_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="55dp"
         android:layout_gravity="center"
         android:src="@drawable/robot"/>
 
@@ -27,11 +28,11 @@
         android:textStyle="bold"
         android:textSize="15sp" />
 
-    <View
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center_horizontal"
-        android:background="#15000000"/>
+<!--    <View-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:background="#15000000"/>-->
 
 </LinearLayout>
