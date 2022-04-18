@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,297 +7,285 @@
     tools:context=".activity.TaskDetails"
     android:padding="10dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:text="About your habit"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="5dp" />
 
-        <LinearLayout
-            android:id="@+id/task_details"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="25dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="25dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/input2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <EditText
+            android:id="@+id/habitTitle_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginLeft="24dp"
+            android:background="@null"
+            android:hint="name"
+            android:textSize="20dp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/getName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Name it"
-                android:textColor="#000000"
-                android:textSize="25sp" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Repeat:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-            <EditText
-                android:id="@+id/habitTitle_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#26A69A"
-                android:hint="Habit Title"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="Keeping:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            <TextView
-                android:id="@+id/habitFrequency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Frequency"
-                android:textColor="#000000"
-                android:textSize="25sp" />
+    <Spinner
+        android:id="@+id/keep_spinner"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/input2"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0" />
 
-            <RelativeLayout
-                android:id="@+id/frequencyBigButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Classify:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/select_day_to_repeat" />
 
-            <RelativeLayout
-                android:id="@+id/frequencySmallButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp">
+    <Spinner
+        android:id="@+id/repeat_spinner"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:background="@drawable/input2"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/keep_spinner"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
 
-                <Button
-                    android:id="@+id/freButton1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="S"
-                    android:textColor="@android:color/white" />
+    <Spinner
+        android:id="@+id/classify_spinner"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:background="@drawable/input2"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/repeat_spinner"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
-                <Button
-                    android:id="@+id/freButton2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton1"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="M"
-                    android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Alarm"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-                <Button
-                    android:id="@+id/freButton3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton2"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="T"
-                    android:textColor="@android:color/white" />
+    <Switch
+        android:id="@+id/switch_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="enable"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/classify_spinner"
+        app:layout_constraintStart_toStartOf="@+id/classify_spinner"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-                <Button
-                    android:id="@+id/freButton4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton3"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="W"
-                    android:textColor="@android:color/white" />
+    <TimePicker
+        android:id="@+id/timePicker"
+        style="?android:spinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/input2"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-                <Button
-                    android:id="@+id/freButton5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton4"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="T"
-                    android:textColor="@android:color/white" />
+    <Button
+        android:id="@+id/cancel_button_task"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gray_bar"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
-                <Button
-                    android:id="@+id/freButton6"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton5"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="F"
-                    android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/freButton7"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignLeft="@id/freButton6"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:text="S"
-                    android:textColor="@android:color/white" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/timeReminder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Time to Remind Me"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-
-
-            <TimePicker
-                android:id="@+id/timePicker"
-                style="?android:spinnerStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="143dp"
-                android:layout_marginLeft="60dp"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:timePickerMode="spinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <TextView
-                android:id="@+id/classification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Classification"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-
-            <RelativeLayout
-                android:id="@+id/classificationButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp">
-
-                <Button
-                    android:id="@+id/clfButton1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-
-                    android:background="@drawable/frequency_btm2"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/clfButton1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="40dp"
-                    android:text="JOB"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+    <Button
+        android:id="@+id/confirm_button_task"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/yellow_bar2"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_button_task"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
 
-                <Button
-                    android:id="@+id/clfButton2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignLeft="@id/clfButton1"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/clfButton2"
-                    android:layout_marginLeft="-2dp"
-                    android:layout_marginTop="40dp"
-                    android:text="STUDY"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/select_day_to_repeat"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
 
-                <Button
-                    android:id="@+id/clfButton3"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignLeft="@id/clfButton2"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:textColor="@android:color/white" />
+        <CheckBox
+            android:id="@+id/checkBox_day_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/clfButton3"
-                    android:layout_marginLeft="-8dp"
-                    android:layout_marginTop="40dp"
-                    android:text="EXERCISE"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+        <CheckBox
+            android:id="@+id/checkBox_day_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/clfButton4"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignLeft="@id/clfButton3"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:textColor="@android:color/white" />
+        <CheckBox
+            android:id="@+id/checkBox_day_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_4"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/clfButton4"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginTop="40dp"
-                    android:text="KEEPING"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+        <CheckBox
+            android:id="@+id/checkBox_day_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_5"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/clfButton5"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignLeft="@id/clfButton4"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/frequency_btm2"
-                    android:textColor="@android:color/white" />
+        <CheckBox
+            android:id="@+id/checkBox_day_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/clfButton5"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginTop="40dp"
-                    android:text="OTHERS"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+        <CheckBox
+            android:id="@+id/checkBox_day_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox_day_5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_3"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/getContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Give Yourself"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-
-            <EditText
-                android:id="@+id/et_habitDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="#26A69A"
-                android:hint="Give it a short description"
-                android:inputType="textShortMessage"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/confirm_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="confirm" />
+        <CheckBox
+            android:id="@+id/checkBox_day_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_day_6"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </LinearLayout>
-
-    </ScrollView>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
