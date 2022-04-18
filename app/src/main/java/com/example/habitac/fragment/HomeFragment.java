@@ -3,13 +3,16 @@ package com.example.habitac.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,7 +55,7 @@ public class HomeFragment extends Fragment {
     private TextView textView_todo, textView_complete;
 
 
-//    经验条+金币条
+    //    经验条+金币条
     public int currentProgress = 0;
     public int currentCoin = 0;
     private int currentLevel = 1;
@@ -102,7 +105,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-         // 初始化 database
+        // 初始化 database
         todoTasksLive.observe(requireActivity(), new Observer<List<TaskTodo>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -263,8 +266,11 @@ public class HomeFragment extends Fragment {
         todoTaskAdapter = new TodoTaskAdapter();
         doneTaskAdapter = new DoneTaskAdapter();
         recyclerView_todo = root.findViewById(R.id.recyclerView_todo);
-        recyclerView_todo.setAdapter(todoTaskAdapter);
         recyclerView_todo.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView_todo.addItemDecoration(new DividerItemDecoration(recyclerView_todo.getContext(),DividerItemDecoration.VERTICAL
+        ));
+//        recyclerView_todo.addItemDecoration(new MyDecoration());
+        recyclerView_todo.setAdapter(todoTaskAdapter);
         recyclerView_done = root.findViewById(R.id.recyclerView_done);
         recyclerView_done.setAdapter(doneTaskAdapter);
         recyclerView_done.setLayoutManager(new LinearLayoutManager(context));
@@ -276,6 +282,14 @@ public class HomeFragment extends Fragment {
         doneTasksLive = dao.getAllDone();
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
+    }
+
+    class MyDecoration extends RecyclerView.ItemDecoration{
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.set(0,0,0,getResources().getDimensionPixelOffset(R.dimen.dividerHeight));
+        }
     }
 
     public static void deleteTask(int id) {

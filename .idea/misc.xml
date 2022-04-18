@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/drawable/bg_ripple.xml" value="0.1235" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_login.xml" value="0.1125" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_main.xml" value="0.1125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_my_item.xml" value="0.1125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_sign_up.xml" value="0.1125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/calendar.xml" value="0.1125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/calendar_structure.xml" value="0.1125" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_calendar.xml" value="0.176" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_home.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_login.xml" value="0.2" />
@@ -16,6 +21,7 @@
         <entry key="app/src/main/res/drawable/exp_bar.xml" value="0.121" />
         <entry key="app/src/main/res/drawable/frequency_btm1.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/frequency_btm2.xml" value="0.111" />
+        <entry key="app/src/main/res/drawable/gray_bar.xml" value="0.1555" />
         <entry key="app/src/main/res/drawable/hp_bar.xml" value="0.128" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_alarm_24.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/ic_baseline_assignment_ind_24.xml" value="0.1" />
@@ -24,9 +30,11 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/input.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/input2.xml" value="0.1555" />
         <entry key="app/src/main/res/drawable/me_view.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/task_yello_bar.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/yellow_bar2.xml" value="0.1555" />
         <entry key="app/src/main/res/font/font.xml" value="0.35794871794871796" />
         <entry key="app/src/main/res/layout/activity_forget_pwd.xml" value="0.25822906494140624" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2949539184570313" />
@@ -35,7 +43,7 @@
         <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.4358779907226563" />
         <entry key="app/src/main/res/layout/activity_reset_pwd.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22747955322265626" />
-        <entry key="app/src/main/res/layout/activity_task_details.xml" value="0.27909105780984267" />
+        <entry key="app/src/main/res/layout/activity_task_details.xml" value="0.29391326904296877" />
         <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/calendar.xml" value="0.12639311043566362" />
         <entry key="app/src/main/res/layout/calendar_structure.xml" value="0.10119171142578126" />

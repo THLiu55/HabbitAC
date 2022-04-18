@@ -46,7 +46,7 @@ public class ResetPwd extends BasicActivity {
                                 Toast.makeText(ResetPwd.this, "success", Toast.LENGTH_SHORT).show();
                                 Login.actionStart(ResetPwd.this, user.getUser_name(), user.getPassword());
                             }else{
-                                Toast.makeText(ResetPwd.this, "network error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPwd.this, "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
