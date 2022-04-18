@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(primaryKeys = {"date","id"})
 public class TaskHistory {
-    @NonNull
-    private String date;
+
+    @NonNull private String date;
     private int id;
     private String name;
     private int isDone;

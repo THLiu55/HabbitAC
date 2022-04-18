@@ -5,16 +5,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.view.View;
 
 import com.haibin.calendarview.Calendar;
-import com.haibin.calendarview.WeekView;
+import com.haibin.calendarview.MonthView;
 
-public class ProgressWeekView extends WeekView {
+public class ProgressMonthView extends MonthView {
+
     private Paint mProgressPaint = new Paint();
     private Paint mNoneProgressPaint = new Paint();
     private int mRadius;
 
-    public ProgressWeekView(Context context) {
+    public ProgressMonthView(Context context) {
         super(context);
         mProgressPaint.setAntiAlias(true);
         mProgressPaint.setStyle(Paint.Style.STROKE);
@@ -32,17 +34,17 @@ public class ProgressWeekView extends WeekView {
     }
 
     @Override
-    protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, boolean hasScheme) {
+    protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
         int cx = x + mItemWidth / 2;
-        int cy = mItemHeight / 2;
+        int cy = y + mItemHeight / 2;
         canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
         return false;
     }
 
     @Override
-    protected void onDrawScheme(Canvas canvas, Calendar calendar, int x) {
+    protected void onDrawScheme(Canvas canvas, Calendar calendar, int x, int y) {
         int cx = x + mItemWidth / 2;
-        int cy = mItemHeight / 2;
+        int cy = y + mItemHeight / 2;
 
         int angle = getAngle(Integer.parseInt(calendar.getScheme()));
 
@@ -51,11 +53,12 @@ public class ProgressWeekView extends WeekView {
 
         RectF noneRectF = new RectF(cx - mRadius, cy - mRadius, cx + mRadius, cy + mRadius);
         canvas.drawArc(noneRectF, angle - 90, 360 - angle, false, mNoneProgressPaint);
+
     }
 
     @Override
-    protected void onDrawText(Canvas canvas, Calendar calendar, int x, boolean hasScheme, boolean isSelected) {
-        float baselineY = mTextBaseLine;
+    protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected) {
+        float baselineY = mTextBaseLine + y;
         int cx = x + mItemWidth / 2;
 
         if (isSelected) {
@@ -85,4 +88,5 @@ public class ProgressWeekView extends WeekView {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
 }
