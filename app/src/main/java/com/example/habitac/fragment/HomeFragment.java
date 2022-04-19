@@ -72,37 +72,37 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
-        ImageView avatar = root.findViewById(R.id.imageView);
-        Button refreshAvatar = root.findViewById(R.id.getAvatar);
-
-
-        refreshAvatar.setOnClickListener(new View.OnClickListener() {
-
-            // DELETE THIS
-            int avatarCounter = 1;
-
-            @Override
-
-            public void onClick(View view) {
-                Log.d("BUTTON", "Detected");
-                AvatarGetter ag = new AvatarGetter();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("Thread", "Created");
-                        avatarCounter ++;
-                        Bitmap ava = ag.getAvatar(avatarCounter + "");
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                avatar.setImageBitmap(ava);
-
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
+//        ImageView avatar = root.findViewById(R.id.imageView);
+//        Button refreshAvatar = root.findViewById(R.id.getAvatar);
+//
+//
+//        refreshAvatar.setOnClickListener(new View.OnClickListener() {
+//
+//            // DELETE THIS
+//            int avatarCounter = 1;
+//
+//            @Override
+//
+//            public void onClick(View view) {
+//                Log.d("BUTTON", "Detected");
+//                AvatarGetter ag = new AvatarGetter();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d("Thread", "Created");
+//                        avatarCounter ++;
+//                        Bitmap ava = ag.getAvatar(avatarCounter + "");
+//                        getActivity().runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                avatar.setImageBitmap(ava);
+//
+//                            }
+//                        });
+//                    }
+//                }).start();
+//            }
+//        });
 
 
         // 初始化 database
