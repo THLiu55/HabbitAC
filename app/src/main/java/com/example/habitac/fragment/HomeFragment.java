@@ -32,11 +32,13 @@ import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.model.MainViewModel;
 import com.example.habitac.model.SharedViewModel;
 import com.example.habitac.utils.AvatarGetter;
+import com.example.habitac.utils.DateToday;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,18 +52,22 @@ public class HomeFragment extends Fragment {
     private FloatingActionButton addTask;
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private LiveData<List<Task>> todoTasksLive;
-    private LiveData<List<Task>> doneTasksLive;
     private TodoTaskAdapter todoTaskAdapter;
     private DoneTaskAdapter doneTaskAdapter;
     private TextView textView_todo, textView_complete;
     private SharedViewModel sharedViewModel;
     private MainViewModel mainViewModel;
     private TextView textView_user_name;
+    private TextView textView_level;
 
-    private TextView textView_todo_amount;
+    private LiveData<List<Task>> todoTasksLive;
+    private LiveData<List<Task>> doneTasksLive;
+    private MutableLiveData<String> userNameLive;
+    private MutableLiveData<Integer> expLive;
+    private MutableLiveData<Integer> coinLive;
+    private MutableLiveData<Integer> levelLive;
 
-    private MutableLiveData<Integer> todo_task_amount_live;
+    private int done_cnt = 0;
 
 
 //    经验条+金币条
@@ -69,7 +75,6 @@ public class HomeFragment extends Fragment {
     public int currentCoin = 0;
     private int currentLevel = 1;
     private ProgressBar bar_exp, bar_coin;
-//    private Button buttonAdd, buttonMinus;
 
 
 
@@ -104,7 +109,6 @@ public class HomeFragment extends Fragment {
                             @Override
                             public void run() {
                                 avatar.setImageBitmap(ava);
-
                             }
                         });
                     }
@@ -121,21 +125,17 @@ public class HomeFragment extends Fragment {
                 todoTaskAdapter.notifyDataSetChanged();
 
                 int todo_cnt = 0;
-                int all_task = 0;
                 for (Task task : tasks) {
                     if (task.getIsDone() == 0) {
                         todo_cnt++;
                         textView_todo.setVisibility(View.VISIBLE);
                     }
-                    all_task++;
                 }
+
                 if (todo_cnt == 0) {
-                    Log.d("123", "no todo");
                     textView_todo.setVisibility(View.GONE);
                 }
                 mainViewModel.setTodoTaskAmount(todo_cnt);
-                mainViewModel.setTaskAmount(all_task);
-                todo_task_amount_live = mainViewModel.getTodoTaskAmount();
             }
         });
 
@@ -146,30 +146,55 @@ public class HomeFragment extends Fragment {
                 doneTaskAdapter.setTask_done(tasks);
                 doneTaskAdapter.notifyDataSetChanged();
 
-                int done_cnt = 0;
+                int done_cnt_new = 0;
                 for (Task task : tasks) {
                     if (task.getIsDone() == 1) {
-                        done_cnt++;
+                        done_cnt_new++;
                         textView_complete.setVisibility(View.VISIBLE);
                     }
                 }
 
-                if (done_cnt == 0) {
-                    Log.d("123", "no done");
+                if (done_cnt_new == 0) {
                     textView_complete.setVisibility(View.GONE);
-                } else {
-                    Log.d("123", "have done");
                 }
+                mainViewModel.setExp(done_cnt_new - done_cnt);
+                mainViewModel.setCoin(done_cnt_new - done_cnt);
+                done_cnt = done_cnt_new;
             }
         });
 
-//        todo_task_amount_live.observe(requireActivity(), new Observer<Integer>() {
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onChanged(Integer integer) {
-//                textView_todo_amount.setText(todo_task_amount_live.getValue().toString());
-//            }
-//        });
+        userNameLive.observe(requireActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                textView_user_name.setText(s);
+            }
+        });
+
+        levelLive.observe(requireActivity(), new Observer<Integer>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onChanged(Integer integer) {
+                textView_level.setText(integer.toString());
+            }
+        });
+
+        coinLive.observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                bar_coin.setMax(mainViewModel.getLevel().getValue() * 10);
+                bar_coin.setProgress(integer);
+            }
+        });
+
+        expLive.observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                Log.d("bar", String.valueOf(integer));
+                bar_exp.setMax(mainViewModel.getLevel().getValue() * 4);
+                bar_exp.setProgress(integer);
+            }
+        });
+
 
         // 构建 adapter
 
@@ -200,23 +225,21 @@ public class HomeFragment extends Fragment {
         context = getActivity();
         TaskDatabase database = TaskDatabase.getDatabase(getContext());
         TaskDao dao = database.getDao();
-        todoTasksLive = dao.getALlTodoTask(day[1]);
-        doneTasksLive = dao.getALlDoneTask(day[1]);
+        todoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(new Date())]);
+        doneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(new Date())]);
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mainViewModel.setUser(sharedViewModel.getUser());
-        Log.d("userInfo", String.valueOf(mainViewModel.getUserName().getValue().toString()));
-        Log.d("userInfo", String.valueOf(mainViewModel.getLevel().getValue().toString()));
-        Log.d("userInfo", String.valueOf(mainViewModel.getCoin().getValue().toString()));
-        Log.d("userInfo", String.valueOf(mainViewModel.getExp().getValue().toString()));
-//        Log.d("userInfo", String.valueOf(mainViewModel.getTaskAmount()));
         textView_user_name = root.findViewById(R.id.text_username);
-
-        textView_user_name.setText(getActivity().getIntent().getStringExtra("param1"));
-
-        textView_todo_amount = root.findViewById(R.id.text_number_of_tasks);
+        userNameLive = mainViewModel.getUserName();
+        levelLive = mainViewModel.getLevel();
+        coinLive = mainViewModel.getCoin();
+        expLive = mainViewModel.getExp();
+        bar_exp = root.findViewById(R.id.progressbar_exp);
+        bar_coin = root.findViewById(R.id.progressbar_coin);
+        textView_level = root.findViewById(R.id.level_count);
     }
 
     public static void todo2complete(Task tarTask) {

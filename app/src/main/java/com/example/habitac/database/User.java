@@ -1,13 +1,6 @@
 package com.example.habitac.database;
 
-import android.util.Log;
-
-import java.util.List;
-
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 
 public class User extends BmobObject {
 
@@ -16,7 +9,7 @@ public class User extends BmobObject {
     private String email;
     private String currentAvatarSeed;
     private int currentLevel;
-    private int currentProgress;
+    private int currentExp;
     private int currentCoin;
 
     public User() {}
@@ -55,39 +48,52 @@ public class User extends BmobObject {
         this.currentAvatarSeed = seed;
     }
 
-    public int getCurrentProgress() {
-        return currentProgress;
+    public int getCurrentExp() {
+        return currentExp;
     }
 
-    public int addProgress(int exp) {
+    public boolean setProgress(int exp) {
         // return current progress
-        this.currentProgress += exp;
-        if (currentProgress > maxExpAtLevel(currentLevel)) {
-            currentProgress -= maxExpAtLevel(currentLevel);
-            currentLevel ++;
+        this.currentExp += exp;
+        if (currentExp > maxExpAtLevel()) {
+            currentExp -= maxExpAtLevel();
+            currentLevel++;
+            return true;
+        } else if (currentExp < 0) {
+            if (currentLevel != 1) {
+                currentLevel--;
+                currentExp += maxExpAtLevel();
+                return true;
+            } else {
+                currentExp = 0;
+            }
         }
-
-        return currentProgress;
+        return false;
     }
 
-    private int maxExpAtLevel(int level) {
+    private int maxExpAtLevel() {
         // 升级条件
-        int maxExp;
-        maxExp = level * 4;
-
-        return maxExp;
+        return currentLevel * 4;
     }
 
     public int getCurrentLevel() {
-        return 114514;
+        return currentLevel;
     }
 
-    public void changeCoin(int add) {
-        this.currentCoin += add;
+    public void setCoin(int coin) {
+        this.currentCoin += coin;
+        if (currentCoin > maxCoinAtLevel()) {
+            currentCoin = maxCoinAtLevel();
+        } else if (currentCoin < 0) {
+            currentCoin = 0;
+        }
+    }
+
+    private int maxCoinAtLevel() {
+        return currentLevel * 10;
     }
 
     public int getCurrentCoin() {
         return currentCoin;
     }
-
 }

@@ -1,6 +1,5 @@
 package com.example.habitac.model;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -48,24 +47,28 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getExp() {
         if (exp == null) {
-            exp = new MutableLiveData<>(user.getCurrentProgress());
+            exp = new MutableLiveData<>(user.getCurrentExp());
         }
         return exp;
     }
 
-    public void addExp(int add) {
-        if (exp == null) {
+    public void setExp(int exp_offsite) {
+        if (this.exp == null) {
             getExp();
         }
-        exp.setValue(user.addProgress(add));
+        if (user.setProgress(exp_offsite)) {
+            this.level.setValue(user.getCurrentLevel());
+        }
+        this.exp.setValue(user.getCurrentExp());
     }
 
-//    public void minusExp(int minus) {
-//        if (exp == null) {
-//            getExp();
-//        }
-//        exp.setValue(user.minusProgress(minus));
-//    }
+    public void setCoin(int coin_offsite) {
+        if (this.coin == null) {
+            getCoin();
+        }
+        user.setCoin(coin_offsite);
+        this.coin.setValue(user.getCurrentCoin());
+    }
 
     public MutableLiveData<Integer> getLevel() {
         if (level == null) {
@@ -96,4 +99,6 @@ public class MainViewModel extends ViewModel {
     public void setTaskAmount(int taskAmount) {
         this.taskAmount = new MutableLiveData<>(taskAmount);
     }
+
+
 }
