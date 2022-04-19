@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,11 +22,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.habitac.R;
+import com.example.habitac.activity.Login;
 import com.example.habitac.adapter.DoneTaskAdapter;
 import com.example.habitac.adapter.TodoTaskAdapter;
 import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.model.MainViewModel;
+import com.example.habitac.model.SharedViewModel;
 import com.example.habitac.utils.AvatarGetter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -50,6 +54,8 @@ public class HomeFragment extends Fragment {
     private TodoTaskAdapter todoTaskAdapter;
     private DoneTaskAdapter doneTaskAdapter;
     private TextView textView_todo, textView_complete;
+    private SharedViewModel sharedViewModel;
+    private MainViewModel mainViewModel;
 
 
 //    经验条+金币条
@@ -184,6 +190,14 @@ public class HomeFragment extends Fragment {
         doneTasksLive = dao.getALlDoneTask(day[1]);
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
+        sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
+        mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        mainViewModel.setUser(sharedViewModel.getUser());
+        Log.d("userInfo", String.valueOf(mainViewModel.getUserName().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getLevel().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getCoin().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getExp().getValue().toString()));
+//        Log.d("userInfo", String.valueOf(mainViewModel.getTaskAmount()));
     }
 
     public static void todo2complete(Task tarTask) {

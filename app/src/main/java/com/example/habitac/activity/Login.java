@@ -1,6 +1,7 @@
 package com.example.habitac.activity;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.database.User;
+import com.example.habitac.model.SharedViewModel;
 
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class Login extends BasicActivity {
     String userName, password;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    SharedViewModel sharedViewModel;
+    public static Login login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class Login extends BasicActivity {
                                 editText_accountId.setError("user name ont exist");
                             } else {
                                 User user = list.get(0);
+                                sharedViewModel.setUser(user);
                                 String userPass = user.getPassword();
                                 if (!userPass.equals(password)) {
                                     editText_password.setError("wrong password");
@@ -106,6 +111,7 @@ public class Login extends BasicActivity {
 
     // 初始化所有 UI 组件（与前端页面相连）
     private void init() {
+        login = this;
         editText_password = findViewById(R.id.password);
         editText_accountId = findViewById(R.id.account);
         button_login = findViewById(R.id.login_bnt);
@@ -113,6 +119,7 @@ public class Login extends BasicActivity {
         button_password_findBack = findViewById(R.id.forgetPassword_bnt);
         rememberPass = findViewById(R.id.checked_remember_pass);
         preferences = getSharedPreferences("MY_PASS", MODE_PRIVATE);
+        sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
     }
 
     // 进入本页面请调用：

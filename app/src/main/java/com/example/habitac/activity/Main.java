@@ -77,7 +77,6 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         Intent intent = new Intent(context, Main.class);
         intent.putExtra("param1", userName);
         intent.putExtra("param2", data2);
-        loggedUser = User.findUser(userName);
         context.startActivity(intent);
     }
 

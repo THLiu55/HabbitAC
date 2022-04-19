@@ -51,27 +51,6 @@ public class User extends BmobObject {
         return user_name;
     }
 
-    private static User foundUser;
-
-    public static User findUser(String userName) {
-        BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.addWhereEqualTo("user_name", userName);
-        bmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                if (e == null) {
-                    if (list.size() == 0) {
-                        Log.d("Bmob","Not found");
-                    } else {
-                        foundUser = list.get(0);
-                    }
-                }
-            }
-        });
-        return foundUser;
-    }
-
-
     public void setCurrentAvatarSeed(String seed) {
         this.currentAvatarSeed = seed;
     }
@@ -110,6 +89,5 @@ public class User extends BmobObject {
     public int getCurrentCoin() {
         return currentCoin;
     }
-
 
 }
