@@ -100,7 +100,7 @@ public class User extends BmobObject {
     }
 
     public int getCurrentLevel() {
-        return currentLevel;
+        return 114514;
     }
 
     public void changeCoin(int add) {

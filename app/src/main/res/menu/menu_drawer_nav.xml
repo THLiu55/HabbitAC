@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="GENERAL">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:title="Profile" />
+            <item
+                android:id="@+id/nav_setting"
+                android:title="Setting"
+                />
+        </menu>
+    </item>
+
+    <item android:title="OTHERS">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:title="Contact Us"/>
+
+            <item
+                android:id="@+id/nav_help"
+                android:title="Help"
+                />
+        </menu>
+    </item>
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_logOut"
+            android:title="Log Out" />
+
+    </group>
+</menu>

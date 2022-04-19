@@ -18,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HabitAC"
         android:usesCleartextTraffic="true">
+
+
         <activity
             android:name=".activity.TaskDetails"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -32,6 +34,23 @@
             android:name=".activity.ForgetPwd"
             android:exported="false" />
 
+        <activity
+            android:name=".activity.Help"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.Profile"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.Setting"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".activity.ContactUs"
+            android:exported="false" />
+
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.example.habitac.BmobContentProvider" />
@@ -39,7 +58,11 @@
         <activity
             android:name=".activity.Main"
             android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
             android:exported="false" />
+
+
         <activity
             android:name=".activity.SignUp"
             android:exported="false" />
