@@ -42,6 +42,7 @@ public class DoneTaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
         holder.taskName.setText(task_done.get(position).getName());
         holder.taskName.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_come_up));
+        holder.checked.setChecked(true);
         holder.checked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

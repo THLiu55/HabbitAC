@@ -39,6 +39,7 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
     public void onBindViewHolder(@NonNull TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.taskName.setText(task_todo.get(position).getName());
         holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_come_up));
+        holder.checked.setChecked(false);
         holder.checked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
