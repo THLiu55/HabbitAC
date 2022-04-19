@@ -96,7 +96,9 @@
         android:layout_height="match_parent"
         android:background="#fff"
         android:orientation="vertical"
-        app:calendar_content_view_id="@+id/recyclerView">
+        app:calendar_content_view_id="@+id/calendar_id"
+        app:calendar_show_mode="both_month_week_view"
+        app:default_status="expand">
 
         <com.haibin.calendarview.CalendarView
             android:id="@+id/calendarView"
@@ -150,6 +152,17 @@
                     android:textStyle="bold">
                 </TextView>
 
+
+                <TextView
+                    android:id="@+id/today_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white"
+                    android:gravity="center"
+                    android:text="ToDoList"
+                    android:textColor="#3A3A3A"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
                 <LinearLayout
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"

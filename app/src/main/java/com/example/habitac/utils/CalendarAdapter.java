@@ -15,7 +15,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
     }
 
     @Override

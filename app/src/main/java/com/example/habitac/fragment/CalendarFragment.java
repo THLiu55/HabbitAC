@@ -19,14 +19,16 @@ import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 import com.haibin.calendarview.WeekView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CalendarFragment extends Fragment implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener {
     private View root;
-
+    TextView todayView;
     TextView mTextMonthDay;
 
     TextView mTextYear;
@@ -36,7 +38,10 @@ public class CalendarFragment extends Fragment implements
     CalendarView mCalendarView;
 
     RelativeLayout mRelativeTool;
+//    private List<Event> day_eventList = new ArrayList<>();
     private int mYear;
+    private int mMonth;
+    private int mDay;
     CalendarLayout mCalendarLayout;
 //    GroupRecyclerView mRecyclerView;
 
@@ -44,6 +49,7 @@ public class CalendarFragment extends Fragment implements
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_calendar, container, false);
         mTextMonthDay = root.findViewById(R.id.tv_month_day);
+        todayView = root.findViewById(R.id.today_view);
         mTextYear = root.findViewById(R.id.tv_year);
         mRelativeTool = root.findViewById(R.id.rl_tool);
         mCalendarView = root.findViewById(R.id.calendarView);
@@ -72,6 +78,9 @@ public class CalendarFragment extends Fragment implements
         mCalendarView.setOnYearChangeListener(this);
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()));
         mYear = mCalendarView.getCurYear();
+        mMonth = mCalendarView.getCurMonth();
+        mDay = mCalendarView.getCurDay();
+
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 
@@ -94,8 +103,12 @@ public class CalendarFragment extends Fragment implements
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         mTextYear.setVisibility(View.VISIBLE);
         mTextMonthDay.setText(calendar.getMonth() + "月" + calendar.getDay() + "日");
+        todayView.setText(calendar.getMonth() + "月" + calendar.getDay() + "日");
         mTextYear.setText(String.valueOf(calendar.getYear()));
+
         mYear = calendar.getYear();
+        mMonth = calendar.getMonth();
+        mDay = calendar.getDay();
     }
 
     protected void initData() {
@@ -142,4 +155,26 @@ public class CalendarFragment extends Fragment implements
         calendar.setScheme(text);
         return calendar;
     }
+//    private void showDay() {
+//
+//        day_eventList.clear();
+//        for (Event event : MainActivity.eventList) {
+//            String[] dates = event.getDate().split("-");
+//            if (dates[0].equals(mYear + "") && dates[1].equals(mMonth + "") && dates[2].equals(mDay + "")) {
+//                day_eventList.add(event);
+//            }
+//        }
+//        if (day_eventList.size() == 0) {
+//            image.setVisibility(View.VISIBLE);
+//            help.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            image.setVisibility(View.GONE);
+//            help.setVisibility(View.GONE);
+//        }
+//
+//        displayList(day_eventList);
+//
+//    }
+
 }
