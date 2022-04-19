@@ -24,6 +24,7 @@
             android:name=".activity.TaskDetails"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
+
         <activity
             android:name=".activity.myItem"
             android:exported="false" />

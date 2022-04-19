@@ -36,24 +36,26 @@
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/yellow_bar2.xml" value="0.1555" />
         <entry key="app/src/main/res/font/font.xml" value="0.35794871794871796" />
+        <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_drawer_base.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/activity_forget_pwd.xml" value="0.25822906494140624" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2949539184570313" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.36284790039062503" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27845458984375004" />
         <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.4358779907226563" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_reset_pwd.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22747955322265626" />
         <entry key="app/src/main/res/layout/activity_task_details.xml" value="0.29391326904296877" />
         <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/calendar.xml" value="0.12639311043566362" />
         <entry key="app/src/main/res/layout/calendar_structure.xml" value="0.10119171142578126" />
-        <entry key="app/src/main/res/layout/delete_task_card.xml" value="0.17135416666666667" />
+        <entry key="app/src/main/res/layout/delete_task_card.xml" value="1.0354624430338542" />
         <entry key="app/src/main/res/layout/drawer_header.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.26584930419921876" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13969573974609373" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.6087824351297405" />
         <entry key="app/src/main/res/layout/fragment_me.xml" value="0.43769968051118213" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_rank.xml" value="0.28442028985507245" />

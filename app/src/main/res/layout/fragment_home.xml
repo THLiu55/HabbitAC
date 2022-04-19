@@ -57,7 +57,7 @@
                     android:id="@+id/text_number_of_tasks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9"
+                    android:text="4"
 
                     android:textColor="@color/purple_700"
                     android:textSize="20dp"

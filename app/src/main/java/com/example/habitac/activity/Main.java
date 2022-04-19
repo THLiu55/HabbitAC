@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -13,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.database.User;
+import com.example.habitac.model.SharedViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,6 +38,9 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
     NavigationView navigationView;
     NavController drawerNavController;
     NavHostFragment drawerNavHostFragment;
+    SharedViewModel sharedViewModel;
+    String user_name;
+    TextView textView_user_name;
 
 
 //    TextView userName;
@@ -55,18 +61,20 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         NavigationUI.setupActionBarWithNavController(this, bottomNavController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
 
+//        textView_user_name = findViewById(R.id.nav_header_userName);
+//        textView_user_name.setText(getIntent().getStringExtra("param1"));
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navView);
+
+        sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
+        sharedViewModel.getUser();
 
         //rotation icon
         actionBarDrawerToggle =  new ActionBarDrawerToggle(this, drawerLayout , toolbar , R.string.nav_drawer_open,R.string.nav_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-//        userName = findViewById(R.id.nav_header_userName);
-//        userName.setText(getIntent().getStringExtra("param1"));
 
 
     }

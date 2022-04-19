@@ -2,6 +2,7 @@ package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
@@ -28,6 +31,7 @@ import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.model.MainViewModel;
 import com.example.habitac.model.SharedViewModel;
+import com.example.habitac.utils.AvatarGetter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
@@ -53,6 +57,7 @@ public class HomeFragment extends Fragment {
     private TextView textView_todo, textView_complete;
     private SharedViewModel sharedViewModel;
     private MainViewModel mainViewModel;
+    private TextView textView_user_name;
 
     private TextView textView_todo_amount;
 
@@ -76,6 +81,36 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
+
+        ImageView avatar = root.findViewById(R.id.imageView);
+
+
+        avatar.setOnClickListener(new View.OnClickListener() {
+
+            // DELETE THIS
+            int avatarCounter = 1;
+
+            @Override
+            public void onClick(View view) {
+                Log.d("BUTTON", "Detected");
+                AvatarGetter ag = new AvatarGetter();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("Thread", "Created");
+                        avatarCounter ++;
+                        Bitmap ava = ag.getAvatar(avatarCounter + "");
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                avatar.setImageBitmap(ava);
+
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
 
          // 初始化 database
         todoTasksLive.observe(requireActivity(), new Observer<List<Task>>() {
@@ -128,13 +163,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        todo_task_amount_live.observe(requireActivity(), new Observer<Integer>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onChanged(Integer integer) {
-                textView_todo_amount.setText(todo_task_amount_live.getValue().toString());
-            }
-        });
+//        todo_task_amount_live.observe(requireActivity(), new Observer<Integer>() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onChanged(Integer integer) {
+//                textView_todo_amount.setText(todo_task_amount_live.getValue().toString());
+//            }
+//        });
 
         // 构建 adapter
 
@@ -172,6 +207,15 @@ public class HomeFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mainViewModel.setUser(sharedViewModel.getUser());
+        Log.d("userInfo", String.valueOf(mainViewModel.getUserName().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getLevel().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getCoin().getValue().toString()));
+        Log.d("userInfo", String.valueOf(mainViewModel.getExp().getValue().toString()));
+//        Log.d("userInfo", String.valueOf(mainViewModel.getTaskAmount()));
+        textView_user_name = root.findViewById(R.id.text_username);
+
+        textView_user_name.setText(getActivity().getIntent().getStringExtra("param1"));
+
         textView_todo_amount = root.findViewById(R.id.text_number_of_tasks);
     }
 
