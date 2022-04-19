@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ContactUs"
+>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/contact_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFFFCD"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:navigationIcon="@drawable/ic_back" />
+
+
 
     <TextView
+        android:id="@+id/message1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="Thank you so much for using habitAC."
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/message2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="115dp"
+        android:gravity="center"
+        android:layout_below="@id/message1"
+        android:text="If you have any questions, please contact us!"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/user_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/message2"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/input_contact_us"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="It is our pleasure to receive your feedback!"
+        android:textColor="#A8A8A8" />
+
+    <Button
+        android:id="@+id/send_email_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact Us"
-        android:textSize="50dp" />
+        android:layout_below="@+id/user_content"
+        android:layout_marginLeft="-130dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/user_content"
+        android:background="@drawable/yellow_bar2"
+        android:text="SEND" />
 
 
 </RelativeLayout>

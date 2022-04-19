@@ -23,6 +23,7 @@
         <activity
             android:name=".activity.TaskDetails"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:launchMode="singleTop"
             android:exported="false" />
 
         <activity
@@ -50,6 +51,7 @@
 
         <activity
             android:name=".activity.ContactUs"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
         <provider
