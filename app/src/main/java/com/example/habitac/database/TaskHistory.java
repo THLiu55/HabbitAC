@@ -1,5 +1,6 @@
 package com.example.habitac.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Entity(primaryKeys = {"date","id"})
 public class TaskHistory {
+    @NonNull
     private String date;
     private int id;
     private String name;

@@ -38,6 +38,7 @@ import java.util.concurrent.Executors;
 
 
 public class HomeFragment extends Fragment {
+    private final int[] day = {0, 64, 32, 16, 8, 4, 2, 1};
 
     private RecyclerView recyclerView_todo; // 滚动组件的 instance
     private RecyclerView recyclerView_done;
@@ -70,37 +71,37 @@ public class HomeFragment extends Fragment {
         initView(root);
 
 
-        ImageView avatar = root.findViewById(R.id.imageView);
-        Button refreshAvatar = root.findViewById(R.id.getAvatar);
+        // ImageView avatar = root.findViewById(R.id.imageView);
+        // Button refreshAvatar = root.findViewById(R.id.getAvatar);
 
 
-        refreshAvatar.setOnClickListener(new View.OnClickListener() {
-
-            // DELETE THIS
-            int avatarCounter = 1;
-
-            @Override
-
-            public void onClick(View view) {
-                Log.d("BUTTON", "Detected");
-                AvatarGetter ag = new AvatarGetter();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("Thread", "Created");
-                        avatarCounter ++;
-                        Bitmap ava = ag.getAvatar(avatarCounter + "");
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                avatar.setImageBitmap(ava);
-
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
+//        refreshAvatar.setOnClickListener(new View.OnClickListener() {
+//
+//            // DELETE THIS
+//            int avatarCounter = 1;
+//
+//            @Override
+//
+//            public void onClick(View view) {
+//                Log.d("BUTTON", "Detected");
+//                AvatarGetter ag = new AvatarGetter();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d("Thread", "Created");
+//                        avatarCounter ++;
+//                        Bitmap ava = ag.getAvatar(avatarCounter + "");
+//                        getActivity().runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                avatar.setImageBitmap(ava);
+//
+//                            }
+//                        });
+//                    }
+//                }).start();
+//            }
+//        });
 
 
          // 初始化 database
@@ -179,8 +180,8 @@ public class HomeFragment extends Fragment {
         context = getActivity();
         TaskDatabase database = TaskDatabase.getDatabase(getContext());
         TaskDao dao = database.getDao();
-        todoTasksLive = dao.getALlTodoTask(1);
-        doneTasksLive = dao.getALlDoneTask(1);
+        todoTasksLive = dao.getALlTodoTask(day[1]);
+        doneTasksLive = dao.getALlDoneTask(day[1]);
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
     }
