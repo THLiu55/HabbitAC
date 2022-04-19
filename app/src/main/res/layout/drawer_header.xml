@@ -12,13 +12,13 @@
         android:id="@+id/nav_header_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:src="@drawable/robot"/>
 
 
     <TextView
-        android:id="@+id/nav_header_userName"
+        android:id="@+id/nav_header_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,6 +27,17 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/nav_header_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="7dp"
+        android:text="\@"
+        android:textColor="#666666"
+        android:textStyle="bold"
+        android:textSize="11sp" />
 
 <!--    <View-->
 <!--        android:layout_marginTop="8dp"-->

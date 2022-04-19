@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,13 +41,12 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
     NavHostFragment drawerNavHostFragment;
     SharedViewModel sharedViewModel;
     String user_name;
-    TextView textView_user_name;
+    TextView textView_user_name, textView_email;
+    User loggedUser;
 
 
 //    TextView userName;
 
-
-    protected static User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +61,12 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         NavigationUI.setupActionBarWithNavController(this, bottomNavController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
 
-//        textView_user_name = findViewById(R.id.nav_header_userName);
-//        textView_user_name.setText(getIntent().getStringExtra("param1"));
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navView);
 
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
-        sharedViewModel.getUser();
+        loggedUser = sharedViewModel.getUser();
 
         //rotation icon
         actionBarDrawerToggle =  new ActionBarDrawerToggle(this, drawerLayout , toolbar , R.string.nav_drawer_open,R.string.nav_drawer_close);
@@ -76,6 +74,14 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
+        View navHeader = navigationView.getHeaderView(0);
+        textView_user_name = navHeader.findViewById(R.id.nav_header_username);
+        textView_user_name.setText(loggedUser.getUser_name());
+        textView_email = navHeader.findViewById(R.id.nav_header_email);
+        textView_email.setText(loggedUser.getEmail());
 
     }
 
@@ -132,8 +138,6 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         } else{
             super.onBackPressed();
         }
-
-
     }
 
 
