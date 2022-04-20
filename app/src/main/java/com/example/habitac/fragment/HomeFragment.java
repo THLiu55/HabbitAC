@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
     private MutableLiveData<Integer> coinLive;
     private MutableLiveData<Integer> levelLive;
 
-    private int done_cnt = 0;
+    private int done_cnt;
 
 
 //    经验条+金币条
@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<Task> tasks) {
                 doneTaskAdapter.setTask_done(tasks);
                 doneTaskAdapter.notifyDataSetChanged();
-
+                done_cnt = mainViewModel.getDone_cnt();
                 int done_cnt_new = 0;
                 for (Task task : tasks) {
                     if (task.getIsDone() == 1) {
@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment {
                 }
                 mainViewModel.setExp(done_cnt_new - done_cnt);
                 mainViewModel.setCoin(done_cnt_new - done_cnt);
-                done_cnt = done_cnt_new;
+                mainViewModel.setDone_cnt(done_cnt_new);
             }
         });
 
@@ -240,6 +240,7 @@ public class HomeFragment extends Fragment {
         bar_exp = root.findViewById(R.id.progressbar_exp);
         bar_coin = root.findViewById(R.id.progressbar_coin);
         textView_level = root.findViewById(R.id.level_count);
+        done_cnt = mainViewModel.getDone_cnt();
     }
 
     public static void todo2complete(Task tarTask) {

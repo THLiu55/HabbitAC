@@ -16,13 +16,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.habitac.R;
+import com.example.habitac.adapter.TaskRepositoryAdapter;
 import com.example.habitac.database.User;
+import com.example.habitac.fragment.TaskRepositoryFragment;
 import com.example.habitac.model.SharedViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -74,6 +77,16 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.show_all_tasks) {
+                    TaskRepositoryFragment fragment = new TaskRepositoryFragment();
+                    fragment.show(getSupportFragmentManager(), "nb");
+                }
+                return true;
+            }
+        });
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
@@ -144,5 +157,11 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_task_repository, menu);
+        return true;
     }
 }

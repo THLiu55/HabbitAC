@@ -15,6 +15,15 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> coin;
     private MutableLiveData<Integer> taskTodoAmount;
     private MutableLiveData<Integer> taskAmount;
+    private int done_cnt;
+
+    public void setDone_cnt(int done_cnt) {
+        this.done_cnt = done_cnt;
+    }
+
+    public int getDone_cnt() {
+        return done_cnt;
+    }
 
     public void setUser(User user) {
         this.user = user;

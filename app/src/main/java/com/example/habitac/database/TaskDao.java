@@ -21,7 +21,7 @@ public interface TaskDao {
     void updateTask(Task ... tasks);
 
     @Query("SELECT * FROM Task")
-    List<Task> getAllTasks();
+    LiveData<List<Task>> getAllTasks();
 
     @Query("SELECT * FROM Task WHERE frequency & :today != 0 AND isDone = 1")
     LiveData<List<Task>> getALlDoneTask(int today);
