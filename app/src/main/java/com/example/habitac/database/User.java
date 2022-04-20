@@ -18,6 +18,9 @@ public class User extends BmobObject {
         user_name = un;
         password = pa;
         email = em;
+        currentLevel = 1;
+        currentExp = 0;
+        currentCoin = 5;
     }
 
     public void setPassword(String password){
