@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -218,6 +219,8 @@ public class HomeFragment extends Fragment {
         recyclerView_todo = root.findViewById(R.id.recyclerView_todo);
         recyclerView_todo.setAdapter(todoTaskAdapter);
         recyclerView_todo.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView_todo.addItemDecoration(new DividerItemDecoration(recyclerView_todo.getContext(),DividerItemDecoration.VERTICAL
+        ));
         recyclerView_done = root.findViewById(R.id.recyclerView_done);
         recyclerView_done.setAdapter(doneTaskAdapter);
         recyclerView_done.setLayoutManager(new LinearLayoutManager(context));

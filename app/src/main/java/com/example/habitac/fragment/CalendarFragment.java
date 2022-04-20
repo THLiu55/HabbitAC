@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.habitac.R;
+import com.example.habitac.adapter.CalendarAdapter;
+import com.example.habitac.database.Task;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
@@ -35,6 +39,13 @@ public class CalendarFragment extends Fragment implements
 
     TextView mTextCurrentDay;
 
+    private List<Task> TaskList_todo = new ArrayList<>();
+    private List<Task> TaskList_done = new ArrayList<>();
+
+    RecyclerView recyclerView_todo;
+
+    RecyclerView recyclerView_done;
+
     CalendarView mCalendarView;
 
     RelativeLayout mRelativeTool;
@@ -49,7 +60,6 @@ public class CalendarFragment extends Fragment implements
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_calendar, container, false);
         mTextMonthDay = root.findViewById(R.id.tv_month_day);
-        todayView = root.findViewById(R.id.today_view);
         mTextYear = root.findViewById(R.id.tv_year);
         mRelativeTool = root.findViewById(R.id.rl_tool);
         mCalendarView = root.findViewById(R.id.calendarView);
@@ -80,7 +90,8 @@ public class CalendarFragment extends Fragment implements
         mYear = mCalendarView.getCurYear();
         mMonth = mCalendarView.getCurMonth();
         mDay = mCalendarView.getCurDay();
-
+        recyclerView_todo = root.findViewById(R.id.recycler_view_calendar_todo);
+        recyclerView_done = root.findViewById(R.id.recycler_view_calendar_done);
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 
@@ -103,12 +114,12 @@ public class CalendarFragment extends Fragment implements
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         mTextYear.setVisibility(View.VISIBLE);
         mTextMonthDay.setText(calendar.getMonth() + "月" + calendar.getDay() + "日");
-        todayView.setText(calendar.getMonth() + "月" + calendar.getDay() + "日");
         mTextYear.setText(String.valueOf(calendar.getYear()));
 
         mYear = calendar.getYear();
         mMonth = calendar.getMonth();
         mDay = calendar.getDay();
+        displayList(TaskList_todo,TaskList_done);
     }
 
     protected void initData() {
@@ -117,8 +128,8 @@ public class CalendarFragment extends Fragment implements
 
 
         Map<String, Calendar> map = new HashMap<>();
-        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "20").toString(),
-                getSchemeCalendar(year, month, 3, 0xFF40db25, "20"));
+        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "50").toString(),
+                getSchemeCalendar(year, month, 3, 0xFF40db25, "50"));
         map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "33").toString(),
                 getSchemeCalendar(year, month, 6, 0xFFe69138, "33"));
         map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "25").toString(),
@@ -176,5 +187,12 @@ public class CalendarFragment extends Fragment implements
 //        displayList(day_eventList);
 //
 //    }
-
+    private void displayList(List<Task> List_todo,List<Task> List_done) {
+    recyclerView_todo.setLayoutManager(new LinearLayoutManager(getContext()));
+    CalendarAdapter calendarAdapter_todo = new CalendarAdapter(getContext(), List_todo);
+    recyclerView_todo.setAdapter(calendarAdapter_todo);
+    recyclerView_done.setLayoutManager(new LinearLayoutManager(getContext()));
+    CalendarAdapter calendarAdapter_done = new CalendarAdapter(getContext(), List_done);
+    recyclerView_done.setAdapter(calendarAdapter_done);
+}
 }
