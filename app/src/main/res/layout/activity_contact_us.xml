@@ -55,8 +55,7 @@
         android:background="@drawable/input_contact_us"
         android:gravity="center"
         android:inputType="text"
-        android:text="It is our pleasure to receive your feedback!"
-        android:textColor="#A8A8A8" />
+        android:hint="It is our pleasure to receive your feedback!" />
 
     <Button
         android:id="@+id/send_email_btn"

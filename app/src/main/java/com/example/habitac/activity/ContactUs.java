@@ -30,15 +30,12 @@ public class ContactUs extends AppCompatActivity{
 
         Toolbar toolbar = findViewById(R.id.contact_toolBar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Contact Us");
-        toolbar.setTitleTextColor(Color.BLACK);
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-
             }
         });
 

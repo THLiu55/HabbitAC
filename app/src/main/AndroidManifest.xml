@@ -38,14 +38,17 @@
 
         <activity
             android:name=".activity.Help"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
         <activity
             android:name=".activity.Profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
         <activity
             android:name=".activity.Setting"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
 
 

@@ -69,15 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/usrCoin" />
 
-        <ImageView
-            android:id="@+id/levelIc"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/level"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/usrLevel" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
