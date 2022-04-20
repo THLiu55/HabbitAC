@@ -35,6 +35,7 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
         return new TaskViewHolder(view);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.taskName.setText(task_todo.get(position).getName());
@@ -47,6 +48,20 @@ public class TodoTaskAdapter extends RecyclerView.Adapter<TaskViewHolder>{
             }
         });
         holder.editArea.setClickable(false);
+        switch (task_todo.get(position).getClassification()) {
+            case 0:
+                holder.classifyBar.setBackground(context.getDrawable(R.drawable.task_red_bar));
+                break;
+            case 1:
+                holder.classifyBar.setBackground(context.getDrawable(R.drawable.task_blue_bar));
+                break;
+            case 2:
+                holder.classifyBar.setBackground(context.getDrawable(R.drawable.task_yello_bar));
+                break;
+            case 3:
+                holder.classifyBar.setBackground(context.getDrawable(R.drawable.task_purple_bar));
+                break;
+        }
     }
 
     @Override

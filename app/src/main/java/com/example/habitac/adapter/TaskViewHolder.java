@@ -14,6 +14,7 @@ class TaskViewHolder extends RecyclerView.ViewHolder{
     TextView taskName;
     View editArea;
     View itemView;
+    View classifyBar;
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -21,5 +22,6 @@ class TaskViewHolder extends RecyclerView.ViewHolder{
         taskName = itemView.findViewById(R.id.taskName);
         editArea = itemView.findViewById(R.id.edit_area);
         this.itemView = itemView.findViewById(R.id.card_view);
+        classifyBar = itemView.findViewById(R.id.classify_bar);
     }
 }
