@@ -17,6 +17,8 @@ import com.example.habitac.R;
 import com.example.habitac.database.User;
 import com.example.habitac.model.SharedViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
@@ -82,15 +84,18 @@ public class Login extends BasicActivity {
                                 if (!userPass.equals(password)) {
                                     editText_password.setError("wrong password");
                                 } else {
+                                    editor = preferences.edit();
                                     if (rememberPass.isChecked()) {
-                                        editor = preferences.edit();
                                         editor.putBoolean("REMEMBERED", true);
                                         editor.putString("account", userName);
                                         editor.putString("password", userPass);
-                                        editor.apply();
                                     }
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                    String lastLoginDate = preferences.getString("last login", "");
+                                    editor.putString("last login", sdf.format(new Date()));
+                                    editor.apply();
                                     Toast.makeText(Login.this, "Welcome Back, " + userName, Toast.LENGTH_SHORT).show();
-                                    Main.actionStart(Login.this, userName, null);
+                                    Main.actionStart(Login.this, lastLoginDate, null);
                                 }
                             }
                         } else {

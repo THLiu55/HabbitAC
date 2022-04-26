@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.habitac.R;
@@ -30,6 +29,7 @@ import com.example.habitac.adapter.TodoTaskAdapter;
 import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.database.TaskHistory;
 import com.example.habitac.model.MainViewModel;
 import com.example.habitac.model.SharedViewModel;
 import com.example.habitac.utils.AvatarGetter;
@@ -39,6 +39,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -61,12 +63,20 @@ public class HomeFragment extends Fragment {
     private TextView textView_user_name;
     private TextView textView_level;
 
-    private LiveData<List<Task>> todoTasksLive;
+    private  LiveData<List<Task>> todoTasksLive;
     private LiveData<List<Task>> doneTasksLive;
+
+    private  LiveData<List<Task>> lastTodoTasksLive;
+    private LiveData<List<Task>> lastDoneTasksLive;
+
     private MutableLiveData<String> userNameLive;
     private MutableLiveData<Integer> expLive;
     private MutableLiveData<Integer> coinLive;
     private MutableLiveData<Integer> levelLive;
+    private SimpleDateFormat sdf;
+    private String lastLogin;
+    private String date_today;
+
 
     private int done_cnt;
 
@@ -80,13 +90,14 @@ public class HomeFragment extends Fragment {
 
 
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
+
 
         ImageView avatar = root.findViewById(R.id.imageView);
 
@@ -117,7 +128,55 @@ public class HomeFragment extends Fragment {
             }
         });
 
-         // 初始化 database
+        lastTodoTasksLive.observe(getActivity(), new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                if (mainViewModel.isRefreshTodo() && !date_today.equals(lastLogin)) {
+                    ExecutorService service = Executors.newSingleThreadExecutor();
+                    service.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            TaskDao dao = TaskDatabase.getDatabase(getContext()).getDao();
+                            for (Task task : tasks) {
+                                TaskHistory history = new TaskHistory();
+                                history.setName(task.getName());
+                                history.setIsDone(0);
+                                history.setDate(lastLogin);
+                                history.setId(task.getId());
+                                dao.insertTaskHistory(history);
+                            }
+                            mainViewModel.setRefreshTodo(false);
+                        }
+                    });
+                }
+            }
+        });
+
+        lastDoneTasksLive.observe(getActivity(), new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                if (mainViewModel.isRefreshDone() && !date_today.equals(lastLogin)) {
+                    ExecutorService service = Executors.newSingleThreadExecutor();
+                    service.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            TaskDao dao = TaskDatabase.getDatabase(getContext()).getDao();
+                            for (Task task: tasks) {
+                                TaskHistory history = new TaskHistory();
+                                history.setName(task.getName());
+                                history.setIsDone(1);
+                                history.setDate(lastLogin);
+                                history.setId(task.getId());
+                                dao.insertTaskHistory(history);
+                                complete2todo(task);
+                            }
+                            mainViewModel.setRefreshDone(false);
+                        }
+                    });
+                }
+            }
+        });
+
         todoTasksLive.observe(requireActivity(), new Observer<List<Task>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -136,6 +195,7 @@ public class HomeFragment extends Fragment {
                 if (todo_cnt == 0) {
                     textView_todo.setVisibility(View.GONE);
                 }
+
                 mainViewModel.setTodoTaskAmount(todo_cnt);
             }
         });
@@ -163,6 +223,7 @@ public class HomeFragment extends Fragment {
                 mainViewModel.setDone_cnt(done_cnt_new);
             }
         });
+
 
         userNameLive.observe(requireActivity(), new Observer<String>() {
             @Override
@@ -214,13 +275,26 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View root) {
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+//        date_today = sdf.format(new Date());
+//        if (!requireActivity().getIntent().getStringExtra("param1").isEmpty()) {
+//            lastLogin = requireActivity().getIntent().getStringExtra("param1");
+//            Log.d("test", "1");
+//        } else {
+//            lastLogin = date_today;
+//            Log.d("test", "2");
+//        }
+
+        date_today = "2022-04-16";
+        lastLogin = "2022-04-11";
+
         todoTaskAdapter = new TodoTaskAdapter();
         doneTaskAdapter = new DoneTaskAdapter();
         recyclerView_todo = root.findViewById(R.id.recyclerView_todo);
         recyclerView_todo.setAdapter(todoTaskAdapter);
         recyclerView_todo.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView_todo.addItemDecoration(new DividerItemDecoration(recyclerView_todo.getContext(),DividerItemDecoration.VERTICAL
-        ));
+        recyclerView_todo.addItemDecoration(new DividerItemDecoration(recyclerView_todo.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView_done = root.findViewById(R.id.recyclerView_done);
         recyclerView_done.setAdapter(doneTaskAdapter);
         recyclerView_done.setLayoutManager(new LinearLayoutManager(context));
@@ -228,8 +302,17 @@ public class HomeFragment extends Fragment {
         context = getActivity();
         TaskDatabase database = TaskDatabase.getDatabase(getContext());
         TaskDao dao = database.getDao();
-        todoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(new Date())]);
-        doneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(new Date())]);
+        try {
+            todoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(sdf.parse(date_today))]);
+            doneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(sdf.parse(date_today))]);
+            Log.d("test", lastLogin);
+            lastTodoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(sdf.parse(lastLogin))]);
+            lastDoneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(sdf.parse(lastLogin))]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
@@ -253,7 +336,7 @@ public class HomeFragment extends Fragment {
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
-            public void run() {
+            public synchronized void run() {
                 TaskDatabase taskDatabase = TaskDatabase.getDatabase(context);
                 TaskDao dao = taskDatabase.getDao();
                 dao.deleteTask(tarTask);
@@ -270,7 +353,7 @@ public class HomeFragment extends Fragment {
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
-            public void run() {
+            public synchronized void run() {
                 TaskDatabase taskDatabase = TaskDatabase.getDatabase(context);
                 TaskDao dao = taskDatabase.getDao();
                 dao.deleteTask(tarTask);

@@ -3,7 +3,10 @@ package com.example.habitac.model;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.habitac.database.TaskDao;
+import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.database.User;
+import com.example.habitac.fragment.HomeFragment;
 
 import java.util.Date;
 
@@ -16,6 +19,9 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Integer> taskTodoAmount;
     private MutableLiveData<Integer> taskAmount;
     private int done_cnt;
+
+    private boolean refreshTodo = true;
+    private boolean refreshDone = true;
 
     public void setDone_cnt(int done_cnt) {
         this.done_cnt = done_cnt;
@@ -109,5 +115,19 @@ public class MainViewModel extends ViewModel {
         this.taskAmount = new MutableLiveData<>(taskAmount);
     }
 
+    public boolean isRefreshTodo() {
+        return refreshTodo;
+    }
 
+    public void setRefreshTodo(boolean refreshTodo) {
+        this.refreshTodo = refreshTodo;
+    }
+
+    public boolean isRefreshDone() {
+        return refreshDone;
+    }
+
+    public void setRefreshDone(boolean refreshDone) {
+        this.refreshDone = refreshDone;
+    }
 }
