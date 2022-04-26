@@ -1,5 +1,4 @@
 package com.example.habitac.adapter;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,37 +14,37 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.habitac.R;
 import com.example.habitac.database.Task;
+import com.example.habitac.database.TaskHistory;
 import com.example.habitac.fragment.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
-    List<Task> task = new ArrayList<>();
+public class CalendarDoneAdapter extends RecyclerView.Adapter<TaskViewHolder>{
     Context context;
+    List<TaskHistory> taskHistories = new ArrayList<>();
 
-    public CalendarAdapter(Context context, List<Task> tasks) {
-        this.task = tasks;
-        this.context = context;
+    public void setTaskHistories(List<TaskHistory> taskHistories) {
+        this.taskHistories = taskHistories;
     }
+
     @NonNull
     @Override
-    public CalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.location, parent, false);
+        View view = layoutInflater.inflate(R.layout.delete_task_card, parent, false);
         context = parent.getContext();
-        return new CalendarViewHolder(view);
+        return new TaskViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CalendarViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.taskName.setText(task.get(position).getName());
+    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_come_up));
-        holder.editArea.setClickable(false);
+        holder.taskName.setText(taskHistories.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return task.size();
+        return taskHistories.size();
     }
 }

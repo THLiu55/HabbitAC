@@ -286,8 +286,6 @@ public class HomeFragment extends Fragment {
             Log.d("test", "2");
         }
 
-//        date_today = "2022-04-16";
-//        lastLogin = "2022-04-11";
 
         todoTaskAdapter = new TodoTaskAdapter();
         doneTaskAdapter = new DoneTaskAdapter();

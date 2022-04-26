@@ -1,14 +1,18 @@
 package com.example.habitac.fragment;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +20,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.habitac.R;
-import com.example.habitac.adapter.CalendarAdapter;
+import com.example.habitac.adapter.CalendarDoneAdapter;
+import com.example.habitac.adapter.CalendarTodoAdapter;
 import com.example.habitac.database.Task;
+import com.example.habitac.database.TaskDao;
+import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.database.TaskHistory;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
-import com.haibin.calendarview.WeekView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,26 +41,34 @@ public class CalendarFragment extends Fragment implements
     private View root;
     TextView todayView;
     TextView mTextMonthDay;
-
+    private final String[] month = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     TextView mTextYear;
 
     TextView mTextCurrentDay;
 
-    private List<Task> TaskList_todo = new ArrayList<>();
-    private List<Task> TaskList_done = new ArrayList<>();
+    TaskDao dao;
 
     RecyclerView recyclerView_todo;
-
     RecyclerView recyclerView_done;
+    private LiveData<List<TaskHistory>> todoHistory;
+    private LiveData<List<TaskHistory>> doneHistory;
+
 
     CalendarView mCalendarView;
-
     RelativeLayout mRelativeTool;
 //    private List<Event> day_eventList = new ArrayList<>();
     private int mYear;
     private int mMonth;
     private int mDay;
     CalendarLayout mCalendarLayout;
+    CalendarTodoAdapter calendarTodoAdapter;
+    CalendarDoneAdapter calendarDoneAdapter;
+    MutableLiveData<List<TaskHistory>> doneHistoryOfDay;
+    MutableLiveData<List<TaskHistory>> todoHistoryOfDay;
+
+    Map<String, List<TaskHistory>> todoOfDay = new HashMap<>();
+    Map<String, List<TaskHistory>> doneOfDay = new HashMap<>();
+
 //    GroupRecyclerView mRecyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -92,10 +107,60 @@ public class CalendarFragment extends Fragment implements
         mDay = mCalendarView.getCurDay();
         recyclerView_todo = root.findViewById(R.id.recycler_view_calendar_todo);
         recyclerView_done = root.findViewById(R.id.recycler_view_calendar_done);
-        mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
+        mTextMonthDay.setText(mCalendarView.getCurDay() + " " + month[mCalendarView.getCurMonth()]);
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+        dao = TaskDatabase.getDatabase(getContext()).getDao();
 
         initData();
+
+        String initDay = monthFormat(mYear, mMonth);
+        todoHistory = dao.getNotDoneHistoryOfMonth(initDay);
+        doneHistory = dao.getDoneHistoryOfMonth(initDay);
+
+        calendarTodoAdapter = new CalendarTodoAdapter();
+        calendarDoneAdapter = new CalendarDoneAdapter();
+        recyclerView_todo.setAdapter(calendarTodoAdapter);
+        recyclerView_done.setAdapter(calendarDoneAdapter);
+        recyclerView_done.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView_done.addItemDecoration(new DividerItemDecoration(recyclerView_done.getContext(),DividerItemDecoration.VERTICAL));
+        recyclerView_todo.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView_todo.addItemDecoration(new DividerItemDecoration(recyclerView_todo.getContext(),DividerItemDecoration.VERTICAL));
+
+
+        todoHistory.observe(getActivity(), new Observer<List<TaskHistory>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<TaskHistory> taskHistories) {
+                for (TaskHistory history : taskHistories) {
+                    List<TaskHistory> histories;
+                    if (todoOfDay.containsKey(history.getDate())) {
+                        histories = todoOfDay.get(history.getDate());
+                    } else {
+                        histories = new ArrayList<>();
+                    }
+                    histories.add(history);
+                    todoOfDay.put(history.getDate(), histories);
+                }
+            }
+        });
+
+        doneHistory.observe(getActivity(), new Observer<List<TaskHistory>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<TaskHistory> taskHistories) {
+                for (TaskHistory history : taskHistories) {
+                    List<TaskHistory> histories;
+                    if (doneOfDay.containsKey(history.getDate())) {
+                        histories = doneOfDay.get(history.getDate());
+                    } else {
+                        histories = new ArrayList<>();
+                    }
+                    histories.add(history);
+                    doneOfDay.put(history.getDate(), histories);
+                }
+            }
+        });
+
 
         return root;
     }
@@ -113,48 +178,60 @@ public class CalendarFragment extends Fragment implements
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         mTextYear.setVisibility(View.VISIBLE);
-        mTextMonthDay.setText(calendar.getMonth() + "月" + calendar.getDay() + "日");
+        mTextMonthDay.setText(calendar.getDay() + " " + month[calendar.getMonth()]);
         mTextYear.setText(String.valueOf(calendar.getYear()));
-
         mYear = calendar.getYear();
         mMonth = calendar.getMonth();
         mDay = calendar.getDay();
-        displayList(TaskList_todo,TaskList_done);
+        String date = dateFormat(mYear, mMonth, mDay);
+        if (todoOfDay.get(date) != null) {
+            calendarTodoAdapter.setTaskHistories(todoOfDay.get(date));
+
+        } else {
+            calendarTodoAdapter.setTaskHistories(new ArrayList<>());
+        }
+        calendarTodoAdapter.notifyDataSetChanged();
+        if (doneOfDay.get(date) != null) {
+            calendarDoneAdapter.setTaskHistories(doneOfDay.get(date));
+        } else {
+            calendarDoneAdapter.setTaskHistories(new ArrayList<>());
+        }
+        calendarDoneAdapter.notifyDataSetChanged();
     }
 
     protected void initData() {
-        int year = mCalendarView.getCurYear();
+        int year = mCalendarView.getCurDay();
         int month = mCalendarView.getCurMonth();
 
 
-        Map<String, Calendar> map = new HashMap<>();
-        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "50").toString(),
-                getSchemeCalendar(year, month, 3, 0xFF40db25, "50"));
-        map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "33").toString(),
-                getSchemeCalendar(year, month, 6, 0xFFe69138, "33"));
-        map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "25").toString(),
-                getSchemeCalendar(year, month, 9, 0xFFdf1356, "25"));
-        map.put(getSchemeCalendar(year, month, 13, 0xFFedc56d, "50").toString(),
-                getSchemeCalendar(year, month, 13, 0xFFedc56d, "50"));
-        map.put(getSchemeCalendar(year, month, 14, 0xFFedc56d, "80").toString(),
-                getSchemeCalendar(year, month, 14, 0xFFedc56d, "80"));
-        map.put(getSchemeCalendar(year, month, 15, 0xFFaacc44, "20").toString(),
-                getSchemeCalendar(year, month, 15, 0xFFaacc44, "20"));
-        map.put(getSchemeCalendar(year, month, 18, 0xFFbc13f0, "70").toString(),
-                getSchemeCalendar(year, month, 18, 0xFFbc13f0, "70"));
-        map.put(getSchemeCalendar(year, month, 25, 0xFF13acf0, "36").toString(),
-                getSchemeCalendar(year, month, 25, 0xFF13acf0, "36"));
-        map.put(getSchemeCalendar(year, month, 27, 0xFF13acf0, "95").toString(),
-                getSchemeCalendar(year, month, 27, 0xFF13acf0, "95"));
+//        Map<String, Calendar> map = new HashMap<>();
+//        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "50").toString(),
+//                getSchemeCalendar(year, month, 3, 0xFF40db25, "50"));
+//        map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "33").toString(),
+//                getSchemeCalendar(year, month, 6, 0xFFe69138, "33"));
+//        map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "25").toString(),
+//                getSchemeCalendar(year, month, 9, 0xFFdf1356, "25"));
+//        map.put(getSchemeCalendar(year, month, 13, 0xFFedc56d, "50").toString(),
+//                getSchemeCalendar(year, month, 13, 0xFFedc56d, "50"));
+//        map.put(getSchemeCalendar(year, month, 14, 0xFFedc56d, "80").toString(),
+//                getSchemeCalendar(year, month, 14, 0xFFedc56d, "80"));
+//        map.put(getSchemeCalendar(year, month, 15, 0xFFaacc44, "20").toString(),
+//                getSchemeCalendar(year, month, 15, 0xFFaacc44, "20"));
+//        map.put(getSchemeCalendar(year, month, 18, 0xFFbc13f0, "70").toString(),
+//                getSchemeCalendar(year, month, 18, 0xFFbc13f0, "70"));
+//        map.put(getSchemeCalendar(year, month, 25, 0xFF13acf0, "36").toString(),
+//                getSchemeCalendar(year, month, 25, 0xFF13acf0, "36"));
+//        map.put(getSchemeCalendar(year, month, 27, 0xFF13acf0, "95").toString(),
+//                getSchemeCalendar(year, month, 27, 0xFF13acf0, "95"));
+
+        for (int i = 0; i < 15; i++) {
+            LiveData<List<TaskHistory>> tasks = dao.getDoneHistoryOf(dateFormat(year, month, i));
+        }
+
+
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
-        mCalendarView.setSchemeDate(map);
+//        mCalendarView.setSchemeDate(map);
 
-
-
-//        mRecyclerView = findViewById(R.id.recyclerView);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
-//        mRecyclerView.notifyDataSetChanged();
     }
 
     private Calendar getSchemeCalendar(int year, int month, int day, int color, String text) {
@@ -166,33 +243,27 @@ public class CalendarFragment extends Fragment implements
         calendar.setScheme(text);
         return calendar;
     }
-//    private void showDay() {
-//
-//        day_eventList.clear();
-//        for (Event event : MainActivity.eventList) {
-//            String[] dates = event.getDate().split("-");
-//            if (dates[0].equals(mYear + "") && dates[1].equals(mMonth + "") && dates[2].equals(mDay + "")) {
-//                day_eventList.add(event);
-//            }
-//        }
-//        if (day_eventList.size() == 0) {
-//            image.setVisibility(View.VISIBLE);
-//            help.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            image.setVisibility(View.GONE);
-//            help.setVisibility(View.GONE);
-//        }
-//
-//        displayList(day_eventList);
-//
-//    }
-    private void displayList(List<Task> List_todo,List<Task> List_done) {
-    recyclerView_todo.setLayoutManager(new LinearLayoutManager(getContext()));
-    CalendarAdapter calendarAdapter_todo = new CalendarAdapter(getContext(), List_todo);
-    recyclerView_todo.setAdapter(calendarAdapter_todo);
-    recyclerView_done.setLayoutManager(new LinearLayoutManager(getContext()));
-    CalendarAdapter calendarAdapter_done = new CalendarAdapter(getContext(), List_done);
-    recyclerView_done.setAdapter(calendarAdapter_done);
-}
+
+    private String dateFormat(int y, int mon, int d) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(y).append("-");
+        if (mon < 10) {
+            sb.append(0);
+        }
+        sb.append(mon).append("-");
+        if (d < 10) {
+            sb.append(0);
+        }
+        sb.append(d);
+        return sb.toString();
+    }
+
+    private String monthFormat(int y, int mon) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(y).append("-");
+        if (mon < 10) {
+            sb.append(0);
+        }
+        return sb.toString();
+    }
 }
