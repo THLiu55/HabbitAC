@@ -277,17 +277,17 @@ public class HomeFragment extends Fragment {
     private void initView(View root) {
         sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-//        date_today = sdf.format(new Date());
-//        if (!requireActivity().getIntent().getStringExtra("param1").isEmpty()) {
-//            lastLogin = requireActivity().getIntent().getStringExtra("param1");
-//            Log.d("test", "1");
-//        } else {
-//            lastLogin = date_today;
-//            Log.d("test", "2");
-//        }
+        date_today = sdf.format(new Date());
+        if (!requireActivity().getIntent().getStringExtra("param1").isEmpty()) {
+            lastLogin = requireActivity().getIntent().getStringExtra("param1");
+            Log.d("test", "1");
+        } else {
+            lastLogin = date_today;
+            Log.d("test", "2");
+        }
 
-        date_today = "2022-04-16";
-        lastLogin = "2022-04-11";
+//        date_today = "2022-04-16";
+//        lastLogin = "2022-04-11";
 
         todoTaskAdapter = new TodoTaskAdapter();
         doneTaskAdapter = new DoneTaskAdapter();
