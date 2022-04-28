@@ -1,6 +1,7 @@
 package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,14 +27,19 @@ import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.database.TaskHistory;
+import com.example.habitac.utils.DateToday;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CalendarFragment extends Fragment implements
         CalendarView.OnCalendarSelectListener,
@@ -52,7 +58,8 @@ public class CalendarFragment extends Fragment implements
     RecyclerView recyclerView_done;
     private LiveData<List<TaskHistory>> todoHistory;
     private LiveData<List<TaskHistory>> doneHistory;
-
+    private LiveData<List<Task>> todayDoneHistory;
+    private LiveData<List<Task>> todayTodoHistory;
 
     CalendarView mCalendarView;
     RelativeLayout mRelativeTool;
@@ -68,6 +75,7 @@ public class CalendarFragment extends Fragment implements
 
     Map<String, List<TaskHistory>> todoOfDay = new HashMap<>();
     Map<String, List<TaskHistory>> doneOfDay = new HashMap<>();
+    SimpleDateFormat sdf;
 
 //    GroupRecyclerView mRecyclerView;
 
@@ -80,6 +88,7 @@ public class CalendarFragment extends Fragment implements
         mCalendarView = root.findViewById(R.id.calendarView);
         mTextCurrentDay = root.findViewById(R.id.tv_current_day);
         mCalendarLayout = root.findViewById(R.id.calendarLayout);
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +125,8 @@ public class CalendarFragment extends Fragment implements
         String initDay = monthFormat(mYear, mMonth);
         todoHistory = dao.getNotDoneHistoryOfMonth(initDay);
         doneHistory = dao.getDoneHistoryOfMonth(initDay);
+        todayDoneHistory = dao.getALlDoneTask(DateToday.getWeekDayOfDate(new Date()));
+        todayTodoHistory = dao.getALlTodoTask(DateToday.getWeekDayOfDate(new Date()));
 
         calendarTodoAdapter = new CalendarTodoAdapter();
         calendarDoneAdapter = new CalendarDoneAdapter();
@@ -161,6 +172,44 @@ public class CalendarFragment extends Fragment implements
             }
         });
 
+        todayTodoHistory.observe(getActivity(), new Observer<List<Task>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<Task> tasks) {
+                List<TaskHistory> histories = new ArrayList<>();
+                for (Task task : tasks) {
+                    TaskHistory history = new TaskHistory();
+                    history.setName(task.getName());
+                    history.setIsDone(task.getIsDone());
+                    history.setId(task.getId());
+                    history.setDate(sdf.format(new Date()));
+                    histories.add(history);
+                }
+                todoOfDay.put(sdf.format(new Date()), histories);
+                calendarTodoAdapter.setTaskHistories(histories);
+                calendarTodoAdapter.notifyDataSetChanged();
+            }
+        });
+
+        todayDoneHistory.observe(getActivity(), new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                List<TaskHistory> histories = new ArrayList<>();
+                Log.d("ttt", String.valueOf(tasks.size()));
+                for (Task task : tasks) {
+                    TaskHistory history = new TaskHistory();
+                    history.setName(task.getName());
+                    history.setIsDone(task.getIsDone());
+                    history.setId(task.getId());
+                    history.setDate(sdf.format(new Date()));
+                    histories.add(history);
+                }
+                doneOfDay.put(sdf.format(new Date()), histories);
+                calendarDoneAdapter.setTaskHistories(histories);
+                calendarDoneAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         return root;
     }
@@ -184,9 +233,11 @@ public class CalendarFragment extends Fragment implements
         mMonth = calendar.getMonth();
         mDay = calendar.getDay();
         String date = dateFormat(mYear, mMonth, mDay);
+
+        Log.d("tttt", todoOfDay.toString());
+
         if (todoOfDay.get(date) != null) {
             calendarTodoAdapter.setTaskHistories(todoOfDay.get(date));
-
         } else {
             calendarTodoAdapter.setTaskHistories(new ArrayList<>());
         }
@@ -200,13 +251,24 @@ public class CalendarFragment extends Fragment implements
     }
 
     protected void initData() {
-        int year = mCalendarView.getCurDay();
+        int year = mCalendarView.getCurYear();
         int month = mCalendarView.getCurMonth();
 
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                boolean flag = true;
+                while (doneHistory != null && todoHistory != null && flag) {
+                    Log.d("flag", doneHistory.toString() + " " + todoHistory.toString());
+                    flag = false;
+                }
+            }
+        });
 
-//        Map<String, Calendar> map = new HashMap<>();
-//        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "50").toString(),
-//                getSchemeCalendar(year, month, 3, 0xFF40db25, "50"));
+        Map<String, Calendar> map = new HashMap<>();
+        map.put(getSchemeCalendar(year, month, 3, Color.YELLOW, "75").toString(),
+                getSchemeCalendar(year, month, 3, Color.GRAY, "25"));
 //        map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "33").toString(),
 //                getSchemeCalendar(year, month, 6, 0xFFe69138, "33"));
 //        map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "25").toString(),
@@ -224,13 +286,8 @@ public class CalendarFragment extends Fragment implements
 //        map.put(getSchemeCalendar(year, month, 27, 0xFF13acf0, "95").toString(),
 //                getSchemeCalendar(year, month, 27, 0xFF13acf0, "95"));
 
-        for (int i = 0; i < 15; i++) {
-            LiveData<List<TaskHistory>> tasks = dao.getDoneHistoryOf(dateFormat(year, month, i));
-        }
-
-
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
-//        mCalendarView.setSchemeDate(map);
+        mCalendarView.setSchemeDate(map);
 
     }
 

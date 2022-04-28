@@ -79,15 +79,14 @@
         <entry key="app/src/main/res/layout/drawer_header.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.20666656494140628" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/fragment_equipment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2752542979227092" />
         <entry key="app/src/main/res/layout/fragment_me.xml" value="0.43769968051118213" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_rank.xml" value="0.28442028985507245" />
-        <entry key="app/src/main/res/layout/fragment_rank_content.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_reset_pwd.xml" value="0.29475250244140627" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.3029891304347826" />
+        <entry key="app/src/main/res/layout/fragment_task_repository.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_test_task_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/repository_task_card.xml" value="0.33448130289713557" />
         <entry key="app/src/main/res/layout/task_card.xml" value="0.36445922851562507" />
