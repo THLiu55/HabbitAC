@@ -47,4 +47,7 @@ public interface TaskDao {
 
     @Query("SELECT * FROM TASKHISTORY WHERE date LIKE :month || '%' AND isDone = 1")
     LiveData<List<TaskHistory>> getDoneHistoryOfMonth(String month);
+
+    @Query("SELECT * FROM TaskHistory WHERE date LIKE :month")
+    LiveData<List<TaskHistory>> getAllHistoryOfMonth(String month);
 }

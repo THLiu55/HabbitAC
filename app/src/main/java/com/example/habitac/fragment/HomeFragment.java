@@ -43,6 +43,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -76,7 +77,6 @@ public class HomeFragment extends Fragment {
     private SimpleDateFormat sdf;
     private String lastLogin;
     private String date_today;
-
 
     private int done_cnt;
 

@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
+import com.example.habitac.database.TaskHistory;
 import com.example.habitac.database.User;
 import com.example.habitac.fragment.HomeFragment;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainViewModel extends ViewModel {
     private User user;
@@ -22,6 +26,24 @@ public class MainViewModel extends ViewModel {
 
     private boolean refreshTodo = true;
     private boolean refreshDone = true;
+    private MutableLiveData<Map<String, Integer>> todoHistoryMap = new MutableLiveData<>(new HashMap<>());
+    private MutableLiveData<Map<String, Integer>> doneHistoryMap = new MutableLiveData<>(new HashMap<>());
+
+    public MutableLiveData<Map<String, Integer>> getTodoHistoryMap() {
+        return todoHistoryMap;
+    }
+
+    public void setTodoHistoryMap(Map<String, Integer> todoHistoryMap) {
+        this.todoHistoryMap.setValue(todoHistoryMap);
+    }
+
+    public MutableLiveData<Map<String, Integer>> getDoneHistoryMap() {
+        return doneHistoryMap;
+    }
+
+    public void setDoneHistoryMap(Map<String, Integer> doneHistoryMap) {
+        this.doneHistoryMap.setValue(doneHistoryMap);
+    }
 
     public void setDone_cnt(int done_cnt) {
         this.done_cnt = done_cnt;
