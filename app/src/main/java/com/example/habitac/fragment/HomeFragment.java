@@ -309,6 +309,8 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
 
+//        date_today = "2022-05-05";
+//        lastLogin = "2022-05-04";
 
         textView_complete = root.findViewById(R.id.home_page_text_compelete);
         textView_todo = root.findViewById(R.id.home_page_text_todo);
