@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -46,6 +47,7 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
     String user_name;
     TextView textView_user_name, textView_email;
     User loggedUser;
+    static FragmentManager fragmentManager;
 
 
 //    TextView userName;
@@ -63,6 +65,7 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         bottomNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, bottomNavController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, bottomNavController);
+        fragmentManager = getSupportFragmentManager();
 
 
         drawerLayout = findViewById(R.id.drawer);
@@ -163,5 +166,10 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_task_repository, menu);
         return true;
+    }
+
+    public static void deleteTask() {
+        TaskRepositoryFragment fragment = new TaskRepositoryFragment();
+        fragment.show(fragmentManager, "nb");
     }
 }

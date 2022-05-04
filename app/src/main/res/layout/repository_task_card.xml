@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/repository_task_card"
     android:layout_width="match_parent"
-    android:layout_marginBottom="4dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="4dp"
-    android:layout_height="wrap_content">
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,7 +28,9 @@
                 android:background="@drawable/repository_bar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" >
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/repository_task_name"
@@ -42,6 +47,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.538" />
 
+            <ImageButton
+                android:id="@+id/repository_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_cancel_24" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

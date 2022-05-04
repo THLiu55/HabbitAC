@@ -8,8 +8,10 @@ import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,23 +36,27 @@ public class TaskDetails extends AppCompatActivity {
     private boolean customizedRepeat;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch alarmSwitch;
+    private boolean edit;
+    private Button confirm_btn;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        edit = false;
 
         setContentView(R.layout.activity_task_details);
         editText_taskName = findViewById(R.id.habitTitle_edit);
-        Button confirm_btn = findViewById(R.id.confirm_button_task);
+        confirm_btn = findViewById(R.id.confirm_button_task);
         Button cancel_btn = findViewById(R.id.cancel_button_task);
         Spinner spin_keep = findViewById(R.id.keep_spinner);
         Spinner spin_repeat = findViewById(R.id.repeat_spinner);
         Spinner spin_class = findViewById(R.id.classify_spinner);
         selectDayLayout = findViewById(R.id.select_day_to_repeat);
-        customizedRepeat = false;
         alarmSwitch = findViewById(R.id.switch_alarm);
 
+        customizedRepeat = false;
         ArrayAdapter<String> ad_keep = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, keepingDays);
         ArrayAdapter<String> ad_repeat = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, repeatDay);
         ArrayAdapter<String> ad_class = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, classification);
@@ -132,6 +138,19 @@ public class TaskDetails extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
+        Intent intent = getIntent();
+        String taskId = intent.getStringExtra("id");
+
+        if (taskId == null) {
+            Log.d("edit", "null");
+        } else {
+            Log.d("edit", "not null");
+        }
+        if (taskId != null) {
+            edit = true;
+            editText_taskName.setText(intent.getStringExtra("name"));
+        }
+
 
 
         confirm_btn.setOnClickListener(view -> {
@@ -170,7 +189,15 @@ public class TaskDetails extends AppCompatActivity {
                     task.setRemindHour(-1);
                     task.setRemindMin(-1);
                 }
-                taskDao.insertTask(task);
+                if (edit) {
+                    assert taskId != null;
+                    task.setId(Integer.parseInt(taskId));
+                    taskDao.updateTask(task);
+                    Log.d("edit", "true");
+                } else {
+                    taskDao.insertTask(task);
+                    Log.d("edit", "false");
+                }
             });
             Main.actionStart(TaskDetails.this, null, null);
         });

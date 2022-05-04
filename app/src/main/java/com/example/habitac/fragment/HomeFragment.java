@@ -1,6 +1,7 @@
 package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -97,7 +98,6 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
-
 
         ImageView avatar = root.findViewById(R.id.imageView);
 
@@ -285,7 +285,6 @@ public class HomeFragment extends Fragment {
             lastLogin = date_today;
             Log.d("test", "2");
         }
-
 
         todoTaskAdapter = new TodoTaskAdapter();
         doneTaskAdapter = new DoneTaskAdapter();
