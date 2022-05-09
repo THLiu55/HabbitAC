@@ -7,7 +7,7 @@ public class User extends BmobObject {
     private String user_name;
     private String password;
     private String email;
-    private String currentAvatarSeed;
+    private String currentAvatar;
     private int currentLevel;
     private int currentExp;
     private int currentCoin;
@@ -47,8 +47,12 @@ public class User extends BmobObject {
         return user_name;
     }
 
-    public void setCurrentAvatarSeed(String seed) {
-        this.currentAvatarSeed = seed;
+    public String getCurrentAvatar() {
+        return currentAvatar;
+    }
+
+    public void setCurrentAvatar(String seed) {
+        this.currentAvatar = seed;
     }
 
     public int getCurrentExp() {

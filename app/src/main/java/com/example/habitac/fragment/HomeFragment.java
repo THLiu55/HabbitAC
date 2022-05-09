@@ -1,7 +1,6 @@
 package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -25,12 +24,14 @@ import android.widget.ImageView;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
+import com.example.habitac.activity.ResetPwd;
 import com.example.habitac.adapter.DoneTaskAdapter;
 import com.example.habitac.adapter.TodoTaskAdapter;
 import com.example.habitac.database.Task;
 import com.example.habitac.database.TaskDao;
 import com.example.habitac.database.TaskDatabase;
 import com.example.habitac.database.TaskHistory;
+import com.example.habitac.database.User;
 import com.example.habitac.model.MainViewModel;
 import com.example.habitac.model.SharedViewModel;
 import com.example.habitac.utils.AvatarGetter;
@@ -39,14 +40,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 
 public class HomeFragment extends Fragment {
@@ -88,7 +92,8 @@ public class HomeFragment extends Fragment {
     private int currentLevel = 1;
     private ProgressBar bar_exp, bar_coin;
 
-
+    private User user;
+    private String avatarSeed;
 
 
     @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
@@ -100,31 +105,38 @@ public class HomeFragment extends Fragment {
         initView(root);
 
         ImageView avatar = root.findViewById(R.id.imageView);
+        user = sharedViewModel.getUser();
+        avatarSeed = user.getCurrentAvatar();
 
-
+        showAvatar(avatarSeed, avatar);
         avatar.setOnClickListener(new View.OnClickListener() {
 
             // DELETE THIS
-            int avatarCounter = 1;
+            Integer avatarCounter = Integer.parseInt(avatarSeed);
 
             @Override
             public void onClick(View view) {
                 Log.d("BUTTON", "Detected");
-                AvatarGetter ag = new AvatarGetter();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         Log.d("Thread", "Created");
                         avatarCounter ++;
-                        Bitmap ava = ag.getAvatar(avatarCounter + "");
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                avatar.setImageBitmap(ava);
-                            }
-                        });
+                        showAvatar(avatarSeed+"", avatar);
                     }
                 }).start();
+                user.setCurrentAvatar(avatarCounter + "");
+                user.update(user.getObjectId(), new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if(e==null){
+                            Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getActivity(), "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                avatarSeed = avatarCounter.toString();
             }
         });
 
@@ -359,5 +371,22 @@ public class HomeFragment extends Fragment {
                 dao.insertTask(editTask);
             }
         });
+    }
+
+    public void showAvatar(String seed, ImageView avatar) {
+        AvatarGetter ag = new AvatarGetter();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap ava = ag.getAvatar(seed + "");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        avatar.setImageBitmap(ava);
+                    }
+                });
+            }
+        }).start();
+
     }
 }
