@@ -51,8 +51,8 @@
 
                 <View
                     android:id="@+id/classify_bar"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="11dp"
+                    android:layout_height="43dp"
                     android:background="@drawable/task_yello_bar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/task_checked"

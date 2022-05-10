@@ -43,7 +43,6 @@ public class CalendarTodoAdapter extends RecyclerView.Adapter<CalendarViewHolder
         holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_come_up));
         holder.taskName.setText(taskHistories.get(position).getName());
 
-
     }
 
     @Override

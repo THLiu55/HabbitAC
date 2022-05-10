@@ -27,5 +27,22 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="dormitory_information">宿舍人员名单</string>
+    <string name="student_name_zhao">剑</string>
+    <string name="student_name_wu">头盔</string>
+    <string name="student_name_gong">甲胄</string>
+    <string name="student_name_chen">战靴</string>
+    <string name="student">弓驽</string>
+    <string name="shuangshou">双手斧</string>
+    <string name="student_information">商品信息</string>
+    <string name="student_name">商品名称： </string>
+    <string name="student_sex">生命： </string>
+    <string name="student_ban">攻击： </string>
+    <string name="student_dormitory">防御： </string>
+    <string name="student_bed">敏捷： </string>
+    <string name="student_class">武器故事： </string>
+
+    <string name="class_name">软工2037</string>
+
 
 </resources>
