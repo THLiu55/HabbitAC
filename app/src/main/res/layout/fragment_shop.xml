@@ -17,20 +17,24 @@
             android:id="@+id/usrCoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="328dp"
-            android:layout_marginTop="16dp"
-
-
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:text="120"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:text="Equipment"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="center_vertical"/>
@@ -39,7 +43,7 @@
             android:id="@+id/coinIc"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="3dp"
             android:src="@drawable/coin_dollar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/usrCoin"
@@ -171,4 +175,14 @@
             android:layout_height="wrap_content"
             android:text="@string/student_class"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/week_background"
+        android:text="Buy"
+        android:layout_marginLeft="300dp">
+
+    </Button>
 </LinearLayout>
