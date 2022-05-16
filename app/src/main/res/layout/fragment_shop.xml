@@ -60,7 +60,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rbt_student1"
+            android:id="@+id/Commodity_display1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:button="@null"
@@ -69,7 +69,7 @@
             android:drawableTop="@drawable/weapon"
             android:text="@string/student_name_zhao" />
         <RadioButton
-            android:id="@+id/rbt_student2"
+            android:id="@+id/Commodity_display2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -80,7 +80,7 @@
             android:text="@string/student_name_wu"
             />
         <RadioButton
-            android:id="@+id/rbt_student3"
+            android:id="@+id/Commodity_display3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -99,7 +99,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rbt_student4"
+            android:id="@+id/Commodity_display4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:button="@null"
@@ -109,7 +109,7 @@
             android:text="@string/student_name_chen"
             />
         <RadioButton
-            android:id="@+id/rbt_student5"
+            android:id="@+id/Commodity_display5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -120,7 +120,7 @@
             android:text="@string/student"
             />
         <RadioButton
-            android:id="@+id/rbt_student6"
+            android:id="@+id/Commodity_display6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -145,44 +145,43 @@
             android:text="@string/student_information"
             android:textSize="20sp"/>
         <TextView
-            android:id="@+id/txt_student_name"
+            android:id="@+id/Trade_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_name"/>
         <TextView
-            android:id="@+id/txt_student_sex"
+            android:id="@+id/Life_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_sex"/>
         <TextView
-            android:id="@+id/txt_student_ban"
+            android:id="@+id/attack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_ban"/>
         <TextView
-            android:id="@+id/txt_student_dormitory"
+            android:id="@+id/defense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_dormitory"/>
         <TextView
-            android:id="@+id/txt_student_bed"
+            android:id="@+id/Dodge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_bed"/>
         <TextView
-            android:id="@+id/txt_student_class"
+            android:id="@+id/Weapon_story"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_class"/>
+        <Button
+            android:id="@+id/button_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/week_background"
+            android:text="Buy"
+            android:layout_marginLeft="300dp">
+
+        </Button>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/week_background"
-        android:text="Buy"
-        android:layout_marginLeft="300dp">
-
-    </Button>
 </LinearLayout>

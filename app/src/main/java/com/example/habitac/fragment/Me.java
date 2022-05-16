@@ -63,12 +63,12 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
         rgp_one.setOnCheckedChangeListener(this);
         rgp_two.setOnCheckedChangeListener(this);
         // usernameView.setText(userName);
-       student_class = root.findViewById(R.id.txt_student_class);
-        student_sex = root.findViewById(R.id.txt_student_sex);
-        student_ban = root.findViewById(R.id.txt_student_ban);
-        student_dormitory = root.findViewById(R.id.txt_student_dormitory);
-        student_bed = root.findViewById(R.id.txt_student_bed);
-        student_name = root.findViewById(R.id.txt_student_name);
+       student_class = root.findViewById(R.id.Weapon_story);
+        student_sex = root.findViewById(R.id.Life_value);
+        student_ban = root.findViewById(R.id.attack);
+        student_dormitory = root.findViewById(R.id.defense);
+        student_bed = root.findViewById(R.id.Dodge);
+        student_name = root.findViewById(R.id.Trade_name);
         return root;
 
     }
@@ -91,7 +91,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             }
         }
 
-        if(i == R.id.rbt_student1){
+        if(i == R.id.Commodity_display1){
             student_name.setText(studentName[0]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[0]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[0]));
@@ -99,7 +99,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[0]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
         }
-        else if(i == R.id.rbt_student2){
+        else if(i == R.id.Commodity_display2){
             student_name.setText(studentName[1]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[1]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[1]));
@@ -107,7 +107,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[1]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
         }
-        else if(i == R.id.rbt_student3){
+        else if(i == R.id.Commodity_display3){
             student_name.setText(studentName[2]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[2]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[2]));
@@ -115,7 +115,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[2]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
         }
-        else if(i == R.id.rbt_student4){
+        else if(i == R.id.Commodity_display4){
             student_name.setText(studentName[3]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[3]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[3]));
@@ -123,7 +123,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[3]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
         }
-        else if(i == R.id.rbt_student5){
+        else if(i == R.id.Commodity_display5){
             student_name.setText(studentName[4]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[4]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[4]));
@@ -131,7 +131,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[4]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
         }
-        else if(i == R.id.rbt_student6){
+        else if(i == R.id.Commodity_display6){
             student_name.setText(studentName[5]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[5]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[5]));
