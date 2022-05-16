@@ -3,14 +3,30 @@ package com.example.habitac.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.habitac.R;
+import com.example.habitac.activity.Login;
+import com.example.habitac.activity.Main;
+import com.example.habitac.database.Item;
+import com.example.habitac.database.User;
+import com.example.habitac.model.SharedViewModel;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +34,7 @@ import com.example.habitac.R;
  * create an instance of this fragment.
  */
 public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
-
+    Button button;
     RadioGroup rgp_one;
     RadioGroup rgp_two;
     boolean is_select_rgb_one = true;
@@ -28,7 +44,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
     TextView student_dormitory ;
     TextView student_bed;
     TextView student_name;
-
+    SharedViewModel sharedViewModel;
+    User loggedUser;
     String[] studentName = {"武器名称：剑","防具名称： 头盔","防具名称： 盔甲","防具名称： 战靴","武器名称：弓箭","武器名称：双手斧"};
     int[] equipmentHealth = {0,100,200,100,0,0};
     int[] equipmentAttackValue = {500,0,0,0,400,600};
@@ -62,8 +79,11 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
         rgp_two = root.findViewById(R.id.rgp_two);
         rgp_one.setOnCheckedChangeListener(this);
         rgp_two.setOnCheckedChangeListener(this);
+        button = root.findViewById(R.id.button_buy);
         // usernameView.setText(userName);
-       student_class = root.findViewById(R.id.Weapon_story);
+        sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
+        loggedUser = sharedViewModel.getUser();
+        student_class = root.findViewById(R.id.Weapon_story);
         student_sex = root.findViewById(R.id.Life_value);
         student_ban = root.findViewById(R.id.attack);
         student_dormitory = root.findViewById(R.id.defense);
@@ -98,6 +118,19 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[0]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[0]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "sword", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[0]);
+                    buy.setAgility(equipmentAgility[0]);
+                    buy.setDefense(equipmentDefenseValue[0]);
+                    buy.setHealth(equipmentHealth[0]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("sword");
+                }
+            });
+
+
         }
         else if(i == R.id.Commodity_display2){
             student_name.setText(studentName[1]);
@@ -106,6 +139,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[1]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[1]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "Head", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[1]);
+                    buy.setAgility(equipmentAgility[1]);
+                    buy.setDefense(equipmentDefenseValue[1]);
+                    buy.setHealth(equipmentHealth[1]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("Head");
+                }
+            });
         }
         else if(i == R.id.Commodity_display3){
             student_name.setText(studentName[2]);
@@ -114,6 +158,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[2]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[2]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "armor", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[2]);
+                    buy.setAgility(equipmentAgility[2]);
+                    buy.setDefense(equipmentDefenseValue[2]);
+                    buy.setHealth(equipmentHealth[2]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("armor");
+                }
+            });
         }
         else if(i == R.id.Commodity_display4){
             student_name.setText(studentName[3]);
@@ -122,6 +177,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[3]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[3]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "boots", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[3]);
+                    buy.setAgility(equipmentAgility[3]);
+                    buy.setDefense(equipmentDefenseValue[3]);
+                    buy.setHealth(equipmentHealth[3]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("boots");
+                }
+            });
         }
         else if(i == R.id.Commodity_display5){
             student_name.setText(studentName[4]);
@@ -130,6 +196,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[4]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[4]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "arch", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[4]);
+                    buy.setAgility(equipmentAgility[4]);
+                    buy.setDefense(equipmentDefenseValue[4]);
+                    buy.setHealth(equipmentHealth[4]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("arch");
+                }
+            });
         }
         else if(i == R.id.Commodity_display6){
             student_name.setText(studentName[5]);
@@ -138,6 +215,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener{
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[5]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[5]));
             student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Item buy = new Item(1, "axe", loggedUser.getObjectId());
+                    buy.setAttack(equipmentAttackValue[5]);
+                    buy.setAgility(equipmentAgility[5]);
+                    buy.setDefense(equipmentDefenseValue[5]);
+                    buy.setHealth(equipmentHealth[5]);
+                    buy.setOwn(loggedUser.getObjectId());
+                    buy.setType("axe");
+                }
+            });
         }
     }
 }
