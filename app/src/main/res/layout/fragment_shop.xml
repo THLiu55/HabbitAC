@@ -1,187 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.Me"
-    android:padding="10dp">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <TextView
-            android:id="@+id/usrCoin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="120"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:text="Equipment"
-            android:textSize="25dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintHorizontal_bias="10"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_vertical"/>
-
-        <ImageView
-            android:id="@+id/coinIc"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/coin_dollar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/usrCoin"
-            app:layout_constraintTop_toTopOf="@+id/usrCoin"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <RadioGroup
-        android:id="@+id/rgp_one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/Commodity_display1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawableTop="@drawable/weapon"
-            android:text="@string/student_name_zhao" />
-        <RadioButton
-            android:id="@+id/Commodity_display2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:button="@null"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/toukui"
-            android:text="@string/student_name_wu"
-            />
-        <RadioButton
-            android:id="@+id/Commodity_display3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:button="@null"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawableTop="@drawable/jiazhou"
-            android:text="@string/student_name_gong"
-            />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/rgp_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/Commodity_display4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawableTop="@drawable/zuxue"
-            android:text="@string/student_name_chen"
-            />
-        <RadioButton
-            android:id="@+id/Commodity_display5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:button="@null"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawableTop="@drawable/nu"
-            android:text="@string/student"
-            />
-        <RadioButton
-            android:id="@+id/Commodity_display6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:button="@null"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawableTop="@drawable/shuangshoufu"
-            android:text="@string/shuangshou"
-           />
-    </RadioGroup>
+    android:padding="10dp"
+    tools:context=".fragment.Me">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_information"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/Trade_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_name"/>
-        <TextView
-            android:id="@+id/Life_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_sex"/>
-        <TextView
-            android:id="@+id/attack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_ban"/>
-        <TextView
-            android:id="@+id/defense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_dormitory"/>
-        <TextView
-            android:id="@+id/Dodge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_bed"/>
-        <TextView
-            android:id="@+id/Weapon_story"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_class"/>
-        <Button
-            android:id="@+id/button_buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/week_background"
-            android:text="Buy"
-            android:layout_marginLeft="300dp">
 
-        </Button>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/usrCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="120"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="Equipment"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/coinIc"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="3dp"
+                android:src="@drawable/coin_dollar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/usrCoin"
+                app:layout_constraintTop_toTopOf="@+id/usrCoin"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RadioGroup
+            android:id="@+id/rgp_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Commodity_display1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/weapon"
+                android:gravity="center"
+                android:text="@string/student_name_zhao" />
+
+            <RadioButton
+                android:id="@+id/Commodity_display2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/toukui"
+                android:gravity="center"
+                android:text="@string/student_name_wu" />
+
+            <RadioButton
+                android:id="@+id/Commodity_display3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/jiazhou"
+                android:gravity="center"
+                android:text="@string/student_name_gong" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rgp_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Commodity_display4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/zuxue"
+                android:gravity="center"
+                android:text="@string/student_name_chen" />
+
+            <RadioButton
+                android:id="@+id/Commodity_display5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/nu"
+                android:gravity="center"
+                android:text="@string/student" />
+
+            <RadioButton
+                android:id="@+id/Commodity_display6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/shuangshoufu"
+                android:gravity="center"
+                android:text="@string/shuangshou" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_information"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/Trade_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_name" />
+
+            <TextView
+                android:id="@+id/Life_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_sex" />
+
+            <TextView
+                android:id="@+id/attack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_ban" />
+
+            <TextView
+                android:id="@+id/defense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_dormitory" />
+
+            <TextView
+                android:id="@+id/Dodge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_bed" />
+
+            <TextView
+                android:id="@+id/Weapon_story"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_class" />
+
+            <Button
+                android:id="@+id/button_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:background="@color/week_background"
+                android:text="Buy">
+
+            </Button>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
