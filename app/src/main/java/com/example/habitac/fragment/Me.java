@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
-import com.example.habitac.activity.Main;
-import com.example.habitac.activity.SignUp;
 import com.example.habitac.database.Item;
 import com.example.habitac.database.User;
+import com.example.habitac.model.MainViewModel;
 import com.example.habitac.model.SharedViewModel;
 
 import java.text.SimpleDateFormat;
@@ -55,6 +54,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
     int[] equipmentAttackValue = {500, 0, 0, 0, 400, 600};
     int[] equipmentDefenseValue = {0, 40, 50, 30, 0, 0};
     int[] equipmentAgility = {15, 10, 20, 5, 10, 20};
+    int[] weaponPrice = {1,2,3,4,5,6};
     public String userName;
 
     // TODO: Rename and change types of parameters
@@ -119,7 +119,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[0]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[0]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[0]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[0]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "sword", loggedUser.getObjectId());
@@ -129,6 +129,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setHealth(equipmentHealth[0]);
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("sword");
+                    updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[0]);
                 }
             });
 
@@ -139,7 +141,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[1]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[1]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[1]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[1]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "Head", loggedUser.getObjectId());
@@ -149,6 +151,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setHealth(equipmentHealth[1]);
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("Head");
+                    updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[1]);
                 }
             });
         } else if (i == R.id.Commodity_display3) {
@@ -157,7 +161,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[2]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[2]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[2]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[2]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "armor", loggedUser.getObjectId());
@@ -167,6 +171,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setHealth(equipmentHealth[2]);
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("armor");
+                    updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[2]);
                 }
             });
         } else if (i == R.id.Commodity_display4) {
@@ -175,7 +181,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[3]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[3]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[3]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[3]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "boots", loggedUser.getObjectId());
@@ -185,6 +191,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setHealth(equipmentHealth[3]);
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("boots");
+                    updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[3]);
                 }
             });
         } else if (i == R.id.Commodity_display5) {
@@ -193,7 +201,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[4]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[4]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[4]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[4]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "arch", loggedUser.getObjectId());
@@ -203,6 +211,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setHealth(equipmentHealth[4]);
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("arch");
+                    updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[4]);
                 }
             });
         } else if (i == R.id.Commodity_display6) {
@@ -211,7 +221,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[5]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[5]));
             student_bed.setText(String.format("%s%s", this.getString(R.string.student_bed), equipmentAgility[5]));
-            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), this.getString(R.string.class_name)));
+            student_class.setText(String.format("%s%s", this.getString(R.string.student_class), weaponPrice[5]));
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Item buy = new Item(1, "axe", loggedUser.getObjectId());
@@ -222,6 +232,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setOwn(loggedUser.getObjectId());
                     buy.setType("axe");
                     updateItem(buy);
+                    loggedUser.setCoin(-1*weaponPrice[5]);
                 }
             });
         }

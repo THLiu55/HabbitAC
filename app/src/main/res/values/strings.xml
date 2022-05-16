@@ -40,9 +40,9 @@
     <string name="student_ban">攻击： </string>
     <string name="student_dormitory">防御： </string>
     <string name="student_bed">敏捷： </string>
-    <string name="student_class">武器故事： </string>
+    <string name="student_class">武器价格： </string>
 
-    <string name="class_name">软工2037</string>
+
 
 
 </resources>
