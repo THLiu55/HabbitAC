@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password?"
+            android:text="@string/forgot_password"
             android:layout_gravity="center"
             android:textSize="20dp"
             android:textColor="@color/black"
@@ -56,7 +56,7 @@
                     android:layout_marginLeft="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/sent_icon"
-                    android:text="SEND"
+                    android:text="@string/send"
                     android:textSize="10sp"
                     android:textAllCaps="false">
                 </Button>
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textSize="18sp"
-                android:text="Verification Code:"
+                android:text="@string/Verification"
                 android:textColor="@color/black"/>
             <LinearLayout
                 android:layout_width="140dp"
@@ -96,7 +96,7 @@
             android:id="@+id/confirm_button_forgot"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="@string/Next"
             android:textAllCaps="true"
             android:layout_gravity="center"/>
 

@@ -27,7 +27,6 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="dormitory_information">宿舍人员名单</string>
     <string name="student_name_zhao">剑</string>
     <string name="student_name_wu">头盔</string>
     <string name="student_name_gong">甲胄</string>
@@ -41,6 +40,16 @@
     <string name="student_dormitory">防御： </string>
     <string name="student_bed">敏捷： </string>
     <string name="student_class">武器价格： </string>
+    <string name="thanks_using">感谢您对HabitAC的信任 </string>
+    <string name="question_ask">如果您有任何问题，请联系我们</string>
+    <string name="question_send">期待您的反馈</string>
+    <string name="send">发送</string>
+    <string name="forgot_password">是否忘记密码？</string>
+    <string name="Verification">请输入验证码：</string>
+    <string name="Next">下一步</string>
+    <string name="Repository">存储库</string>
+    <string name="Equipment">装备商店</string>
+
 
 
 

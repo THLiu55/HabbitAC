@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name" translatable="false">habitAC</string>
+    <string name="nav_drawer_open" translatable="false">Open drawer</string>
+
+
+    <string-array name="habit_name">
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+        <item>habit</item>
+
+    </string-array>
+
+    <string-array name="description">
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+        <item>This is a random description </item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="student_name_zhao">Sword</string>
+    <string name="student_name_wu">Helmet</string>
+    <string name="student_name_gong">Armor</string>
+    <string name="student_name_chen">Boots</string>
+    <string name="student">Crossbow</string>
+    <string name="shuangshou">Axe</string>
+    <string name="student_information">Commodity information</string>
+    <string name="student_name">Trade name: </string>
+    <string name="student_sex">HP:</string>
+    <string name="student_ban">Attack: </string>
+    <string name="student_dormitory">Defense: </string>
+    <string name="student_bed">Agility:</string>
+    <string name="student_class">Weapon price:</string>
+    <string name="nav_drawer_close" translatable="false">Close drawer</string>
+    <string name="thanks_using">"Thank you so much for using habitAC." </string>
+    <string name="question_ask">If you have any questions, please contact us!</string>
+    <string name="question_send">It is our pleasure to receive your feedback!</string>
+    <string name="send">SEND</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="Verification">Verification Code:</string>
+    <string name="Next">Next</string>
+    <string name="Repository">Repository</string>
+    <string name="Equipment">Equipment</string>
+
+
+
+</resources>

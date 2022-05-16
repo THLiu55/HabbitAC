@@ -33,6 +33,9 @@
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/drawable/task_yello_bar.xml" value="0.1275" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/drawable/white.xml" value="0.1275" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/drawable/yellow_bar2.xml" value="0.1275" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_contact_us.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_forget_pwd.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_help.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_login.xml" value="0.1125" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_main.xml" value="0.1125" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/activity_my_item.xml" value="0.1125" />
@@ -51,6 +54,7 @@
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_equipment.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_home.xml" value="0.11979166666666667" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_me.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_rank_content.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_shop.xml" value="0.2" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/fragment_task_repository.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_calendar/app/src/main/res/layout/location.xml" value="0.264" />
