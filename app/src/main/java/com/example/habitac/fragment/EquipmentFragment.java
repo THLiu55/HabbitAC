@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 
 import com.example.habitac.R;
 
+import cn.bmob.v3.*;
+
 public class EquipmentFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
+
 
         return inflater.inflate(R.layout.fragment_equipment, container, false);
 

@@ -30,8 +30,8 @@ public class AvatarGetter {
             URL url = new URL(full_url);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setReadTimeout(5000);
-            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(8000);
+            connection.setConnectTimeout(8000);
             int code = connection.getResponseCode();
             Log.d(code+" Get", getClass().getSimpleName());
             if (code == 200) {
