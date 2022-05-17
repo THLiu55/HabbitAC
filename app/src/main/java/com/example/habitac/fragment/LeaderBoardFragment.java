@@ -1,9 +1,11 @@
 package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -27,6 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -64,9 +67,14 @@ public class LeaderBoardFragment extends Fragment {
         leaderboardAdapter = new LeaderboardAdapter(new LinkedList<>(), getContext());
         allUsers = new MutableLiveData<>(new LinkedList<>());
 
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rankView.setLayoutManager(layoutManager);
+
+//TODO:
+//        leaderboardAdapter = new LeaderboardAdapter();
+
 
         rankView.setAdapter(leaderboardAdapter);
         leaderboardAdapter.setUserList(allUsers.getValue());
@@ -80,13 +88,14 @@ public class LeaderBoardFragment extends Fragment {
         });
 
         BmobQuery<User> bmobQuery = new BmobQuery<>();
-//        bmobQuery.findObjects(new FindListener<User>() {
-//            @Override
-//            public void done(List<User> list, BmobException e) {
-//                Collections.sort(list, (a, b) -> {return a.getCurrentRank() - b.getCurrentRank();});
-//                allUsers.setValue(list);
-//            }
-//        });
+        bmobQuery.findObjects(new FindListener<User>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void done(List<User> list, BmobException e) {
+                Collections.sort(list, Comparator.comparingInt(User::getCurrentRank));
+                allUsers.setValue(list);
+            }
+        });
 
 
 
