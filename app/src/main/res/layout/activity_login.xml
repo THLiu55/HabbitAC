@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="18sp"
-            android:text="Account:"
+            android:text="@string/User_Name"
             android:textColor="@color/black"/>
 
         <LinearLayout
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="18sp"
-            android:text="Password:"
+            android:text="@string/User_Pass"
             android:textColor="@color/black"/>
 
         <LinearLayout
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remember the Password"
+            android:text="@string/Rmember_the_pass"
             />
     </LinearLayout>
 
@@ -135,7 +135,7 @@
         android:layout_gravity="center"
         android:textAllCaps="false"
         android:elevation="1px"
-        android:text="Log in"
+        android:text="@string/login"
         android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:layout_marginBottom="8dp"/>
@@ -146,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAllCaps="false"
-        android:text="Sign up"
+        android:text="@string/signup"
         android:layout_weight="1"
         android:layout_marginBottom="10dp"/>
 
@@ -156,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="Forget Password?"
+        android:text="@string/forgot_password"
         android:layout_weight="1"
         android:textAllCaps="false"
         android:textColor="#3366FF"/>

@@ -49,7 +49,26 @@
     <string name="Next">Next</string>
     <string name="Repository">Repository</string>
     <string name="Equipment">Equipment</string>
-
-
+    <string name="Exp">Exp</string>
+    <string name="Coin">Coin</string>
+    <string name="You_Have">You Have \t</string>
+    <string name="tasks_togo">\t tasks to go!</string>
+    <string name="TODO">TODO:</string>
+    <string name="Completed">Completed:</string>
+    <string name="ToDoList">ToDoList:</string>
+    <string name="About_your_habit">About your habit</string>
+    <string name="Keep">Keeping:</string>
+    <string name="Repeat">Repeat:</string>
+    <string name="Classify">Classify:</string>
+    <string name="Alarm">Alarm</string>
+    <string name="Confirm">Confirm</string>
+    <string name="Cancel">Cancel</string>
+    <string name="User_Name">User Name:</string>
+    <string name="User_Pass">Password:</string>
+    <string name="User_Pass_Re">Re-Enter:</string>
+    <string name="return_login_page">Return login page</string>
+    <string name="Rmember_the_pass">Remember the Password</string>
+    <string name="login">Log in</string>
+    <string name="signup">Sign up</string>
 
 </resources>

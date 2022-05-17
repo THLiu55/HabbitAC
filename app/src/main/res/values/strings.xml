@@ -45,10 +45,33 @@
     <string name="question_send">期待您的反馈</string>
     <string name="send">发送</string>
     <string name="forgot_password">是否忘记密码？</string>
-    <string name="Verification">请输入验证码：</string>
+    <string name="Verification">验证码：</string>
     <string name="Next">下一步</string>
     <string name="Repository">存储库</string>
     <string name="Equipment">装备商店</string>
+    <string name="Exp">经验值</string>
+    <string name="Coin">金币值</string>
+    <string name="You_Have">你还有 \t</string>
+    <string name="tasks_togo">\t项工作需要完成！</string>
+    <string name="TODO">未完成:</string>
+    <string name="Completed">已完成:</string>
+    <string name="ToDoList">今日任务完成情况:</string>
+    <string name="About_your_habit">来指定自己的计划吧</string>
+    <string name="Keep">坚持天数:</string>
+    <string name="Repeat">重复频率:</string>
+    <string name="Classify">分类:</string>
+    <string name="Alarm">闹钟:</string>
+    <string name="Confirm">确认</string>
+    <string name="Cancel">取消</string>
+    <string name="User_Name">用户名:</string>
+    <string name="User_Pass">密码:</string>
+    <string name="User_Pass_Re">确认密码:</string>
+    <string name="return_login_page">返回登陆页</string>
+    <string name="Rmember_the_pass">免密登录</string>
+    <string name="login">登录</string>
+    <string name="signup">注册</string>
+
+
 
 
 

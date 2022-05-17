@@ -49,7 +49,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
     TextView student_name;
     SharedViewModel sharedViewModel;
     User loggedUser;
-    String[] studentName = {"武器名称：剑", "防具名称： 头盔", "防具名称： 盔甲", "防具名称： 战靴", "武器名称：弓箭", "武器名称：双手斧"};
     int[] equipmentHealth = {0, 100, 200, 100, 0, 0};
     int[] equipmentAttackValue = {500, 0, 0, 0, 400, 600};
     int[] equipmentDefenseValue = {0, 40, 50, 30, 0, 0};
@@ -91,7 +90,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
         student_ban = root.findViewById(R.id.attack);
         student_dormitory = root.findViewById(R.id.defense);
         student_bed = root.findViewById(R.id.Dodge);
-        student_name = root.findViewById(R.id.Trade_name);
         return root;
 
     }
@@ -114,7 +112,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
         }
 
         if (i == R.id.Commodity_display1) {
-            student_name.setText(studentName[0]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[0]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[0]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[0]));
@@ -136,7 +133,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
 
         } else if (i == R.id.Commodity_display2) {
-            student_name.setText(studentName[1]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[1]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[1]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[1]));
@@ -156,7 +152,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                 }
             });
         } else if (i == R.id.Commodity_display3) {
-            student_name.setText(studentName[2]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[2]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[2]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[2]));
@@ -176,7 +171,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                 }
             });
         } else if (i == R.id.Commodity_display4) {
-            student_name.setText(studentName[3]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[3]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[3]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[3]));
@@ -196,7 +190,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                 }
             });
         } else if (i == R.id.Commodity_display5) {
-            student_name.setText(studentName[4]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[4]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[4]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[4]));
@@ -216,7 +209,6 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                 }
             });
         } else if (i == R.id.Commodity_display6) {
-            student_name.setText(studentName[5]);
             student_sex.setText(String.format("%s%s", this.getString(R.string.student_sex), equipmentHealth[5]));
             student_ban.setText(String.format("%s%s", this.getString(R.string.student_ban), equipmentAttackValue[5]));
             student_dormitory.setText(String.format("%s%s", this.getString(R.string.student_dormitory), equipmentDefenseValue[5]));

@@ -151,11 +151,6 @@
                 android:text="@string/student_information"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/Trade_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/student_name" />
 
             <TextView
                 android:id="@+id/Life_value"
