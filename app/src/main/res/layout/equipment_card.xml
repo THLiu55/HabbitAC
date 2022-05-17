@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/equipment_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/gray_bar"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/weapon" />
+
+        <TextView
+            android:id="@+id/xinxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_information"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Life_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xinxi"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_sex" />
+
+        <TextView
+            android:id="@+id/attack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Life_value"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_ban" />
+
+        <TextView
+            android:id="@+id/defense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attack"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_dormitory" />
+
+        <TextView
+            android:id="@+id/Dodge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/defense"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_bed" />
+
+        <TextView
+            android:id="@+id/Weapon_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Dodge"
+            android:layout_toRightOf="@+id/photo"
+            android:text="@string/student_class" />
+
+    </RelativeLayout>
+</LinearLayout>
