@@ -33,7 +33,7 @@ public class RankFragment extends Fragment {
 
         fragmentManager = getChildFragmentManager();
         rankAdapter = new RankAdapter(fragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        rankAdapter.addFragment(new RankContentFragment(), "Rank");
+        rankAdapter.addFragment(new LeaderBoardFragment(), "Rank");
         rankAdapter.addFragment(new EquipmentFragment(), "Equipment");
 
         viewPager.setAdapter(rankAdapter);
