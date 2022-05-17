@@ -242,4 +242,9 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             }
         });
     }
+
+    public void spendCoin(int coin) {
+
+    }
+
 }

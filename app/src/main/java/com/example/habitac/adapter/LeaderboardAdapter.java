@@ -10,17 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.habitac.R;
+import com.example.habitac.database.User;
 import com.example.habitac.model.LeaderBoardModel;
 
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>{
 
-    private List<LeaderBoardModel> userList;
+    private List<User> userList;
     private Context context;
 
 
-    public LeaderboardAdapter(List<LeaderBoardModel> userList, Context context) {
+    public LeaderboardAdapter(List<User> userList, Context context) {
         this.userList = userList;
         this.context = context;
     }
@@ -32,24 +33,18 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
 
 
-
-
-
-
-
-
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LeaderboardAdapter.ViewHolder holder, int position) {
 
-        //TODO:应该是在这和数据库连一下，用户的名字balabala
+        // TODO:应该是在这和数据库连一下，用户的名字balabala
 
-        String userName = userList.get(position).getUserName();
-        int userLevel = userList.get(position).getUserLevel();
-        int userRank = userList.get(position).getUserRankingNum();
+
+        String userName = userList.get(position).getUser_name();
+        int userLevel = userList.get(position).getCurrentLevel();
+        int userRank = userList.get(position).getCurrentRank();
 
         holder.setData(userName,userLevel,userRank);
 

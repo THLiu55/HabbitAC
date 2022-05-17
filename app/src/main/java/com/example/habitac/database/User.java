@@ -11,6 +11,7 @@ public class User extends BmobObject {
     private int currentLevel;
     private int currentExp;
     private int currentCoin;
+    private int currentRank, highestRank;
 
     public User() {}
 
@@ -103,4 +104,21 @@ public class User extends BmobObject {
     public int getCurrentCoin() {
         return currentCoin;
     }
+
+    public int getCurrentRank() {
+        return currentRank;
+    }
+
+    public int getHighestRank() {
+        return highestRank;
+    }
+
+    public void setCurrentRank(int currentRank) {
+        this.currentRank = currentRank;
+    }
+
+    public void setHighestRank(int highestRank) {
+        this.highestRank = highestRank;
+    }
+
 }
