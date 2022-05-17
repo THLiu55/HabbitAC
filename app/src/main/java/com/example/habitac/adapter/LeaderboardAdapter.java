@@ -1,9 +1,11 @@
 package com.example.habitac.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.habitac.R;
 import com.example.habitac.database.User;
 import com.example.habitac.model.LeaderBoardModel;
+import com.example.habitac.utils.AvatarGetter;
 
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>{
 
     private List<User> userList;
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
     private Context context;
 
 
@@ -30,22 +38,15 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public LeaderboardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rank_card,parent,false);
-
-
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LeaderboardAdapter.ViewHolder holder, int position) {
-
         // TODO:应该是在这和数据库连一下，用户的名字balabala
-
-
         String userName = userList.get(position).getUser_name();
         int userLevel = userList.get(position).getCurrentLevel();
         int userRank = userList.get(position).getCurrentRank();
-
         holder.setData(userName,userLevel,userRank);
 
     }
@@ -56,7 +57,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView userLevel,userRanking,userName,userAvatar;
+        private TextView userLevel,userRanking,userName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,15 +65,12 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             userLevel = itemView.findViewById(R.id.rank_level_num);
             userRanking = itemView.findViewById(R.id.rank_num);
             userName = itemView.findViewById(R.id.rank_name);
-            userAvatar = itemView.findViewById(R.id.user_ranking_avatar);
         }
 
         public void setData(String name,int level,int rank){
             userName.setText(name);
-            userLevel.setText(level);
-            userRanking.setText(rank);
-
-
+            userLevel.setText(String.valueOf(level));
+            userRanking.setText(String.valueOf(rank));
         }
 
     }
