@@ -8,6 +8,7 @@ public class Item extends BmobObject{
     private int num;
 
     private int health, attack, defense, agility;
+    // TODO: Add a price attribute
 
     public Item(int num, String type, String own) {
         this.type = type;

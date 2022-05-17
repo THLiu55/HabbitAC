@@ -123,8 +123,9 @@
             android:id="@+id/recyclerview_allweapons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/xiangqing"
-            android:layout_marginLeft="10dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_below="@id/xiangqing">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
 </RelativeLayout>
