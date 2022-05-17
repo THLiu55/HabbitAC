@@ -116,8 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:text="Exchange"
-            android:textSize="30sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_allweapons"
