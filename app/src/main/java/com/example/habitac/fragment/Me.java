@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
+import com.example.habitac.adapter.EquipmentAdapter;
 import com.example.habitac.database.Item;
 import com.example.habitac.database.User;
 import com.example.habitac.model.MainViewModel;
@@ -49,6 +51,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
     TextView student_name;
     SharedViewModel sharedViewModel;
     User loggedUser;
+    RecyclerView recyclerView_allweapons;
+    EquipmentAdapter equipmentAdapter;
     int[] equipmentHealth = {0, 100, 200, 100, 0, 0};
     int[] equipmentAttackValue = {500, 0, 0, 0, 400, 600};
     int[] equipmentDefenseValue = {0, 40, 50, 30, 0, 0};
@@ -90,6 +94,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
         student_ban = root.findViewById(R.id.attack);
         student_dormitory = root.findViewById(R.id.defense);
         student_bed = root.findViewById(R.id.Dodge);
+        equipmentAdapter = new EquipmentAdapter();
+        recyclerView_allweapons = root.findViewById(R.id.recyclerview_allweapons);
         return root;
 
     }

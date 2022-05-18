@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.habitac.utils.LanguageUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,4 +23,10 @@ public class BasicActivity extends AppCompatActivity {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
     }
+    @Override
+    public void onRestoreInstanceState(Bundle bundle){
+        super.onRestoreInstanceState(bundle);
+        Log.e("TAG","onRestoreInstanceState");
+    }
+
 }

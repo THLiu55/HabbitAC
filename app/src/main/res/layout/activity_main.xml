@@ -67,6 +67,7 @@
                 app:menu="@menu/menu_buttom_nav"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

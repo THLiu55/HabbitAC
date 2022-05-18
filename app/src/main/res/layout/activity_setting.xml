@@ -155,7 +155,9 @@
         <RelativeLayout
             android:id="@+id/setting_change_language"
             android:layout_width="fill_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:onClick="onClick"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
