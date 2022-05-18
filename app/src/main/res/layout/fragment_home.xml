@@ -150,6 +150,27 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp">
 
+        <TextView
+            android:id="@+id/coin_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="$"
+            android:textColor="#978A16"
+            app:layout_constraintStart_toEndOf="@+id/text_COIN"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_exp" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="120dp"
@@ -222,17 +243,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/text_EXP"
             app:layout_constraintTop_toBottomOf="@+id/text_EXP" />
-
-        <ProgressBar
-            android:id="@+id/progressbar_coin"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="8dp"
-            android:progressDrawable="@drawable/coin_bar"
-            app:layout_constraintBottom_toBottomOf="@+id/text_COIN"
-            app:layout_constraintStart_toStartOf="@+id/progressbar_exp"
-            app:layout_constraintTop_toBottomOf="@+id/progressbar_exp" />
 
         <TextView
             android:id="@+id/level_count"

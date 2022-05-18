@@ -104,7 +104,9 @@ public class Login extends BasicActivity {
                     }
                 });
             }
+
         });
+
         button_password_findBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
