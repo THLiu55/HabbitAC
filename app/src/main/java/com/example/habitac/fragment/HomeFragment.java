@@ -69,10 +69,10 @@ public class HomeFragment extends Fragment {
     private TextView textView_user_name;
     private TextView textView_level;
 
-    private  LiveData<List<Task>> todoTasksLive;
+    private LiveData<List<Task>> todoTasksLive;
     private LiveData<List<Task>> doneTasksLive;
 
-    private  LiveData<List<Task>> lastTodoTasksLive;
+    private LiveData<List<Task>> lastTodoTasksLive;
     private LiveData<List<Task>> lastDoneTasksLive;
 
     private MutableLiveData<String> userNameLive;

@@ -44,6 +44,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
     RadioGroup rgp_two;
     boolean is_select_rgb_one = true;
     TextView student_class;
+    TextView coin;
     TextView student_sex;
     TextView student_ban;
     TextView student_dormitory;
@@ -89,6 +90,8 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
         // usernameView.setText(userName);
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         loggedUser = sharedViewModel.getUser();
+        coin = root.findViewById(R.id.usrCoin);
+        coin.setText(loggedUser.getCurrentCoin() + "");
         student_class = root.findViewById(R.id.Weapon_story);
         student_sex = root.findViewById(R.id.Life_value);
         student_ban = root.findViewById(R.id.attack);
@@ -134,6 +137,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("sword");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[0]);
+                    updateCoin(loggedUser);
                 }
             });
 
@@ -155,6 +159,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("Head");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[1]);
+                    updateCoin(loggedUser);
                 }
             });
         } else if (i == R.id.Commodity_display3) {
@@ -174,6 +179,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("armor");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[2]);
+                    updateCoin(loggedUser);
                 }
             });
         } else if (i == R.id.Commodity_display4) {
@@ -193,6 +199,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("boots");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[3]);
+                    updateCoin(loggedUser);
                 }
             });
         } else if (i == R.id.Commodity_display5) {
@@ -212,6 +219,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("arch");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[4]);
+                    updateCoin(loggedUser);
                 }
             });
         } else if (i == R.id.Commodity_display6) {
@@ -231,6 +239,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
                     buy.setType("axe");
                     updateItem(buy);
                     loggedUser.setCoin(-1*weaponPrice[5]);
+                    updateCoin(loggedUser);
                 }
             });
         }
@@ -241,7 +250,7 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
             @Override
             public void done(String s, BmobException e) {
                 if (e == null) {
-                    Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Got " + item.getType() + " !", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
                 }
@@ -249,8 +258,17 @@ public class Me extends Fragment implements RadioGroup.OnCheckedChangeListener {
         });
     }
 
-    public void spendCoin(int coin) {
-
+    public void updateCoin(User user) {
+        user.update(user.getObjectId(), new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    Toast.makeText(getActivity(), "Purchase Success", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        coin.setText(loggedUser.getCurrentCoin() + "");
     }
-
 }

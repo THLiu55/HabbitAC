@@ -40,6 +40,8 @@
     <string name="student_dormitory">防御： </string>
     <string name="student_bed">敏捷： </string>
     <string name="student_class">武器价格： </string>
+    <string name="power">战力值</string>
+    <string name="warehouse">仓库</string>
     <string name="thanks_using">感谢您对HabitAC的信任 </string>
     <string name="question_ask">如果您有任何问题，请联系我们</string>
     <string name="question_send">期待您的反馈</string>
@@ -70,11 +72,6 @@
     <string name="Rmember_the_pass">免密登录</string>
     <string name="login">登录</string>
     <string name="signup">注册</string>
-
-
-
-
-
 
 
 </resources>

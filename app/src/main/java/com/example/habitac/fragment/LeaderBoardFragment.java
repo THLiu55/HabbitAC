@@ -64,14 +64,9 @@ public class LeaderBoardFragment extends Fragment {
         leaderboardAdapter = new LeaderboardAdapter(new LinkedList<>(), getContext());
         allUsers = new MutableLiveData<>(new LinkedList<>());
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rankView.setLayoutManager(layoutManager);
-
-//TODO:
-//        leaderboardAdapter = new LeaderboardAdapter();
-
 
         rankView.setAdapter(leaderboardAdapter);
         leaderboardAdapter.setUserList(allUsers.getValue());
