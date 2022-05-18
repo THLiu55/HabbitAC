@@ -109,36 +109,6 @@ public class HomeFragment extends Fragment {
         avatarSeed = user.getCurrentAvatar();
 
         showAvatar(avatarSeed, avatar);
-        avatar.setOnClickListener(new View.OnClickListener() {
-
-            // DELETE THIS
-            Integer avatarCounter = Integer.parseInt(avatarSeed);
-
-            @Override
-            public void onClick(View view) {
-                Log.d("BUTTON", "Detected");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("Thread", "Created");
-                        avatarCounter ++;
-                        showAvatar(avatarSeed+"", avatar);
-                    }
-                }).start();
-                user.setCurrentAvatar(avatarCounter + "");
-                user.update(user.getObjectId(), new UpdateListener() {
-                    @Override
-                    public void done(BmobException e) {
-                        if(e==null){
-                            Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getActivity(), "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                avatarSeed = avatarCounter.toString();
-            }
-        });
 
         lastTodoTasksLive.observe(getActivity(), new Observer<List<Task>>() {
             @Override

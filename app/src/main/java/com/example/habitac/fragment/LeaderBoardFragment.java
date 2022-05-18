@@ -80,13 +80,13 @@ public class LeaderBoardFragment extends Fragment {
         });
 
         BmobQuery<User> bmobQuery = new BmobQuery<>();
-        bmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                Collections.sort(list, (a, b) -> {return a.getCurrentRank() - b.getCurrentRank();});
-                allUsers.setValue(list);
-            }
-        });
+//        bmobQuery.findObjects(new FindListener<User>() {
+//            @Override
+//            public void done(List<User> list, BmobException e) {
+//                Collections.sort(list, (a, b) -> {return a.getCurrentRank() - b.getCurrentRank();});
+//                allUsers.setValue(list);
+//            }
+//        });
 
 
 
