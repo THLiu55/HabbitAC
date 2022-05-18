@@ -70,5 +70,7 @@
     <string name="Rmember_the_pass">Remember the Password</string>
     <string name="login">Log in</string>
     <string name="signup">Sign up</string>
+    <string name="power">Power</string>
+    <string name="warehouse">Warehouse</string>
 
 </resources>

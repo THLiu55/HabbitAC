@@ -13,20 +13,22 @@ import android.view.ViewGroup;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
+import com.example.habitac.adapter.EquipmentAdapter;
+import com.example.habitac.database.Item;
 import com.example.habitac.database.User;
 import com.example.habitac.model.SharedViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.v3.*;
 
 public class EquipmentFragment extends Fragment {
     SharedViewModel sharedViewModel;
     User loggedUser;
-
-
-
-    private RecyclerView recyclerView_equipment;
-
-
+    EquipmentAdapter equipmentAdapter;
+    RecyclerView recyclerView_equipment;
+    List<Item> equipment = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
