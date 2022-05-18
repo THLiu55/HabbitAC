@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.habitac.R;
 import com.example.habitac.database.Item;
+import com.example.habitac.fragment.EquipmentFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,12 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentHolder> {
         holder.attack.setText(equipment.get(position).getAttack());
         holder.defense.setText(equipment.get(position).getDefense());
         holder.agility.setText(equipment.get(position).getAgility());
-        // TODO: Add a price attribute;
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });// TODO: Add a price attribute;
     }
 
     @Override

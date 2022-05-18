@@ -1,6 +1,7 @@
 package com.example.habitac.adapter;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.example.habitac.R;
 public class EquipmentHolder extends RecyclerView.ViewHolder {
     ImageView photo;
     TextView HP, attack, defense, agility, price;
+    CheckBox checkBox;
+    View equipmentView;
 
     public EquipmentHolder(@NonNull View itemView) {
         super(itemView);
@@ -20,5 +23,7 @@ public class EquipmentHolder extends RecyclerView.ViewHolder {
         defense = itemView.findViewById(R.id.defense);
         agility = itemView.findViewById(R.id.Dodge);
         price = itemView.findViewById(R.id.price);
+        checkBox = itemView.findViewById(R.id.checkbox_item);
+        equipmentView = itemView.findViewById(R.id.equipment_card);
     }
 }

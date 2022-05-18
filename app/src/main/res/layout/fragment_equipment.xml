@@ -42,23 +42,18 @@
                     android:layout_height="wrap_content"
                     android:text="战力值"
                     android:textSize="20sp" />
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/student_sex" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/student_ban" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/student_dormitory" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,42 +66,31 @@
                 android:layout_height="80dp"
                 android:layout_below="@id/touxiang"
                 android:orientation="horizontal">
-
                 <ImageView
                     android:id="@+id/toukui"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/touxiang"
                     android:layout_weight="1"
                     android:src="@drawable/toukui" />
+                <ImageView
+                    android:id="@+id/jiazhou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/jiazhou" />
+                <ImageView
+                    android:id="@+id/zuxue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/zuxue" />
 
                 <ImageView
                     android:id="@+id/weapon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/touxiang"
-                    android:layout_toRightOf="@id/zuxue"
                     android:layout_weight="1"
                     android:src="@drawable/weapon" />
-
-
-                <ImageView
-                    android:id="@+id/zuxue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/touxiang"
-                    android:layout_toRightOf="@id/jiazhou"
-                    android:layout_weight="1"
-                    android:src="@drawable/zuxue" />
-
-                <ImageView
-                    android:id="@+id/jiazhou"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/touxiang"
-                    android:layout_toRightOf="@id/toukui"
-                    android:layout_weight="1"
-                    android:src="@drawable/jiazhou" />
             </LinearLayout>
         </RelativeLayout>
 
