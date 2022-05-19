@@ -46,6 +46,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.SplittableRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -68,6 +70,7 @@ public class HomeFragment extends Fragment {
     private MainViewModel mainViewModel;
     private TextView textView_user_name;
     private TextView textView_level;
+    private TextView textView_task_number;
 
     private LiveData<List<Task>> todoTasksLive;
     private LiveData<List<Task>> doneTasksLive;
@@ -91,6 +94,7 @@ public class HomeFragment extends Fragment {
     public int currentCoin = 0;
     private int currentLevel = 1;
     private ProgressBar bar_exp, bar_coin;
+    private TextView coinNum;
 
     private User user;
     private String avatarSeed;
@@ -107,9 +111,9 @@ public class HomeFragment extends Fragment {
         ImageView avatar = root.findViewById(R.id.imageView);
         user = sharedViewModel.getUser();
         avatarSeed = user.getCurrentAvatar();
-
+        Log.d("money", String.valueOf(user.getCurrentCoin()));
+        coinLive.setValue(user.getCurrentCoin());
         showAvatar(avatarSeed, avatar);
-
         lastTodoTasksLive.observe(getActivity(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
@@ -173,7 +177,7 @@ public class HomeFragment extends Fragment {
                         textView_todo.setVisibility(View.VISIBLE);
                     }
                 }
-
+                textView_task_number.setText(String.valueOf(todo_cnt));
                 if (todo_cnt == 0) {
                     textView_todo.setVisibility(View.GONE);
                 }
@@ -200,8 +204,11 @@ public class HomeFragment extends Fragment {
                 if (done_cnt_new == 0) {
                     textView_complete.setVisibility(View.GONE);
                 }
-                mainViewModel.setExp(done_cnt_new - done_cnt);
-                mainViewModel.setCoin(done_cnt_new - done_cnt);
+                if (done_cnt_new > done_cnt) {
+                    coinLive.setValue(user.getCurrentCoin() + 1);
+                    user.setCurrentLevel(user.getCurrentCoin() + 1);
+                    levelLive.setValue(user.getCurrentExp() + 5);
+                }
                 mainViewModel.setDone_cnt(done_cnt_new);
             }
         });
@@ -225,8 +232,8 @@ public class HomeFragment extends Fragment {
         coinLive.observe(requireActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                bar_coin.setMax(mainViewModel.getLevel().getValue() * 10);
-                bar_coin.setProgress(integer);
+                Log.d("user", String.valueOf(integer));
+                coinNum.setText(String.valueOf(integer));
             }
         });
 
@@ -303,9 +310,10 @@ public class HomeFragment extends Fragment {
         coinLive = mainViewModel.getCoin();
         expLive = mainViewModel.getExp();
         bar_exp = root.findViewById(R.id.progressbar_exp);
-        bar_coin = root.findViewById(R.id.progressbar_coin);
         textView_level = root.findViewById(R.id.level_count);
         done_cnt = mainViewModel.getDone_cnt();
+        coinNum = root.findViewById(R.id.coin_amount);
+        textView_task_number = root.findViewById(R.id.text_number_of_tasks);
     }
 
     public static void todo2complete(Task tarTask) {
@@ -347,7 +355,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 Bitmap ava = ag.getAvatar(seed + "");
-                getActivity().runOnUiThread(new Runnable() {
+                requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         avatar.setImageBitmap(ava);

@@ -46,7 +46,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         // TODO:应该是在这和数据库连一下，用户的名字balabala
         String userName = userList.get(position).getUser_name();
         int userLevel = userList.get(position).getCurrentLevel();
-        int userRank = userList.get(position).getCurrentRank();
+        int userRank = position + 1;
         holder.setData(userName,userLevel,userRank);
 
     }

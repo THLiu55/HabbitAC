@@ -1,9 +1,11 @@
 package com.example.habitac.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -27,6 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,13 +83,14 @@ public class LeaderBoardFragment extends Fragment {
         });
 
         BmobQuery<User> bmobQuery = new BmobQuery<>();
-//        bmobQuery.findObjects(new FindListener<User>() {
-//            @Override
-//            public void done(List<User> list, BmobException e) {
-//                Collections.sort(list, (a, b) -> {return a.getCurrentRank() - b.getCurrentRank();});
-//                allUsers.setValue(list);
-//            }
-//        });
+
+        bmobQuery.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                Collections.sort(list, (a, b) -> {return b.getCurrentLevel() - a.getCurrentLevel();});
+                allUsers.setValue(list);
+            }
+        });
 
 
 

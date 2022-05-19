@@ -89,12 +89,7 @@ public class User extends BmobObject {
     }
 
     public void setCoin(int coin) {
-        this.currentCoin += coin;
-        if (currentCoin > maxCoinAtLevel()) {
-            currentCoin = maxCoinAtLevel();
-        } else if (currentCoin < 0) {
-            currentCoin = 0;
-        }
+        currentCoin = coin;
     }
 
     private int maxCoinAtLevel() {
@@ -121,4 +116,7 @@ public class User extends BmobObject {
         this.highestRank = highestRank;
     }
 
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }
