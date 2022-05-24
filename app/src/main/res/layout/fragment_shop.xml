@@ -20,9 +20,9 @@
 
         <ImageView
             android:id="@+id/iv_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="106dp"
+            android:layout_height="139dp"
             android:layout_gravity="center"
-            android:src="@mipmap/wheel_center_btn" />
+            android:src="@drawable/bg2" />
     </FrameLayout>
 </LinearLayout>

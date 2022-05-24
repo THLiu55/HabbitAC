@@ -36,8 +36,8 @@ public class WheelView extends View {
     private static final String TAG = WheelView.class.getSimpleName();
     private int mCount=6;
     private int[] angles = new int[mCount];
-    private final int[] mImages = new int[]{R.mipmap.wheel_ic_gold, R.mipmap.wheel_ic_box};
-    private final String[] textInfo={"红包1","红包2","红包3","红包4","红包5","红包6"};
+    private final int[] mImages = new int[]{R.drawable.a, R.drawable.f,R.drawable.c,R.drawable.h,R.drawable.e,R.drawable.f};
+    private final String[] textInfo={"头像1","头像2","头像3","头像4","头像5","头像6"};
 
     private final int[] sectorColor = new int[]{Color.parseColor("#FFFFFF"), Color.parseColor("#FFF297")};
 
@@ -186,7 +186,7 @@ public class WheelView extends View {
         //绘制扇形
         //设置每一个扇形的角度
         sweepAngle = 360 / mCount;
-        startAngle = -120;
+        startAngle = 0;
 
 
         for (int i = 0; i < mCount; i++) {
@@ -200,7 +200,7 @@ public class WheelView extends View {
             //3.绘制文字
             drawTexts(canvas, textInfo[i]);
             //4.绘制图片
-            Bitmap bp = ((BitmapDrawable)getResources().getDrawable(mImages[i%2])).getBitmap();
+            Bitmap bp = ((BitmapDrawable)getResources().getDrawable(mImages[i])).getBitmap();
             drawIcons(canvas, bp);
             angles[i] = startAngle;
             Log.d(TAG, "onDraw: " + angles[i] + "     " + i);

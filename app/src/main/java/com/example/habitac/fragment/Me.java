@@ -25,6 +25,6 @@ public class Me extends Fragment {
             }
 
         });
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return root;
     }
 }
