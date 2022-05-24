@@ -36,8 +36,14 @@ public class WheelView extends View {
     private static final String TAG = WheelView.class.getSimpleName();
     private int mCount=6;
     private int[] angles = new int[mCount];
-    private final int[] mImages = new int[]{R.drawable.a, R.drawable.random_avatar,R.drawable.c,R.drawable.h,R.drawable.e,R.drawable.f};
-    private final String[] textInfo={"头像1","头像2","头像3","头像4","头像5","头像6"};
+    private final int[] mImages = new int[]{R.drawable.coin_dollar, R.drawable.random_avatar,R.drawable.e,R.drawable.no_award,R.drawable.coin_dollar,R.drawable.f};
+    String award1 = (String) this.getResources().getText(R.string.Coin)+"*10";
+    String award2 = (String) this.getResources().getText(R.string.random_avater);
+    String award3 = (String) this.getResources().getText(R.string.purple_avatar);
+    String award4 = (String) this.getResources().getText(R.string.no_award);
+    String award5 = (String) this.getResources().getText(R.string.Coin)+"*20";
+    String award6 = (String) this.getResources().getText(R.string.green_avatar);
+    private final String[] textInfo={award1,award2,award3,award4,award5,award6};
 
     private final int[] sectorColor = new int[]{Color.parseColor("#FFFFFF"), Color.parseColor("#FFF297")};
 
@@ -343,13 +349,13 @@ public class WheelView extends View {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                //指针指向的方向为90度
+                //指针指向的方向为270度
                 if (listener != null) {
-                    rotateToPosition = 90 - rotateToPosition;
+                    rotateToPosition = 270 - rotateToPosition;
                     if (rotateToPosition < 0) {
                         rotateToPosition += 360;
                     } else if (rotateToPosition == 0) {
-                        rotateToPosition = 90;
+                        rotateToPosition = 270;
                     }
                     position = -Arrays.binarySearch(angles, rotateToPosition) - 1;
                     if (position>0){

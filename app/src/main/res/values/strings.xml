@@ -72,6 +72,10 @@
     <string name="Rmember_the_pass">免密登录</string>
     <string name="login">登录</string>
     <string name="signup">注册</string>
+    <string name="random_avater">随机头像</string>
+    <string name="no_award">感谢参与</string>
+    <string name="purple_avatar">紫魔</string>
+    <string name="green_avatar">碧神</string>
 
 
 </resources>

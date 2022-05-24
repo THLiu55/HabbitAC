@@ -72,5 +72,9 @@
     <string name="signup">Sign up</string>
     <string name="power">Power</string>
     <string name="warehouse">Warehouse</string>
+    <string name="random_avater">Suprise</string>
+    <string name="no_award">No suprise</string>
+    <string name="purple_avatar">Purple evil</string>
+    <string name="green_avatar">Green God</string>
 
 </resources>

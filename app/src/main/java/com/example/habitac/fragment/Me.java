@@ -33,7 +33,6 @@ public class Me extends Fragment {
         avatar = root.findViewById(R.id.iv_play);
         images = wheelView.getImages();
         textInfo = wheelView.getTexts();
-//        onClick(avatar);
         avatar.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view) {
                 int randomNum = random.nextInt(6);
@@ -44,9 +43,9 @@ public class Me extends Fragment {
                     public void run() {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         AlertDialog alertDialog = builder
-                                .setIcon(images[randomNum+1])
+                                .setIcon(images[(randomNum+4)%6])
                                 .setTitle("Congratulations")
-                                .setMessage("You got this: " + textInfo[randomNum+1])
+                                .setMessage("You got this: " + textInfo[(randomNum+4)%6])
                                 .setPositiveButton("Set", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -66,36 +65,10 @@ public class Me extends Fragment {
                                 }).create();
                         alertDialog.show();
                     }
-                }, 3000);//3秒后执行Runnable中的run方法
+                }, 3000);
 
             }
         });
         return root;
     }
-    public void onClick(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        AlertDialog alertDialog = builder
-                .setIcon(R.drawable.random_avatar)
-                .setTitle("Congratulations")
-                .setMessage("You got this new avatar")
-                .setPositiveButton("Set", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "Set", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "Cancel successfully", Toast.LENGTH_SHORT).show();
-                    }
-                }).setNeutralButton("Exit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "Exit successfully", Toast.LENGTH_SHORT).show();
-                    }
-                }).create();
-        alertDialog.show();
-    }
-
 }

@@ -11,13 +11,13 @@
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"/>
+
         <ImageView
             android:id="@+id/iv_play"
-            android:layout_width="106dp"
-            android:layout_height="139dp"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
             android:layout_below="@+id/wv_wheel"
-            android:layout_marginTop="-10dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/bg2"
-            />
+            android:layout_marginTop="-204dp"
+            android:src="@drawable/bg2" />
 </RelativeLayout>
