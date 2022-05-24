@@ -36,7 +36,7 @@ public class WheelView extends View {
     private static final String TAG = WheelView.class.getSimpleName();
     private int mCount=6;
     private int[] angles = new int[mCount];
-    private final int[] mImages = new int[]{R.drawable.a, R.drawable.f,R.drawable.c,R.drawable.h,R.drawable.e,R.drawable.f};
+    private final int[] mImages = new int[]{R.drawable.a, R.drawable.random_avatar,R.drawable.c,R.drawable.h,R.drawable.e,R.drawable.f};
     private final String[] textInfo={"头像1","头像2","头像3","头像4","头像5","头像6"};
 
     private final int[] sectorColor = new int[]{Color.parseColor("#FFFFFF"), Color.parseColor("#FFF297")};
@@ -200,13 +200,41 @@ public class WheelView extends View {
             //3.绘制文字
             drawTexts(canvas, textInfo[i]);
             //4.绘制图片
-            Bitmap bp = ((BitmapDrawable)getResources().getDrawable(mImages[i])).getBitmap();
+            Bitmap bp = this.changeBitmapSize(((BitmapDrawable)getResources().getDrawable(mImages[i])).getBitmap());
             drawIcons(canvas, bp);
             angles[i] = startAngle;
             Log.d(TAG, "onDraw: " + angles[i] + "     " + i);
             startAngle += sweepAngle;
         }
     }
+
+
+    private Bitmap changeBitmapSize(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Log.e("width","width:"+width);
+//        Log.e("height","height:"+height);
+        //设置想要的大小
+        int newWidth=100;
+//        int newHeight=170;
+
+        //计算压缩的比率
+        float scaleWidth=((float)newWidth)/width;
+//        float scaleHeight=((float)newHeight)/height;
+
+        //获取想要缩放的matrix
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth,scaleWidth);
+
+        //获取新的bitmap
+        bitmap=Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);
+        bitmap.getWidth();
+        bitmap.getHeight();
+        Log.e("newWidth","newWidth"+bitmap.getWidth());
+        Log.e("newHeight","newHeight"+bitmap.getHeight());
+        return bitmap;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
 //        if (mBitmaps != null && mBitmaps.size() > 0){
@@ -315,13 +343,13 @@ public class WheelView extends View {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                //指针指向的方向为270度
+                //指针指向的方向为90度
                 if (listener != null) {
-                    rotateToPosition = 270 - rotateToPosition;
+                    rotateToPosition = 90 - rotateToPosition;
                     if (rotateToPosition < 0) {
                         rotateToPosition += 360;
                     } else if (rotateToPosition == 0) {
-                        rotateToPosition = 270;
+                        rotateToPosition = 90;
                     }
                     position = -Arrays.binarySearch(angles, rotateToPosition) - 1;
                     if (position>0){
@@ -332,13 +360,10 @@ public class WheelView extends View {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         });
         animator.start();
@@ -352,5 +377,16 @@ public class WheelView extends View {
 
         void value(String infoBean);
         void startRotate();
+    }
+
+    public int getAward(){
+        return 0;
+    }
+
+    public int[] getImages(){
+        return mImages;
+    }
+    public String[] getTexts(){
+        return textInfo;
     }
 }
