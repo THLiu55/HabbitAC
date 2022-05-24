@@ -3,6 +3,7 @@ package com.example.habitac.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,29 +38,36 @@ public class Me extends Fragment {
             public void onClick(View view) {
                 int randomNum = random.nextInt(6);
                 wheelView.rotate(randomNum);
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                AlertDialog alertDialog = builder
-                        .setIcon(images[randomNum+1])
-                        .setTitle("Congratulations")
-                        .setMessage("You got this: " + textInfo[randomNum+1])
-                        .setPositiveButton("Set", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getContext(), "Set", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getContext(), "Cancel successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        }).setNeutralButton("Exit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getContext(), "Exit successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        }).create();
-                alertDialog.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        AlertDialog alertDialog = builder
+                                .setIcon(images[randomNum+1])
+                                .setTitle("Congratulations")
+                                .setMessage("You got this: " + textInfo[randomNum+1])
+                                .setPositiveButton("Set", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(getContext(), "Set", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(getContext(), "Cancel successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).setNeutralButton("Exit", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(getContext(), "Exit successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).create();
+                        alertDialog.show();
+                    }
+                }, 3000);//3秒后执行Runnable中的run方法
+
             }
         });
         return root;
