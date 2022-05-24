@@ -37,6 +37,7 @@ public class Me extends Fragment {
             public void onClick(View view) {
                 int randomNum = random.nextInt(6);
                 wheelView.rotate(randomNum);
+                avatar.setClickable(false);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -64,8 +65,9 @@ public class Me extends Fragment {
                                     }
                                 }).create();
                         alertDialog.show();
+                        avatar.setClickable(true);
                     }
-                }, 3000);
+                }, 3500);
 
             }
         });
