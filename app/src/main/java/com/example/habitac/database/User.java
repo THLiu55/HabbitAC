@@ -22,6 +22,7 @@ public class User extends BmobObject {
         currentLevel = 1;
         currentExp = 0;
         currentCoin = 5;
+        highestRank = Integer.MAX_VALUE;
     }
 
     public void setPassword(String password){

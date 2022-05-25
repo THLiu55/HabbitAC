@@ -213,7 +213,6 @@ public class HomeFragment extends Fragment {
                 }
                 if (done_cnt_new > done_cnt) {
                     coinLive.setValue(user.getCurrentCoin() + 1);
-                    user.setCurrentLevel(user.getCurrentCoin() + 1);
                     levelLive.setValue(user.getCurrentExp() + 5);
                 }
                 mainViewModel.setDone_cnt(done_cnt_new);

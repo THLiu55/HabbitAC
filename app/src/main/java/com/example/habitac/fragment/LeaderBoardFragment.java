@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.xml.transform.sax.SAXResult;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
@@ -63,7 +66,6 @@ public class LeaderBoardFragment extends Fragment {
         myName.setText(loggedUser.getUser_name());
         myHighestRank.setText(loggedUser.getHighestRank() + "");
         myLevel.setText(loggedUser.getCurrentLevel() + "");
-        myRank.setText(loggedUser.getCurrentRank() + "");
         leaderboardAdapter = new LeaderboardAdapter(new LinkedList<>(), getContext());
         allUsers = new MutableLiveData<>(new LinkedList<>());
 
@@ -88,6 +90,18 @@ public class LeaderBoardFragment extends Fragment {
             @Override
             public void done(List<User> list, BmobException e) {
                 Collections.sort(list, (a, b) -> {return b.getCurrentLevel() - a.getCurrentLevel();});
+
+                for (int i = 0; i < list.size(); i++) {
+                    User user = sharedViewModel.getUser();
+                    if (list.get(i).getObjectId().equals(sharedViewModel.getUser().getObjectId())) {
+                        myRank.setText(String.valueOf(i + 1));
+                        if (i + 1 < user.getHighestRank()) {
+                            user.setHighestRank(i + 1);
+                            sharedViewModel.setUser(user);
+                            myHighestRank.setText(String.valueOf(i + 1));
+                        }
+                    }
+                }
                 allUsers.setValue(list);
             }
         });
