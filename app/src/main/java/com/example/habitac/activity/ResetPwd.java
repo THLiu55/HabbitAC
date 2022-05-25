@@ -30,6 +30,7 @@ public class ResetPwd extends BasicActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
+        //获得id
         Intent intent = getIntent();
         userId = intent.getStringExtra("param1");
         init();

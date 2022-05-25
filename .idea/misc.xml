@@ -76,6 +76,8 @@
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_my_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_sign_up.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/btn.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/btnnormal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/coin_bar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/edit_btn.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/exp_bar.xml" value="0.121" />
@@ -92,6 +94,7 @@
         <entry key="app/src/main/res/drawable/input.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/input2.xml" value="0.1555" />
         <entry key="app/src/main/res/drawable/me_view.xml" value="0.162" />
+        <entry key="app/src/main/res/drawable/switchbtn.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/task_yello_bar.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/yellow_bar2.xml" value="0.1555" />
