@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Setting extends AppCompatActivity {
-    RelativeLayout changeLanguage, changePassword;
+    RelativeLayout changeLanguage, changePassword, changeName;
     SharedViewModel sharedViewModel;
     User loggedUser;
     String userId;
@@ -34,6 +34,7 @@ public class Setting extends AppCompatActivity {
         userId = loggedUser.getObjectId();
         changeLanguage = (RelativeLayout) findViewById(R.id.setting_change_language);
         changePassword = (RelativeLayout) findViewById(R.id.setting_reset_pwd);
+        changeName = (RelativeLayout) findViewById(R.id.setting_reset_name);
         Toolbar toolbar = findViewById(R.id.setting_toolBar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -72,6 +73,21 @@ public class Setting extends AppCompatActivity {
                 }
             }
         });
+
+        changeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.setting_reset_name:
+                        ResetName.actionStart(Setting.this, userId, null);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+
 
     }
 }

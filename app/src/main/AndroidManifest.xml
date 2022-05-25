@@ -19,14 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HabitAC"
         android:usesCleartextTraffic="true">
-
-
+        <activity
+            android:name=".activity.ResetName"
+            android:exported="false" />
         <activity
             android:name=".activity.TaskDetails"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false"
             android:launchMode="singleTop"
-            android:exported="false" />
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.myItem"
             android:exported="false" />

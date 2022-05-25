@@ -2,6 +2,7 @@ package com.example.habitac.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.database.User;
+import com.example.habitac.model.SharedViewModel;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
@@ -22,6 +24,8 @@ public class ResetPwd extends BasicActivity {
     Button confirm;
     EditText newPass1, newPass2;
     String newPass1_str, newPass2_str, userId;
+    User loggedUser;
+    SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +35,21 @@ public class ResetPwd extends BasicActivity {
         assert actionBar != null;
         actionBar.hide();
         //获得id
-        Intent intent = getIntent();
-        userId = intent.getStringExtra("param1");
+
+        sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
+        loggedUser = sharedViewModel.getUser();
         init();
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (passwordValid()) {
-                    User user = new User();
-                    user.setPassword(newPass1_str);
-                    user.update(userId, new UpdateListener() {
+                    loggedUser.setPassword(newPass1_str);
+                    loggedUser.update(loggedUser.getObjectId(), new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
                             if(e==null){
                                 Toast.makeText(ResetPwd.this, "success", Toast.LENGTH_SHORT).show();
-                                Login.actionStart(ResetPwd.this, user.getUser_name(), user.getPassword());
+                                Login.actionStart(ResetPwd.this, loggedUser.getUser_name(), loggedUser.getPassword());
                             }else{
                                 Toast.makeText(ResetPwd.this, "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
                             }
