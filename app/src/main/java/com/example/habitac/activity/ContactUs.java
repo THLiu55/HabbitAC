@@ -54,7 +54,7 @@ public class ContactUs extends AppCompatActivity{
     }
 
     private void sendEmail(String content) {
-        Intent emailIntent = new Intent(Intent.ACTION_VIEW);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");

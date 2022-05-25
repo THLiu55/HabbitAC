@@ -149,7 +149,7 @@
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Switch
+    <Button
         android:id="@+id/switch_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,6 +158,7 @@
         app:layout_constraintEnd_toEndOf="@+id/classify_spinner"
         app:layout_constraintStart_toStartOf="@+id/classify_spinner"
         app:layout_constraintTop_toTopOf="@+id/textView4"
+        android:background="@drawable/switchbtn"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TimePicker
