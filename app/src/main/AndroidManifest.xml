@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HabitAC"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.AboutUs"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".activity.ResetName"
             android:exported="false" />
@@ -36,27 +40,22 @@
         <activity
             android:name=".activity.ForgetPwd"
             android:exported="false" />
-
         <activity
             android:name=".activity.Help"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
-
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.Profile"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
-
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.Setting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
-
-
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.ContactUs"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
@@ -64,11 +63,9 @@
 
         <activity
             android:name=".activity.Main"
+            android:exported="false"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
-            android:exported="false" />
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.SignUp"
             android:exported="false" />
@@ -82,8 +79,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".activity.AlarmReceiver"></receiver>
+        <receiver android:name=".activity.AlarmReceiver" />
     </application>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 
 </manifest>

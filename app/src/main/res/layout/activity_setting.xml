@@ -73,37 +73,6 @@
 
 
         <RelativeLayout
-            android:id="@+id/setting_reset_email"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:text="Reset Email"
-                android:textColor="#ff333333"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                app:srcCompat="@drawable/ic_right_arrow" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:background="#ffeeeeee" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
             android:id="@+id/setting_reset_name"
             android:layout_width="fill_parent"
             android:layout_height="50dp">
@@ -143,7 +112,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
 
-            android:text="Setting"
+            android:text="General"
             android:textSize="12sp" />
 
         <View
@@ -156,8 +125,7 @@
             android:id="@+id/setting_change_language"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:onClick="onClick"
-            >
+            android:onClick="onClick">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -199,6 +167,36 @@
 
             <ImageView
                 android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                app:srcCompat="@drawable/ic_right_arrow" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#ffeeeeee" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_us"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="About Us"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
