@@ -113,7 +113,14 @@ public class HomeFragment extends Fragment {
         avatarSeed = user.getCurrentAvatar();
         Log.d("money", String.valueOf(user.getCurrentCoin()));
         coinLive.setValue(user.getCurrentCoin());
-        showAvatar(avatarSeed, avatar);
+
+        Log.d("change avatar", avatarSeed + " " + sharedViewModel.getSeed());
+        if (sharedViewModel.getCurAvatar() != null && sharedViewModel.getSeed().equals(user.getCurrentAvatar())) {
+
+            avatar.setImageBitmap(sharedViewModel.getCurAvatar());
+        } else {
+            showAvatar(avatarSeed, avatar);
+        }
         lastTodoTasksLive.observe(getActivity(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
@@ -350,19 +357,23 @@ public class HomeFragment extends Fragment {
     }
 
     public void showAvatar(String seed, ImageView avatar) {
+        sharedViewModel.setSeed(seed);
         AvatarGetter ag = new AvatarGetter();
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 Bitmap ava = ag.getAvatar(seed + "");
+                sharedViewModel.setCurAvatar(ava);
+                Log.d("time", String.valueOf(System.currentTimeMillis()) + " start");
                 requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         avatar.setImageBitmap(ava);
                     }
                 });
+                Log.d("time", String.valueOf(System.currentTimeMillis()) + " end");
             }
-        }).start();
-
+        });
+        t.start();
     }
 }

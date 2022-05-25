@@ -97,6 +97,7 @@
         <entry key="app/src/main/res/drawable/switchbtn.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/task_yello_bar.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/wightbar.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/yellow_bar2.xml" value="0.1555" />
         <entry key="app/src/main/res/font/font.xml" value="0.35794871794871796" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.24592391304347827" />
@@ -108,6 +109,7 @@
         <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.4358779907226563" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_reset_pwd.xml" value="0.24592391304347827" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22747955322265626" />
         <entry key="app/src/main/res/layout/activity_task_details.xml" value="0.29391326904296877" />
         <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.18697916666666667" />
@@ -125,7 +127,7 @@
         <entry key="app/src/main/res/layout/fragment_rank_content.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_reset_pwd.xml" value="0.29475250244140627" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/fragment_shop.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_shop.xml" value="0.44250793457031246" />
         <entry key="app/src/main/res/layout/fragment_task_repository.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_test_task_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/repository_task_card.xml" value="0.33448130289713557" />
