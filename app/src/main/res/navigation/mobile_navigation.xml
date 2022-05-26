@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/navigation_rank"
-        android:name="com.example.habitac.fragment.RankFragment"
+        android:name="com.example.habitac.fragment.LeaderBoardFragment"
         android:label="Rank"
         tools:layout="@layout/fragment_rank" />
     <fragment

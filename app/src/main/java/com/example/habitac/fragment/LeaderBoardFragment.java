@@ -40,7 +40,6 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
-
 public class LeaderBoardFragment extends Fragment {
 
     TextView myHighestRank, myName,myRank,myLevel;
@@ -50,9 +49,10 @@ public class LeaderBoardFragment extends Fragment {
     User loggedUser;
     MutableLiveData<List<User>> allUsers;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_rank_content, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_rank, container, false);
 
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         loggedUser = sharedViewModel.getUser();
@@ -106,12 +106,10 @@ public class LeaderBoardFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
         return root;
     }
 }
+
+
+
+
