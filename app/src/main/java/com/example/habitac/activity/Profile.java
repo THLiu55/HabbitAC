@@ -12,6 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.habitac.R;
+import com.example.habitac.database.User;
+import com.example.habitac.model.SharedViewModel;
+import com.example.habitac.utils.AvatarGetter;
 
 public class Profile extends AppCompatActivity {
 
