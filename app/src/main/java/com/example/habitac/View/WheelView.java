@@ -144,13 +144,13 @@ public class WheelView extends View {
     private void init() {
 
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBgPaint.setColor(Color.parseColor("#FE8727"));
+        mBgPaint.setColor(Color.parseColor("#F4A460"));
         mBgPaint.setAlpha((int) (255*0.6));
 
         mArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setColor(Color.parseColor("#A5380C"));
+        mTextPaint.setColor(Color.parseColor("#a5380c"));
         mTextPaint.setFakeBoldText(true);
         mTextPaint.setTextSize(mTextSize);
 
