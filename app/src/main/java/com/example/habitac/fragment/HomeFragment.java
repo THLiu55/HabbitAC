@@ -176,7 +176,6 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<Task> tasks) {
                 todoTaskAdapter.setTask_todo(tasks);
                 todoTaskAdapter.notifyDataSetChanged();
-
                 int todo_cnt = 0;
                 for (Task task : tasks) {
                     if (task.getIsDone() == 0) {
@@ -188,7 +187,6 @@ public class HomeFragment extends Fragment {
                 if (todo_cnt == 0) {
                     textView_todo.setVisibility(View.GONE);
                 }
-
                 mainViewModel.setTodoTaskAmount(todo_cnt);
             }
         });
@@ -211,10 +209,19 @@ public class HomeFragment extends Fragment {
                 if (done_cnt_new == 0) {
                     textView_complete.setVisibility(View.GONE);
                 }
+                boolean levelChange = false;
                 if (done_cnt_new > done_cnt) {
-                    coinLive.setValue(user.getCurrentCoin() + 1);
-                    levelLive.setValue(user.getCurrentExp() + 5);
+                    user.setCoin(user.getCurrentCoin() + 1);
+                    levelChange = user.setProgress(3);
+                } else if (done_cnt_new < done_cnt) {
+                    user.setCoin(user.getCurrentCoin() - 1);
+                    levelChange = user.setProgress(-3);
                 }
+                done_cnt = done_cnt_new;
+                sharedViewModel.setUser(user);
+                coinLive.setValue(sharedViewModel.getUser().getCurrentCoin());
+                expLive.setValue(sharedViewModel.getUser().getCurrentExp());
+                levelLive.setValue(sharedViewModel.getUser().getCurrentLevel());
                 mainViewModel.setDone_cnt(done_cnt_new);
             }
         });
@@ -238,7 +245,6 @@ public class HomeFragment extends Fragment {
         coinLive.observe(requireActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                Log.d("user", String.valueOf(integer));
                 coinNum.setText(String.valueOf(integer));
             }
         });
@@ -246,7 +252,6 @@ public class HomeFragment extends Fragment {
         expLive.observe(requireActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                Log.d("bar", String.valueOf(integer));
                 bar_exp.setMax(mainViewModel.getLevel().getValue() * 4);
                 bar_exp.setProgress(integer);
             }
@@ -271,14 +276,11 @@ public class HomeFragment extends Fragment {
 
     private void initView(View root) {
         sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         date_today = sdf.format(new Date());
         if (!requireActivity().getIntent().getStringExtra("param1").isEmpty()) {
             lastLogin = requireActivity().getIntent().getStringExtra("param1");
-            Log.d("test", "1");
         } else {
             lastLogin = date_today;
-            Log.d("test", "2");
         }
 
         todoTaskAdapter = new TodoTaskAdapter();
@@ -297,7 +299,6 @@ public class HomeFragment extends Fragment {
         try {
             todoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(sdf.parse(date_today))]);
             doneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(sdf.parse(date_today))]);
-            Log.d("test", lastLogin);
             lastTodoTasksLive = dao.getALlTodoTask(day[DateToday.getWeekDayOfDate(sdf.parse(lastLogin))]);
             lastDoneTasksLive = dao.getALlDoneTask(day[DateToday.getWeekDayOfDate(sdf.parse(lastLogin))]);
         } catch (ParseException e) {
@@ -363,14 +364,12 @@ public class HomeFragment extends Fragment {
             public void run() {
                 Bitmap ava = ag.getAvatar(seed + "");
                 sharedViewModel.setCurAvatar(ava);
-                Log.d("time", String.valueOf(System.currentTimeMillis()) + " start");
                 requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         avatar.setImageBitmap(ava);
                     }
                 });
-                Log.d("time", String.valueOf(System.currentTimeMillis()) + " end");
             }
         });
         t.start();
