@@ -32,7 +32,7 @@ public class Setting extends AppCompatActivity {
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         loggedUser = sharedViewModel.getUser();
         userId = loggedUser.getObjectId();
-        changeLanguage = (RelativeLayout) findViewById(R.id.setting_change_language);
+        //changeLanguage = (RelativeLayout) findViewById(R.id.setting_change_language);
         changePassword = (RelativeLayout) findViewById(R.id.setting_reset_pwd);
         changeName = (RelativeLayout) findViewById(R.id.setting_reset_name);
         aboutUs = (RelativeLayout) findViewById(R.id.about_us);
@@ -45,6 +45,7 @@ public class Setting extends AppCompatActivity {
 
             }
         });
+        /*
         changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +63,8 @@ public class Setting extends AppCompatActivity {
             }
 
         });
+
+         */
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

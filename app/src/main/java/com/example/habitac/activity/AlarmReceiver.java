@@ -24,7 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //todo 写上username 和 任务名字
         Notification notification = new Notification.Builder(context)
                 .setContentTitle("Hello,Riley")
-                .setContentTitle("It is time to finish your" + " ")
+                .setContentText("It is time to finish your" + " ")
                 .build();
 
         //自动消失
