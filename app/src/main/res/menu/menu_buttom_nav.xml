@@ -19,6 +19,6 @@
     <item
         android:id="@+id/navigation_me"
         android:icon="@drawable/ic_baseline_assignment_ind_24"
-        android:title="Me" />
+        android:title="Shop" />
 
 </menu>

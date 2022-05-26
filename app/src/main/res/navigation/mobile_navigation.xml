@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/navigation_me"
         android:name="com.example.habitac.fragment.Me"
-        android:label="fragment_me"
+        android:label="Shop"
         tools:layout="@layout/fragment_shop" />
     <activity
         android:id="@+id/taskDetails"
