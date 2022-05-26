@@ -18,9 +18,7 @@ import com.example.habitac.R;
 
 public class ContactUs extends AppCompatActivity{
 
-    ActionBarDrawerToggle actionBarDrawerToggle;
-
-    EditText defaultEmail,userSubject,userContent;
+    EditText userContent;
     Button sendBtn;
 
 
@@ -46,30 +44,30 @@ public class ContactUs extends AppCompatActivity{
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               String content = userContent.getText().toString();
-               sendEmail(content);
-
+                sendEmail();
             }
         });
     }
 
-    private void sendEmail(String content) {
+    private void sendEmail() {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
 
-        emailIntent.putExtra(Intent.EXTRA_EMAIL,"980734038@qq.com");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,"habit@hutian.su");
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,"habitAC feedback");
-        emailIntent.putExtra(Intent.EXTRA_TEXT,content);
+        emailIntent.putExtra(Intent.EXTRA_TEXT,userContent.getText().toString());
 
-//        startActivity(Intent.createChooser(emailIntent,"Choose"));
+        emailIntent.setType("message/rfc822");
 
-        if(emailIntent.resolveActivity(getPackageManager())!=null){
-            startActivity(emailIntent);
-        }else {
-            Toast.makeText(ContactUs.this,"Please download the email APP first",Toast.LENGTH_SHORT).show();
-        }
+        startActivity(Intent.createChooser(emailIntent,"Please choose an Email client"));
+//
+//        if(emailIntent.resolveActivity(getPackageManager())!=null){
+//            startActivity(emailIntent);
+//        }else {
+//            Toast.makeText(ContactUs.this,"Please download the email APP first",Toast.LENGTH_SHORT).show();
+//        }
 
 
     }
