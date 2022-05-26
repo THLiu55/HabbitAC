@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.habitac.R;
 import com.example.habitac.database.Item;
-import com.example.habitac.fragment.EquipmentFragment;
 
 import java.util.ArrayList;
 import java.util.List;
