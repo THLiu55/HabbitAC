@@ -76,6 +76,7 @@
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_my_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/HabbitAC_latest/app/src/main/res/layout/activity_sign_up.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/bottom_nav_color.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/btn.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/btnnormal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/coin_bar.xml" value="0.1" />
@@ -94,15 +95,18 @@
         <entry key="app/src/main/res/drawable/input.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/input2.xml" value="0.1555" />
         <entry key="app/src/main/res/drawable/me_view.xml" value="0.162" />
+        <entry key="app/src/main/res/drawable/nav_background.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/switchbtn.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/task_yello_bar.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/white.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/wightbar.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/yellow_bar2.xml" value="0.1555" />
         <entry key="app/src/main/res/font/font.xml" value="0.35794871794871796" />
+        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/activity_drawer_base.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/activity_forget_pwd.xml" value="0.25822906494140624" />
+        <entry key="app/src/main/res/layout/activity_help.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2949539184570313" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.36284790039062503" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27845458984375004" />
@@ -115,12 +119,13 @@
         <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/calendar.xml" value="0.12639311043566362" />
         <entry key="app/src/main/res/layout/calendar_structure.xml" value="0.10119171142578126" />
+        <entry key="app/src/main/res/layout/calender_done.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/delete_task_card.xml" value="1.0354624430338542" />
         <entry key="app/src/main/res/layout/drawer_header.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/equipment_card.xml" value="0.223731884057971" />
+        <entry key="app/src/main/res/layout/equipment_card.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.20666656494140628" />
         <entry key="app/src/main/res/layout/fragment_contact_us.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/fragment_delete_task.xml" value="0.223731884057971" />
+        <entry key="app/src/main/res/layout/fragment_delete_task.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/fragment_equipment.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_help.xml" value="0.3029891304347826" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2752542979227092" />
@@ -130,16 +135,16 @@
         <entry key="app/src/main/res/layout/fragment_rank_content.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_reset_pwd.xml" value="0.29475250244140627" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.3029891304347826" />
-        <entry key="app/src/main/res/layout/fragment_shop.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_shop.xml" value="0.44250793457031246" />
         <entry key="app/src/main/res/layout/fragment_task_repository.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_test_task_details.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/location.xml" value="0.223731884057971" />
         <entry key="app/src/main/res/layout/rank_card.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/repository_task_card.xml" value="0.33448130289713557" />
         <entry key="app/src/main/res/layout/reset_name.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/task_card.xml" value="0.36445922851562507" />
-        <entry key="app/src/main/res/menu/menu_buttom_nav.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_buttom_nav.xml" value="0.16264038085937502" />
         <entry key="app/src/main/res/menu/menu_drawer_nav.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/menu_task_repository.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.175" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.175" />
       </map>

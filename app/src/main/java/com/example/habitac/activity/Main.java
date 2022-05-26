@@ -60,6 +60,7 @@ public class Main extends BasicActivity implements NavigationView.OnNavigationIt
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
+//        bottomNavigationView.setItemIconTintList(null);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_calendar, R.id.navigation_rank, R.id.navigation_me).build();
         bottomNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
