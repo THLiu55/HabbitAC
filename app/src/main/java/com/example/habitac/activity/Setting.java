@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,7 +33,7 @@ public class Setting extends AppCompatActivity {
         sharedViewModel = new ViewModelProvider(Login.login).get(SharedViewModel.class);
         loggedUser = sharedViewModel.getUser();
         userId = loggedUser.getObjectId();
-        //changeLanguage = (RelativeLayout) findViewById(R.id.setting_change_language);
+        changeLanguage = (RelativeLayout) findViewById(R.id.setting_change_language);
         changePassword = (RelativeLayout) findViewById(R.id.setting_reset_pwd);
         changeName = (RelativeLayout) findViewById(R.id.setting_reset_name);
         aboutUs = (RelativeLayout) findViewById(R.id.about_us);
@@ -45,7 +46,6 @@ public class Setting extends AppCompatActivity {
 
             }
         });
-        /*
         changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,15 +56,16 @@ public class Setting extends AppCompatActivity {
                         //activity銷毀重建
                         Setting.this.recreate();
                         break;
-
                     default:
                         break;
                 }
+                Toast.makeText(getApplicationContext(), "The language has been changed", Toast.LENGTH_SHORT).show();
+
+
+
             }
 
         });
-
-         */
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
