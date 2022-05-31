@@ -16,6 +16,10 @@ import com.example.habitac.database.User;
 import com.example.habitac.model.SharedViewModel;
 import com.example.habitac.utils.AvatarGetter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Profile extends AppCompatActivity {
 
     TextView pName,pLevel,pRanking,pCoin,pHighestRanking;
@@ -23,6 +27,7 @@ public class Profile extends AppCompatActivity {
     SharedViewModel sharedViewModel;
     User loggedUser;
     private String avatarSeed;
+    TextView jointime;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,18 @@ public class Profile extends AppCompatActivity {
         pHighestRanking = findViewById(R.id.profile_highest_ranking);
         pHighestRanking.setText(String.valueOf(loggedUser.getHighestRank()));
 
+        jointime = findViewById(R.id.jointime);
 
+        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("yyyy-MM-dd");
+        String created = loggedUser.getCreatedAt();
+        String now =  simpleDateFormat.format(new Date(System.currentTimeMillis()));
+        try {
+            long m = simpleDateFormat.parse(now).getTime() - simpleDateFormat.parse(created.substring(0,10)).getTime();
+            long tianshu = m/(1000*60*60*24);
+            jointime.setText("You've joined HabitAC for " + tianshu + " days! 🎉");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         Toolbar toolbar = findViewById(R.id.profile_toolBar);
@@ -59,6 +75,8 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
 
     }

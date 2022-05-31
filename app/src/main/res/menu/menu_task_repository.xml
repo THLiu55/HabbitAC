@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/show_all_tasks"
-        android:title="tasks" />
+        android:title="Repository" />
 </menu>

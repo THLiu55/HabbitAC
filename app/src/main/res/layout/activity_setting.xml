@@ -43,6 +43,38 @@
 
 
         <RelativeLayout
+            android:id="@+id/setting_change_language"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:onClick="onClick">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="Language"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                app:srcCompat="@drawable/ic_right_arrow" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#ffeeeeee" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
             android:id="@+id/setting_reset_pwd"
             android:layout_width="fill_parent"
             android:layout_height="50dp">

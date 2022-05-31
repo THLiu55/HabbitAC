@@ -48,7 +48,7 @@ public class Me extends Fragment {
         startNow.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View view) {
                 if (sharedViewModel.getUser().getCurrentCoin() < 30) {
-                    Toast.makeText(requireActivity(), "coin ont enough", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "Coin not enough!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     User user = sharedViewModel.getUser();
