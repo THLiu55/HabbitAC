@@ -20,9 +20,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.habitac.R;
 import com.example.habitac.activity.Login;
+import com.example.habitac.activity.ResetName;
 import com.example.habitac.adapter.LeaderboardAdapter;
 import com.example.habitac.database.User;
 import com.example.habitac.model.SharedViewModel;
@@ -39,6 +41,7 @@ import javax.xml.transform.sax.SAXResult;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class LeaderBoardFragment extends Fragment {
 
@@ -95,6 +98,17 @@ public class LeaderBoardFragment extends Fragment {
                     User user = sharedViewModel.getUser();
                     if (list.get(i).getObjectId().equals(sharedViewModel.getUser().getObjectId())) {
                         myRank.setText(String.valueOf(i + 1));
+                        loggedUser.setCurrentRank(i+1);
+                        loggedUser.update(loggedUser.getObjectId(), new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if(e==null){
+                                    Toast.makeText(getActivity(), "Rank Updated", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(getActivity(), "Network Error, Please check your Internet connection", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         if (i + 1 < user.getHighestRank()) {
                             user.setHighestRank(i + 1);
                             sharedViewModel.setUser(user);

@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
         pCoin.setText(String.valueOf(loggedUser.getCurrentCoin()));
 
         pRanking = findViewById(R.id.profile_current_ranking);
-        pRanking.setText(String.valueOf(loggedUser.getCurrentRank()));
+        pRanking.setText(String.valueOf(loggedUser.getCurrentRank()) + "\n(Visit Rank page to refresh)");
 
         pHighestRanking = findViewById(R.id.profile_highest_ranking);
         pHighestRanking.setText(String.valueOf(loggedUser.getHighestRank()));
